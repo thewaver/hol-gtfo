@@ -21,13 +21,13 @@ export const App = () => {
 
     return (
         <div id="app" class="app">
+            <div class="title">{`Harem of Lust Combos\n${getRows().length / 2} entries as of 03/07/2025`}</div>
+
             <div class="gridBody">
                 <button class="gridCell header" onClick={() => handleClick(0, "card1", "card2")}>
                     {"Card 1 " + (getSortColIndex() === 0 ? getSortColDir() : "")}
                 </button>
-                <button class="gridCell header" onClick={() => handleClick(1, "card2", "card1")}>
-                    {"Card 2 " + (getSortColIndex() === 1 ? getSortColDir() : "")}
-                </button>
+                <div class="gridCell header">{"Card 2 "}</div>
                 <button class="gridCell header" onClick={() => handleClick(2, "result", "card1")}>
                     {"Result " + (getSortColIndex() === 2 ? getSortColDir() : "")}
                 </button>
