@@ -31,7 +31,7 @@ export const App = () => {
                 <button class="gridCell header" onClick={() => handleClick(2, "result", "card1")}>
                     {"Result " + (getSortColIndex() === 2 ? getSortColDir() : "")}
                 </button>
-                <button class="gridCell header" onClick={() => handleClick(3, "rarity", "card1")}>
+                <button class="gridCell header" onClick={() => handleClick(3, "rarity", "result")}>
                     {"Rarity " + (getSortColIndex() === 3 ? getSortColDir() : "")}
                 </button>
 
