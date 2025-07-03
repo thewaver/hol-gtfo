@@ -1,0 +1,71 @@
+.app {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    max-width: 100vw;
+    min-height: 100vh;
+    padding: 40px;
+    line-height: 1.25;
+
+    --c1: rgb(0, 16, 32, 0.5);
+    --c2: rgb(0, 8, 16, 0.75);
+
+    background-color: var(--clr-primary-bkg);
+    background-image: radial-gradient(transparent 33%, var(--c1)), radial-gradient(transparent 10%, var(--c2));
+    background-position: center center;
+    background-size: cover;
+
+    color: var(--clr-page-text-light);
+    transition: opacity var(--anim-duration);
+    opacity: 1;
+    overflow-x: hidden;
+}
+
+.app .gridBody {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(160px, auto));
+    column-gap: 40px;
+    row-gap: 10px;
+    padding: 20px;
+    border-radius: 20px;
+    border: 2px solid var(--clr-primary-text);
+    backdrop-filter: blur(10px) grayscale(66%) saturate(33%) brightness(33%);
+    box-shadow: var(--shd-medium);
+    overflow: hidden;
+}
+
+.app .gridCell {
+}
+
+.app .gridCell.header {
+    appearance: none;
+    padding: 0;
+    margin: 0;
+    border: none;
+    cursor: pointer;
+    user-select: none;
+    text-align: start;
+    text-transform: uppercase;
+    font-size: inherit;
+    font-weight: bold;
+    background: none;
+    color: inherit;
+}
+
+.app .gridCell.CR1 {
+    color: peru;
+}
+
+.app .gridCell.CR2 {
+    color: silver;
+}
+
+.app .gridCell.CR3 {
+    color: gold;
+}
+
+.app .gridCell.CR4 {
+    color: plum;
+}
