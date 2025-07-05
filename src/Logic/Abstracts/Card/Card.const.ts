@@ -48,6 +48,7 @@ export const CARD_RANKS: Record<CardName, CardRarity> = {
     "Hydra": "CR2",
     "Hydromancer": "CR2",
     "Ice Imp": "CR2",
+    "Infectious": "CR3",
     "Knight": "CR2",
     "Living Skeleton": "CR2",
     "Magic": "CR2",
@@ -61,6 +62,7 @@ export const CARD_RANKS: Record<CardName, CardRarity> = {
     "Necromancer": "CR2",
     "Obsession": "CR3",
     "Poison": "CR1",
+    "Poisoner": "CR3",
     "Pyromancer": "CR2",
     "Red Knight": "CR2",
     "Sand Storm": "CR2",
@@ -103,6 +105,7 @@ const SINGLE_DIR_CARD_COMBOS: Partial<Record<CardName, Partial<Record<CardName, 
         Magic: "Aeromancer",
         Metal: "Dirigible",
         Snake: "Wyvern",
+        Spirit: "Air Elemental",
         Undead: "Harpy",
         Wizard: "Aeromancer",
     },
@@ -124,6 +127,7 @@ const SINGLE_DIR_CARD_COMBOS: Partial<Record<CardName, Partial<Record<CardName, 
         Fairy: "Death Sprite",
         Fire: "Ash",
         Magic: "Geomancer",
+        Spirit: "Air Elemental",
         Tree: "Ash",
         Vampire: "Ash",
         Water: "Earth",
@@ -178,6 +182,7 @@ const SINGLE_DIR_CARD_COMBOS: Partial<Record<CardName, Partial<Record<CardName, 
     Dragon: {
         Fire: "Dragon",
         Human: "Ash",
+        Magic: "Astral Dragon",
         Metal: "Mechanical Dragon",
         Spirit: "Astral Dragon",
         Water: "Water Dragon",
@@ -257,6 +262,8 @@ const SINGLE_DIR_CARD_COMBOS: Partial<Record<CardName, Partial<Record<CardName, 
     },
     Poison: {
         Snake: "Poison",
+        Undead: "Infectious",
+        Wizard: "Poisoner",
     },
     Snake: {
         Undead: "Skeletal Snake",
@@ -268,7 +275,9 @@ const SINGLE_DIR_CARD_COMBOS: Partial<Record<CardName, Partial<Record<CardName, 
     },
 };
 
-const addedPairs = new Set<string>();
+const ADDED_PAIRS = new Set<string>();
+
+export let SYMMETRICAL_PAIR_COUNT = 0;
 
 export const CARD_COMBO_ARRAY: Array<{ card1: CardName; card2: CardName; result: CardName; rarity: CardRarity }> = (
     Object.keys(SINGLE_DIR_CARD_COMBOS) as CardName[]
@@ -280,14 +289,18 @@ export const CARD_COMBO_ARRAY: Array<{ card1: CardName; card2: CardName; result:
         const pair2 = `${card2}|${card1}`;
         const newCombos = [];
 
-        if (!addedPairs.has(pair1)) {
-            newCombos.push({ card1, card2, result, rarity });
-            addedPairs.add(pair1);
+        if (pair1 === pair2) {
+            SYMMETRICAL_PAIR_COUNT++;
         }
 
-        if (!addedPairs.has(pair2)) {
+        if (!ADDED_PAIRS.has(pair1)) {
+            newCombos.push({ card1, card2, result, rarity });
+            ADDED_PAIRS.add(pair1);
+        }
+
+        if (!ADDED_PAIRS.has(pair2)) {
             newCombos.push({ card1: card2, card2: card1, result, rarity });
-            addedPairs.add(pair2);
+            ADDED_PAIRS.add(pair2);
         }
 
         return newCombos;

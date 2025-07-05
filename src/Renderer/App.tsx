@@ -1,6 +1,11 @@
 import { For, createSignal } from "solid-js";
 
-import { CARD_COMBO_ARRAY, CARD_RANKS, CARD_RARITY_DESK } from "../Logic/Abstracts/Card/Card.const";
+import {
+    CARD_COMBO_ARRAY,
+    CARD_RANKS,
+    CARD_RARITY_DESK,
+    SYMMETRICAL_PAIR_COUNT,
+} from "../Logic/Abstracts/Card/Card.const";
 import { sortArray } from "./App.utils";
 
 import "./App.css";
@@ -21,7 +26,7 @@ export const App = () => {
 
     return (
         <div id="app" class="app">
-            <div class="title">{`Harem of Lust Combos\n${getRows().length / 2} entries as of 03/07/2025`}</div>
+            <div class="title">{`Harem of Lust Combos\n${(getRows().length - SYMMETRICAL_PAIR_COUNT) / 2 + SYMMETRICAL_PAIR_COUNT} entries as of 05/07/2025`}</div>
 
             <div class="gridBody">
                 <button class="gridCell header" onClick={() => handleClick(0, "card1", "card2")}>
