@@ -26,7 +26,7 @@ export const App = () => {
 
     return (
         <div id="app" class="app">
-            <div class="title">{`Harem of Lust Combos\n${(getRows().length - SYMMETRICAL_PAIR_COUNT) / 2 + SYMMETRICAL_PAIR_COUNT} entries as of 05/07/2025`}</div>
+            <div class="title">{`Harem of Lust Combos\n${(getRows().length - SYMMETRICAL_PAIR_COUNT) / 2 + SYMMETRICAL_PAIR_COUNT} entries as of 12/07/2025`}</div>
 
             <div class="gridBody">
                 <button class="gridCell header" onClick={() => handleClick(0, "card1", "card2")}>
