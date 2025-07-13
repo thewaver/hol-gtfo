@@ -173,7 +173,7 @@ const SINGLE_DIR_CARD_COMBOS: Partial<Record<CardName, Partial<Record<CardName, 
     "Beast": {
         Bone: "Undead Beast",
         Death: "Undead Beast",
-        Demon: "__UNKNOWN__",
+        Demon: "Enraged Beast",
         Game: "Druid",
         Giant: "Enraged Beast",
         Magic: "Unicorn",
@@ -248,7 +248,7 @@ const SINGLE_DIR_CARD_COMBOS: Partial<Record<CardName, Partial<Record<CardName, 
         "Metal": "Mechanical Dragon",
         "Mind Control": "Astral Dragon",
         "Poison": "Poisonous Dragon",
-        "Snake": "__UNKNOWN__",
+        "Snake": "Hydra",
         "Spirit": "Astral Dragon",
         "Undead": "Skeletal Dragon",
         "Water": "Water Dragon",
@@ -482,10 +482,10 @@ export const CARD_RELATIVE_SCORES = (Object.keys(CARD_RANKS) as CardName[]).redu
                 }
 
                 const resultScore = CARD_RANK_SCORES[CARD_RANKS[result]];
-                const score = CARD_ABSOLUTE_SCORES[card2].score * resultScore;
+                const score = CARD_ABSOLUTE_SCORES[card2].score;
                 const desc = `${score} * ${resultScore} (${card2})`;
 
-                sum.score += score;
+                sum.score += score * resultScore;
                 sum.desc = sum.desc ? `${sum.desc} + ${desc}` : desc;
 
                 return sum;
