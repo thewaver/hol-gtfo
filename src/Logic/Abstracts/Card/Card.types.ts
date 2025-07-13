@@ -17,6 +17,7 @@ export type CardName =
     | "Colossus"
     | "Death"
     | "Death Sprite"
+    | "Decay Demon"
     | "Demon"
     | "Demonologist"
     | "Devil"
@@ -53,6 +54,7 @@ export type CardName =
     | "Ice Imp"
     | "Infectious"
     | "Knight"
+    | "Lava"
     | "Living Skeleton"
     | "Magic"
     | "Mechanical Angel"
@@ -69,6 +71,7 @@ export type CardName =
     | "Playing Cards"
     | "Poison"
     | "Poisoner"
+    | "Poisonous Dragon"
     | "Pyromancer"
     | "Red Knight"
     | "Sand Storm"
@@ -91,10 +94,12 @@ export type CardName =
     | "Water Dragon"
     | "Waterfall"
     | "Wind"
+    | "Wind Demon"
     | "Wings"
     | "Wizard"
     | "Wooden Golem"
     | "Wraith"
-    | "Wyvern";
+    | "Wyvern"
+    | "__UNKNOWN__";
 
-export type CardRarity = "CR1" | "CR2" | "CR3" | "CR4";
+export type CardRarity = "CR0" | "CR1" | "CR2" | "CR3" | "CR4";

@@ -31,7 +31,6 @@
 
 .app .gridBody {
     display: grid;
-    grid-template-columns: repeat(3, minmax(120px, auto)) 120px;
     column-gap: 40px;
     row-gap: 10px;
     padding: 20px;
@@ -40,6 +39,14 @@
     backdrop-filter: blur(10px) grayscale(66%) saturate(33%) brightness(33%);
     box-shadow: var(--shd-medium);
     overflow: hidden;
+}
+
+.app .gridBody.combos {
+    grid-template-columns: repeat(3, minmax(120px, auto)) 120px;
+}
+
+.app .gridBody.scores {
+    grid-template-columns: repeat(5, minmax(120px, auto));
 }
 
 .app .gridCell {
@@ -58,6 +65,10 @@
     font-weight: bold;
     background: none;
     color: inherit;
+}
+
+.app .gridCell.CR0 {
+    color: red;
 }
 
 .app .gridCell.CR1 {
