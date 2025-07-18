@@ -47,6 +47,8 @@ export const CARD_RANKS: Record<CardName, CardRarity> = {
     "Earthquake": "CR1",
     "Enraged Beast": "CR2",
     "Enraged Demon": "CR2",
+    "Entropic Magic": "CR3",
+    "Explosion": "CR3",
     "Fairy": "CR1",
     "Fallen Angel": "CR3",
     "Fire": "CR1",
@@ -74,6 +76,7 @@ export const CARD_RANKS: Record<CardName, CardRarity> = {
     "Knight": "CR2",
     "Lava": "CR1",
     "Living Skeleton": "CR2",
+    "Litch": "CR3",
     "Magic": "CR2",
     "Mechanical Angel": "CR3",
     "Mechanical Beast": "CR3",
@@ -83,6 +86,7 @@ export const CARD_RANKS: Record<CardName, CardRarity> = {
     "Mermaid": "CR3",
     "Metal": "CR1",
     "Mind Control": "CR2",
+    "Mutation": "CR3",
     "Necromancer": "CR2",
     "Obsession": "CR3",
     "Plague": "CR3",
@@ -145,30 +149,32 @@ const SINGLE_DIR_CARD_COMBOS: Partial<Record<CardName, Partial<Record<CardName, 
         Wizard: "Aeromancer",
     },
     "Angel": {
-        Angel: "Archangel",
-        Ash: "Fallen Angel",
-        Death: "Fallen Angel",
-        Demon: "Fallen Angel",
-        Fairy: "Archangel",
-        Knight: "Warrior Angel",
-        Magic: "Archangel",
-        Metal: "Mechanical Angel",
-        Undead: "Fallen Angel",
-        Vampire: "Fallen Angel",
-        Wings: "Archangel",
-        Wizard: "Archangel",
+        "Angel": "Archangel",
+        "Ash": "Fallen Angel",
+        "Death": "Fallen Angel",
+        "Demon": "Fallen Angel",
+        "Entropic Magic": "Fallen Angel",
+        "Fairy": "Archangel",
+        "Knight": "Warrior Angel",
+        "Magic": "Archangel",
+        "Metal": "Mechanical Angel",
+        "Undead": "Fallen Angel",
+        "Vampire": "Fallen Angel",
+        "Wings": "Archangel",
+        "Wizard": "Archangel",
     },
     "Ash": {
-        Ash: "__UNKNOWN__",
-        Death: "Sand Storm",
-        Dragon: "Skeletal Dragon",
-        Fairy: "Death Sprite",
-        Game: "Earthquake",
-        Magic: "Geomancer",
-        Spirit: "Air Elemental",
-        Water: "Earth",
-        Wind: "Sand Storm",
-        Wizard: "Geomancer",
+        "Ash": "__UNKNOWN__",
+        "Death": "Sand Storm",
+        "Dragon": "Skeletal Dragon",
+        "Entropic Magic": "Sand Storm",
+        "Fairy": "Death Sprite",
+        "Game": "Earthquake",
+        "Magic": "Geomancer",
+        "Spirit": "Air Elemental",
+        "Water": "Earth",
+        "Wind": "Sand Storm",
+        "Wizard": "Geomancer",
     },
     "Beast": {
         Bone: "Undead Beast",
@@ -187,46 +193,50 @@ const SINGLE_DIR_CARD_COMBOS: Partial<Record<CardName, Partial<Record<CardName, 
         Wizard: "Druid",
     },
     "Bone": {
-        Bone: "Living Skeleton",
-        Demon: "Wraith",
-        Dragon: "Skeletal Dragon",
-        Fairy: "Death Sprite",
-        Fire: "Ash",
-        Giant: "Undead Giant",
-        Golem: "Undead Giant",
-        Human: "Living Skeleton",
-        Knight: "Undead Knight",
-        Magic: "Living Skeleton",
-        Snake: "Skeletal Snake",
-        Spirit: "Living Skeleton",
-        Undead: "Living Skeleton",
-        Wings: "Death Sprite",
-        Wizard: "Necromancer",
+        "Bone": "Living Skeleton",
+        "Demon": "Wraith",
+        "Dragon": "Skeletal Dragon",
+        "Entropic Magic": "Necromancer",
+        "Fairy": "Death Sprite",
+        "Fire": "Ash",
+        "Giant": "Undead Giant",
+        "Golem": "Undead Giant",
+        "Human": "Living Skeleton",
+        "Knight": "Undead Knight",
+        "Magic": "Living Skeleton",
+        "Snake": "Skeletal Snake",
+        "Spirit": "Living Skeleton",
+        "Undead": "Living Skeleton",
+        "Wings": "Death Sprite",
+        "Wizard": "Necromancer",
     },
     "Death": {
-        Demon: "Skeletal Dragon",
-        Dragon: "Skeletal Dragon",
-        Earth: "Earthquake",
-        Fairy: "Death Sprite",
-        Fire: "Lava",
-        Game: "Necromancer",
-        Giant: "Undead Giant",
-        Human: "Undead",
-        Ice: "Blizzard",
-        Knight: "Undead Knight",
-        Magic: "Undead",
-        Poison: "Snake",
-        Snake: "Poison",
-        Spirit: "Ghost",
-        Vampire: "Ash",
-        Water: "Poison",
-        Wind: "Sand Storm",
-        Wings: "Harpy",
-        Wizard: "Necromancer",
+        "Demon": "Skeletal Dragon",
+        "Dragon": "Skeletal Dragon",
+        "Earth": "Earthquake",
+        "Entropic Magic": "Necromancer",
+        "Fairy": "Death Sprite",
+        "Fire": "Lava",
+        "Game": "Necromancer",
+        "Giant": "Undead Giant",
+        "Human": "Undead",
+        "Ice": "Blizzard",
+        "Knight": "Undead Knight",
+        "Magic": "Undead",
+        "Mutation": "Undead",
+        "Poison": "Snake",
+        "Snake": "Poison",
+        "Spirit": "Ghost",
+        "Vampire": "Ash",
+        "Water": "Poison",
+        "Wind": "Sand Storm",
+        "Wings": "Harpy",
+        "Wizard": "Necromancer",
     },
     "Demon": {
         "Fairy": "Ice Imp",
         "Fire": "Enraged Demon",
+        "Entropic Magic": "Enraged Demon",
         "Game": "Playing Cards",
         "Giant": "Devil",
         "Golem": "Undead Giant",
@@ -254,19 +264,27 @@ const SINGLE_DIR_CARD_COMBOS: Partial<Record<CardName, Partial<Record<CardName, 
         "Water": "Water Dragon",
     },
     "Earth": {
-        Earth: "__UNKNOWN__",
-        Fairy: "Dryad",
+        "Earth": "__UNKNOWN__",
+        "Entropic Magic": "Earthquake",
+        "Fairy": "Dryad",
+        "Fire": "Lava",
+        "Game": "Spin the Bottle",
+        "Giant": "Golem",
+        "Golem": "Golem",
+        "Human": "Golem",
+        "Ice": "Blizzard",
+        "Knight": "Green Knight",
+        "Magic": "Geomancer",
+        "Water": "Waterfall",
+        "Wind": "Sand Storm",
+        "Wizard": "Geomancer",
+    },
+    "Entropic Magic": {
         Fire: "Lava",
-        Game: "Spin the Bottle",
-        Giant: "Golem",
-        Golem: "Golem",
-        Human: "Golem",
-        Ice: "Blizzard",
-        Knight: "Green Knight",
-        Magic: "Geomancer",
-        Water: "Waterfall",
-        Wind: "Sand Storm",
-        Wizard: "Geomancer",
+        Giant: "Undead Giant",
+        Human: "Undead",
+        Magic: "Explosion",
+        Undead: "Litch",
     },
     "Fairy": {
         Fire: "Fire Sprite",
@@ -445,69 +463,60 @@ export const CARD_COMBO_ARRAY: Array<{ card1: CardName; card2: CardName; result:
     });
 });
 
-type ScoreWithDesc = { score: number; desc: string };
-
 export const CARD_ABSOLUTE_SCORES = (Object.keys(CARD_RANKS) as CardName[]).reduce(
     (res, card1) => {
-        res[card1] = Object.values(CARD_COMBOS[card1] ?? {}).reduce(
-            (sum, result) => {
-                if (result === "__UNKNOWN__") {
+        res[card1] = (Object.keys(CARD_COMBOS[card1] ?? {}) as CardName[]).reduce(
+            (sum, card2) => {
+                const result = CARD_COMBOS[card1]![card2];
+
+                if (!result || result === "__UNKNOWN__") {
                     return sum;
                 }
 
                 const score = CARD_RANK_SCORES[CARD_RANKS[result]];
-                const desc = `${score} (${result})`;
 
-                sum.score += score;
-                sum.desc = sum.desc ? `${sum.desc} + ${desc}` : desc;
+                sum.push({ score, pair: card2, result });
 
                 return sum;
             },
-            { score: 0, desc: "" } as ScoreWithDesc,
+            [] as { score: number; pair: CardName; result: CardName }[],
         );
 
         return res;
     },
-    {} as Record<CardName, ScoreWithDesc>,
+    {} as Record<CardName, { score: number; pair: CardName; result: CardName }[]>,
 );
 
 export const CARD_RELATIVE_SCORES = (Object.keys(CARD_RANKS) as CardName[]).reduce(
     (res, card1) => {
         res[card1] = (Object.keys(CARD_COMBOS[card1] ?? {}) as CardName[]).reduce(
             (sum, card2) => {
-                const result = CARD_COMBOS[card1]![card2]!;
+                const result = CARD_COMBOS[card1]![card2];
 
-                if (result === "__UNKNOWN__") {
+                if (!result || result === "__UNKNOWN__") {
                     return sum;
                 }
 
                 const resultScore = CARD_RANK_SCORES[CARD_RANKS[result]];
-                const score = CARD_ABSOLUTE_SCORES[card2].score;
-                const desc = `${score} * ${resultScore} (${card2})`;
+                const pairScore = CARD_ABSOLUTE_SCORES[card2].reduce((sum, { score }) => sum + score, 0);
 
-                sum.score += score * resultScore;
-                sum.desc = sum.desc ? `${sum.desc} + ${desc}` : desc;
+                sum.push({ pairScore, resultScore, pair: card2, result });
 
                 return sum;
             },
-            { score: 0, desc: "" } as ScoreWithDesc,
+            [] as { pairScore: number; resultScore: number; pair: CardName; result: CardName }[],
         );
 
         return res;
     },
-    {} as Record<CardName, ScoreWithDesc>,
+    {} as Record<CardName, { pairScore: number; resultScore: number; pair: CardName; result: CardName }[]>,
 );
 
-export const CARD_SCORE_ARRAY: Array<{
-    card: CardName;
-    absoluteScore: number;
-    absoluteDesc: string;
-    relativeScore: number;
-    relativeDesc: string;
-}> = (Object.keys(CARD_RELATIVE_SCORES) as CardName[]).map((card) => ({
+export const CARD_SCORE_ARRAY = (Object.keys(CARD_RELATIVE_SCORES) as CardName[]).map((card) => ({
     card,
-    absoluteScore: CARD_ABSOLUTE_SCORES[card].score,
-    absoluteDesc: CARD_ABSOLUTE_SCORES[card].desc,
-    relativeScore: CARD_RELATIVE_SCORES[card].score,
-    relativeDesc: CARD_RELATIVE_SCORES[card].desc,
+    absoluteScore: CARD_ABSOLUTE_SCORES[card].reduce((sum, { score }) => sum + score, 0),
+    relativeScore: CARD_RELATIVE_SCORES[card].reduce(
+        (sum, { pairScore, resultScore }) => sum + pairScore * resultScore,
+        0,
+    ),
 }));
