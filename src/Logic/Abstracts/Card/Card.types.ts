@@ -57,7 +57,7 @@ export type CardName =
     | "Infectious"
     | "Knight"
     | "Lava"
-    | "Litch"
+    | "Lich"
     | "Living Skeleton"
     | "Magic"
     | "Mechanical Angel"

@@ -19,7 +19,7 @@ export const App = () => {
     const [getComboSortColIndex, setComboSortColIndex] = createSignal(0);
     const [getComboSortColDir, setComboSortColDir] = createSignal<"🠋" | "🠉">("🠋");
 
-    const [getScoreRows, setScoreRows] = createSignal(sortArray(CARD_SCORE_ARRAY, "absoluteScore"));
+    const [getScoreRows, setScoreRows] = createSignal(sortArray(CARD_SCORE_ARRAY, "absoluteScore", "card"));
     const [getScoreSortColIndex, setScoreSortColIndex] = createSignal(1);
     const [getScoreSortColDir, setScoreSortColDir] = createSignal<"🠋" | "🠉">("🠋");
 
@@ -69,7 +69,7 @@ export const App = () => {
                 </For>
             </div>
 
-            <div class="title">{`Subjective scores based on combos\nCommon = 1pt, Uncommon = 4pt, Rare = 12pt, Epic = 24pt\nIndividual = own combo potential, Comulative = pair combo potential`}</div>
+            <div class="title">{`Subjective scores based on combos\nCommon = 1, Uncommon = 4, Rare = 12, Epic = 24\nIndividual = result score sum, Comulative = pair * result score sum`}</div>
 
             <div class="gridBody scores">
                 <button class="gridCell header" onClick={() => handleScoreHeaderClick(0, "card")}>
@@ -78,11 +78,11 @@ export const App = () => {
                 <button class="gridCell header" onClick={() => handleScoreHeaderClick(1, "absoluteScore", "card")}>
                     {"Individual " + (getScoreSortColIndex() === 1 ? getScoreSortColDir() : "")}
                 </button>
-                <div class="gridCell header">{"Breakdown (Results)"}</div>
-                <button class="gridCell header" onClick={() => handleScoreHeaderClick(3, "relativeScore", "card")}>
-                    {"Comulative " + (getScoreSortColIndex() === 3 ? getScoreSortColDir() : "")}
+                <button class="gridCell header" onClick={() => handleScoreHeaderClick(2, "relativeScore", "card")}>
+                    {"Comulative " + (getScoreSortColIndex() === 2 ? getScoreSortColDir() : "")}
                 </button>
-                <div class="gridCell header">{"Breakdown (Pair Score * Result)"}</div>
+                <div class="gridCell header">{"Result Scores"}</div>
+                <div class="gridCell header">{"Pair Scores"}</div>
 
                 <For each={getScoreRows()}>
                     {(row) => {
@@ -90,36 +90,22 @@ export const App = () => {
                             <>
                                 <div class={`gridCell ${CARD_RANKS[row.card]}`}>{row.card}</div>
                                 <div class={`gridCell`}>{row.absoluteScore}</div>
+                                <div class={`gridCell`}>{row.relativeScore}</div>
                                 <div class={`gridCell`}>
                                     <For each={CARD_ABSOLUTE_SCORES[row.card]}>
-                                        {(item, getItemIndex) => (
-                                            <span>
-                                                <span
-                                                    class={`gridCell ${CARD_RANKS[item.result]}`}
-                                                >{`${item.score} (${item.result})`}</span>
-                                                <Show when={getItemIndex() < CARD_ABSOLUTE_SCORES[row.card].length - 1}>
-                                                    <span>{" + "}</span>
-                                                </Show>
-                                            </span>
+                                        {(item) => (
+                                            <div
+                                                class={`gridCell ${CARD_RANKS[item.result]}`}
+                                            >{`${item.score} (${item.result})`}</div>
                                         )}
                                     </For>
                                 </div>
-                                <div class={`gridCell`}>{row.relativeScore}</div>
                                 <div class={`gridCell`}>
                                     <For each={CARD_RELATIVE_SCORES[row.card]}>
-                                        {(item, getItemIndex) => (
-                                            <span>
-                                                <span
-                                                    class={`gridCell ${CARD_RANKS[item.pair]}`}
-                                                >{`${item.pairScore} (${item.pair})`}</span>
-                                                <span>{" * "}</span>
-                                                <span
-                                                    class={`gridCell ${CARD_RANKS[item.result]}`}
-                                                >{`${item.resultScore} (${item.result})`}</span>
-                                                <Show when={getItemIndex() < CARD_ABSOLUTE_SCORES[row.card].length - 1}>
-                                                    <span>{" + "}</span>
-                                                </Show>
-                                            </span>
+                                        {(item) => (
+                                            <div
+                                                class={`gridCell ${CARD_RANKS[item.pair]}`}
+                                            >{`${item.pairScore} (${item.pair})`}</div>
                                         )}
                                     </For>
                                 </div>
