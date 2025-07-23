@@ -7,8 +7,9 @@ export function sortArray<T extends { [key: string]: string | number }>(array: T
         let comparisonScore = 0;
         let keyIndex = 0;
 
-        while (comparisonScore === 0 && keyIndex < keys.length - 1) {
-            comparisonScore = compare(a[keys[keyIndex]], b[keys[keyIndex]]);
+        while (comparisonScore === 0 && keyIndex < keys.length) {
+            const key = keys[keyIndex];
+            comparisonScore = compare(a[key], b[key]);
             keyIndex += 1;
         }
 

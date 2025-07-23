@@ -1,16 +1,15 @@
-import { For, Show, createSignal } from "solid-js";
+import { For, createSignal } from "solid-js";
 
 import {
+    CARDS,
     CARD_ABSOLUTE_SCORES,
     CARD_COMBO_ARRAY,
-    CARD_RANKS,
-    CARD_RANK_DESC,
     CARD_RELATIVE_SCORES,
     CARD_SCORE_ARRAY,
     SYMMETRICAL_PAIR_COUNT,
 } from "../Logic/Abstracts/Card/Card.const";
-import { ArrayType } from "./App.types";
-import { sortArray } from "./App.utils";
+import { sortArray } from "../Logic/Utils/array";
+import { ArrayType } from "../Logic/Utils/utilityTypes";
 
 import "./App.css";
 
@@ -41,7 +40,7 @@ export const App = () => {
 
     return (
         <div id="app" class="app">
-            <div class="title">{`Harem of Lust Combos\n${(getComboRows().length - SYMMETRICAL_PAIR_COUNT) / 2 + SYMMETRICAL_PAIR_COUNT} entries as of 20/07/2025`}</div>
+            <div class="title">{`Harem of Lust Combos\n${(getComboRows().length - SYMMETRICAL_PAIR_COUNT) / 2 + SYMMETRICAL_PAIR_COUNT} entries as of 22/07/2025`}</div>
 
             <div class="gridBody combos">
                 <button class="gridCell header" onClick={() => handleComboHeaderClick(0, "card1", "card2")}>
@@ -51,18 +50,30 @@ export const App = () => {
                 <button class="gridCell header" onClick={() => handleComboHeaderClick(2, "result", "card1")}>
                     {"Result " + (getComboSortColIndex() === 2 ? getComboSortColDir() : "")}
                 </button>
-                <button class="gridCell header" onClick={() => handleComboHeaderClick(3, "rarity", "result", "card1")}>
-                    {"Rarity " + (getComboSortColIndex() === 3 ? getComboSortColDir() : "")}
+                <button class="gridCell header" onClick={() => handleComboHeaderClick(3, "atk", "result", "card1")}>
+                    {"Atk " + (getComboSortColIndex() === 3 ? getComboSortColDir() : "")}
+                </button>
+                <button class="gridCell header" onClick={() => handleComboHeaderClick(4, "def", "result", "card1")}>
+                    {"Def " + (getComboSortColIndex() === 4 ? getComboSortColDir() : "")}
+                </button>
+                <button class="gridCell header" onClick={() => handleComboHeaderClick(5, "power", "result", "card1")}>
+                    {"Pwr " + (getComboSortColIndex() === 5 ? getComboSortColDir() : "")}
+                </button>
+                <button class="gridCell header" onClick={() => handleComboHeaderClick(6, "rarity", "result", "card1")}>
+                    {"Rarity " + (getComboSortColIndex() === 6 ? getComboSortColDir() : "")}
                 </button>
 
                 <For each={getComboRows()}>
                     {(row) => {
                         return (
                             <>
-                                <div class={`gridCell ${CARD_RANKS[row.card1]}`}>{row.card1}</div>
-                                <div class={`gridCell ${CARD_RANKS[row.card2]}`}>{row.card2}</div>
-                                <div class={`gridCell ${CARD_RANKS[row.result]}`}>{row.result}</div>
-                                <div class={`gridCell ${row.rarity}`}>{CARD_RANK_DESC[row.rarity]}</div>
+                                <div class={`gridCell ${CARDS[row.card1].rarity}`}>{row.card1}</div>
+                                <div class={`gridCell ${CARDS[row.card2].rarity}`}>{row.card2}</div>
+                                <div class={`gridCell ${CARDS[row.result].rarity}`}>{row.result}</div>
+                                <div class={`gridCell`}>{row.atk}</div>
+                                <div class={`gridCell`}>{row.def}</div>
+                                <div class={`gridCell`}>{row.power}</div>
+                                <div class={`gridCell ${CARDS[row.result].rarity}`}>{row.rarity}</div>
                             </>
                         );
                     }}
@@ -88,14 +99,14 @@ export const App = () => {
                     {(row) => {
                         return row.absoluteScore ? (
                             <>
-                                <div class={`gridCell ${CARD_RANKS[row.card]}`}>{row.card}</div>
+                                <div class={`gridCell ${CARDS[row.card].rarity}`}>{row.card}</div>
                                 <div class={`gridCell`}>{row.absoluteScore}</div>
                                 <div class={`gridCell`}>{row.relativeScore}</div>
                                 <div class={`gridCell`}>
                                     <For each={CARD_ABSOLUTE_SCORES[row.card]}>
                                         {(item) => (
                                             <div
-                                                class={`gridCell ${CARD_RANKS[item.result]}`}
+                                                class={`gridCell ${CARDS[item.result].rarity}`}
                                             >{`${item.score} (${item.result})`}</div>
                                         )}
                                     </For>
@@ -104,7 +115,7 @@ export const App = () => {
                                     <For each={CARD_RELATIVE_SCORES[row.card]}>
                                         {(item) => (
                                             <div
-                                                class={`gridCell ${CARD_RANKS[item.pair]}`}
+                                                class={`gridCell ${CARDS[item.pair].rarity}`}
                                             >{`${item.pairScore} (${item.pair})`}</div>
                                         )}
                                     </For>

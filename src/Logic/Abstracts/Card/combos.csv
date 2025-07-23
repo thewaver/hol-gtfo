@@ -1,0 +1,1153 @@
+card1,card2,result
+Air,Knowledge,Aeromancer
+Air,Magic,Aeromancer
+Air,Rune,Aeromancer
+Air,Wizard,Aeromancer
+Game,Wind,Aeromancer
+Knowledge,Wind,Aeromancer
+Rune,Wind,Aeromancer
+Wind,Wizard,Aeromancer
+Air,Giant,Air Elemental
+Air,Spirit,Air Elemental
+Ash,Spirit,Air Elemental
+Domination,Wind,Air Elemental
+Spirit,Wind,Air Elemental
+Wind,Wind,Air Elemental
+Air,Domination,Angel
+Domination,Light,Angel
+Domination,Wings,Angel
+Fairy,Giant,Angel
+Fairy,Light,Angel
+Human,Light,Angel
+Human,Wings,Angel
+Light,Wings,Angel
+Blood,Troll,Angry Giant
+Domination,Giant,Angry Giant
+Domination,Troll,Angry Giant
+Giant,Madness,Angry Giant
+Giant,Myth,Angry Giant
+Madness,Troll,Angry Giant
+Myth,Troll,Angry Giant
+Air,Immortality,Archangel
+Angel,Angel,Archangel
+Angel,Domination,Archangel
+Angel,Fairy,Archangel
+Angel,Immortality,Archangel
+Angel,Knowledge,Archangel
+Angel,Light,Archangel
+Angel,Magic,Archangel
+Angel,Myth,Archangel
+Angel,Power,Archangel
+Angel,Wings,Archangel
+Angel,Wizard,Archangel
+Immortality,Wings,Archangel
+Domination,Knowledge,Archmage
+Domination,Magic,Archmage
+Domination,Wizard,Archmage
+Knowledge,Power,Archmage
+Knowledge,Rune,Archmage
+Knowledge,Secret,Archmage
+Knowledge,Spell,Archmage
+Knowledge,Wizard,Archmage
+Magic,Wizard,Archmage
+Myth,Wizard,Archmage
+Power,Wizard,Archmage
+Rune,Wizard,Archmage
+Science,Wizard,Archmage
+Secret,Wizard,Archmage
+Domination,Mask,Aristocrat
+Giant,Mask,Aristocrat
+Human,Mask,Aristocrat
+Jewel,Mask,Aristocrat
+Knight,Mask,Aristocrat
+Mask,Power,Aristocrat
+Mask,Robot,Aristocrat
+Mask,Romance,Aristocrat
+Mask,Vampire,Aristocrat
+Air,Earth,Ash
+Bone,Fire,Ash
+Bone,Time,Ash
+Death,Vampire,Ash
+Dragon,Human,Ash
+Earth,Time,Ash
+Fire,Human,Ash
+Fire,Plague,Ash
+Fire,Plant,Ash
+Fire,Sleep,Ash
+Fire,Time,Ash
+Fire,Totem,Ash
+Fire,Tree,Ash
+Fire,Undead,Ash
+Fire,Vampire,Ash
+Fire,Water,Ash
+Light,Vampire,Ash
+Time,Tree,Ash
+Darkness,Human,Assassin
+Human,Secret,Assassin
+Invisibility,Secret,Assassin
+Knight,Power,Assassin
+Knight,Secret,Assassin
+Poison,Secret,Assassin
+Dragon,Energy,Astral Dragon
+Dragon,Illusion,Astral Dragon
+Dragon,Invisibility,Astral Dragon
+Dragon,Magic,Astral Dragon
+Dragon,Magic Crystal,Astral Dragon
+Dragon,Mind Control,Astral Dragon
+Dragon,Myth,Astral Dragon
+Dragon,Spirit,Astral Dragon
+Darkness,Science,Astronomer
+Game,Star,Astronomer
+Knowledge,Star,Astronomer
+Romance,Star,Astronomer
+Science,Star,Astronomer
+Star,Wizard,Astronomer
+Beast,Mask,Banquet
+Fish,Mask,Banquet
+Game,Mask,Banquet
+Mask,Plant,Banquet
+Mask,Water,Banquet
+Beast,Tree,Basilisk
+Mutation,Snake,Basilisk
+Myth,Snake,Basilisk
+Pollen,Snake,Basilisk
+Energy,Fish,Bathyscaphe
+Fish,Game,Bathyscaphe
+Fish,Knight,Bathyscaphe
+Fish,Mechanism,Bathyscaphe
+Fish,Metal,Bathyscaphe
+Fish,Robot,Bathyscaphe
+Energy,Knight,Battle Mage
+Knight,Knowledge,Battle Mage
+Knight,Magic,Battle Mage
+Knight,Magic Crystal,Battle Mage
+Knight,Rune,Battle Mage
+Knight,Wizard,Battle Mage
+Beast,Energy,Beast Spirit
+Beast,Illusion,Beast Spirit
+Beast,Myth,Beast Spirit
+Beast,Spirit,Beast Spirit
+Beast,Totem,Beast Spirit
+Air,Beast,Bird
+Beast,Wind,Bird
+Beast,Wings,Bird
+Romance,Wings,Bird
+Air,Ice,Blizzard
+Death,Ice,Blizzard
+Earth,Ice,Blizzard
+Energy,Ice,Blizzard
+Game,Ice,Blizzard
+Ice,Pollen,Blizzard
+Ice,Spell,Blizzard
+Ice,Wind,Blizzard
+Darkness,Vampire,Blood
+Blood,Domination,Blood Mage
+Blood,Entropic Magic,Blood Mage
+Blood,Power,Blood Mage
+Blood,Spell,Blood Mage
+Blood,Wizard,Blood Mage
+Ice,Knight,Blue Knight
+Knight,Water,Blue Knight
+Knight,Wind,Blue Knight
+Death,Troll,Bone
+Blood,Pirate,Captain
+Domination,Pirate,Captain
+Giant,Pirate,Captain
+Knowledge,Pirate,Captain
+Madness,Pirate,Captain
+Myth,Pirate,Captain
+Pirate,Power,Captain
+Pirate,Treasure,Captain
+Ash,Mask,Carriage
+Dragon,Mask,Carriage
+Fairy,Mask,Carriage
+Mask,Mechanism,Carriage
+Mask,Metal,Carriage
+Mask,Time,Carriage
+Mask,Totem,Carriage
+Mask,Tree,Carriage
+Bone,Troll,Cave Troll
+Darkness,Troll,Cave Troll
+Demon,Troll,Cave Troll
+Giant,Troll,Cave Troll
+Power,Troll,Cave Troll
+Shackles,Troll,Cave Troll
+Treasure,Troll,Cave Troll
+Blood,Fun,Cocktail
+Fun,Ice,Cocktail
+Fun,Magic,Cocktail
+Fun,Mind Control,Cocktail
+Fun,Mirror,Cocktail
+Fun,Poison,Cocktail
+Fun,Sleep,Cocktail
+Fun,Water,Cocktail
+Domination,Mechanism,Colossus
+Domination,Robot,Colossus
+Energy,Golem,Colossus
+Energy,Mechanism,Colossus
+Energy,Robot,Colossus
+Giant,Golem,Colossus
+Giant,Mechanism,Colossus
+Giant,Metal,Colossus
+Giant,Robot,Colossus
+Giant,Science,Colossus
+Golem,Magic,Colossus
+Golem,Robot,Colossus
+Golem,Science,Colossus
+Magic Crystal,Mechanism,Colossus
+Magic Crystal,Metal,Colossus
+Magic Crystal,Robot,Colossus
+Mechanism,Troll,Colossus
+Metal,Troll,Colossus
+Myth,Robot,Colossus
+Robot,Science,Colossus
+Domination,Knight,Commander
+Domination,Power,Commander
+Domination,Science,Commander
+Human,Power,Commander
+Myth,Power,Commander
+Earth,Treasure,Compass
+Knowledge,Treasure,Compass
+Mechanism,Secret,Compass
+Mechanism,Star,Compass
+Mechanism,Treasure,Compass
+Secret,Treasure,Compass
+Knowledge,Spirit,Cultist
+Knowledge,Void,Cultist
+Science,Void,Cultist
+Mind Control,Treasure,Curse
+Earth,Fun,Dance
+Energy,Fun,Dance
+Fun,Fun,Dance
+Fun,Giant,Dance
+Fun,Human,Dance
+Fun,Power,Dance
+Fun,Spirit,Dance
+Fun,Time,Dance
+Air,Mask,Dancer
+Angel,Mask,Dancer
+Energy,Mask,Dancer
+Fire,Mask,Dancer
+Fun,Mask,Dancer
+Madness,Mask,Dancer
+Mask,Pollen,Dancer
+Mask,Spirit,Dancer
+Mask,Star,Dancer
+Mask,Wind,Dancer
+Mask,Wings,Dancer
+Mask,Wizard,Dancer
+Darkness,Plant,Darkwood
+Darkness,Tree,Darkwood
+Immortality,Tree,Darkwood
+Myth,Tree,Darkwood
+Secret,Tree,Darkwood
+Earth,Fish,Death
+Entropic Magic,Immortality,Death
+Fish,Ice,Death
+Human,Pirate,Death
+Human,Poison,Death
+Human,Snake,Death
+Human,Time,Death
+Human,Troll,Death
+Power,Void,Death
+Sleep,Void,Death
+Spell,Void,Death
+Air,Bone,Death Sprite
+Ash,Fairy,Death Sprite
+Bone,Fairy,Death Sprite
+Bone,Wings,Death Sprite
+Curse,Fairy,Death Sprite
+Darkness,Fairy,Death Sprite
+Death,Fairy,Death Sprite
+Fairy,Plague,Death Sprite
+Fairy,Undead,Death Sprite
+Fairy,Vampire,Death Sprite
+Plague,Spirit,Death Sprite
+Blood,Plague,Decay Demon
+Curse,Demon,Decay Demon
+Demon,Plague,Decay Demon
+Demon,Poison,Decay Demon
+Curse,Dragon,Decay Dragon
+Dragon,Entropic Magic,Decay Dragon
+Dragon,Mutation,Decay Dragon
+Dragon,Plague,Decay Dragon
+Blood,Curse,Demon
+Darkness,Domination,Demon
+Tentacle,Undead,Demon
+Darkness,Magic,Demonologist
+Demon,Knowledge,Demonologist
+Demon,Rune,Demonologist
+Demon,Secret,Demonologist
+Demon,Wizard,Demonologist
+Knowledge,Tentacle,Demonologist
+Tentacle,Wizard,Demonologist
+Angel,Shackles,Devil
+Demon,Domination,Devil
+Demon,Fun,Devil
+Demon,Giant,Devil
+Demon,Immortality,Devil
+Demon,Magic,Devil
+Demon,Mind Control,Devil
+Demon,Myth,Devil
+Demon,Power,Devil
+Demon,Science,Devil
+Fun,Immortality,Devil
+Air,Game,Dice Roll
+Bone,Game,Dice Roll
+Dragon,Game,Dice Roll
+Game,Pirate,Dice Roll
+Game,Rune,Dice Roll
+Game,Totem,Dice Roll
+Air,Mechanism,Dirigible
+Air,Metal,Dirigible
+Air,Robot,Dirigible
+Air,Science,Dirigible
+Fairy,Mechanism,Dirigible
+Fairy,Metal,Dirigible
+Fairy,Robot,Dirigible
+Mechanism,Wind,Dirigible
+Mechanism,Wings,Dirigible
+Metal,Romance,Dirigible
+Robot,Wind,Dirigible
+Robot,Wings,Dirigible
+Science,Wings,Dirigible
+Magic,Spell,Domination
+Dragon,Fire,Dragon
+Fire,Treasure,Dragon
+Angel,Sleep,Dreams Fairy
+Fairy,Illusion,Dreams Fairy
+Fairy,Invisibility,Dreams Fairy
+Fairy,Romance,Dreams Fairy
+Fairy,Sleep,Dreams Fairy
+Fairy,Time,Dreams Fairy
+Game,Sleep,Dreams Fairy
+Myth,Sleep,Dreams Fairy
+Pollen,Sleep,Dreams Fairy
+Pollen,Time,Dreams Fairy
+Sleep,Spirit,Dreams Fairy
+Sleep,Wings,Dreams Fairy
+Beast,Game,Druid
+Beast,Knowledge,Druid
+Beast,Science,Druid
+Beast,Wizard,Druid
+Human,Tree,Druid
+Science,Tree,Druid
+Earth,Fairy,Dryad
+Fairy,Human,Dryad
+Fairy,Plant,Dryad
+Fairy,Tree,Dryad
+Game,Plant,Dryad
+Spirit,Tree,Dryad
+Darkness,Secret,Dungeon
+Earth,Myth,Dungeon
+Human,Shackles,Dungeon
+Jewel,Secret,Dungeon
+Jewel,Shackles,Dungeon
+Secret,Shackles,Dungeon
+Shackles,Treasure,Dungeon
+Ash,Water,Earth
+Golem,Time,Earth
+Ash,Game,Earthquake
+Death,Earth,Earthquake
+Death,Energy,Earthquake
+Domination,Earth,Earthquake
+Earth,Earth,Earthquake
+Earth,Energy,Earthquake
+Earth,Entropic Magic,Earthquake
+Earth,Power,Earthquake
+Earth,Spell,Earthquake
+Human,Plant,Elf
+Human,Pollen,Elf
+Beast,Blood,Enraged Beast
+Beast,Demon,Enraged Beast
+Beast,Giant,Enraged Beast
+Beast,Madness,Enraged Beast
+Beast,Power,Enraged Beast
+Beast,Vampire,Enraged Beast
+Blood,Demon,Enraged Demon
+Blood,Madness,Enraged Demon
+Demon,Energy,Enraged Demon
+Demon,Entropic Magic,Enraged Demon
+Demon,Fire,Enraged Demon
+Demon,Madness,Enraged Demon
+Demon,Mutation,Enraged Demon
+Blood,Fire,Entropic Magic
+Blood,Magic,Entropic Magic
+Domination,Energy,Entropic Magic
+Energy,Secret,Entropic Magic
+Magic,Power,Entropic Magic
+Magic,Secret,Entropic Magic
+Death,Star,Explosion
+Death,Void,Explosion
+Domination,Entropic Magic,Explosion
+Energy,Energy,Explosion
+Energy,Entropic Magic,Explosion
+Energy,Magic,Explosion
+Energy,Magic Crystal,Explosion
+Energy,Power,Explosion
+Energy,Spell,Explosion
+Energy,Void,Explosion
+Entropic Magic,Magic,Explosion
+Entropic Magic,Magic Crystal,Explosion
+Entropic Magic,Spell,Explosion
+Entropic Magic,Star,Explosion
+Entropic Magic,Void,Explosion
+Fire,Void,Explosion
+Game,Spell,Explosion
+Magic,Void,Explosion
+Power,Power,Explosion
+Star,Time,Explosion
+Void,Void,Explosion
+Myth,Pollen,Fairy
+Pollen,Spirit,Fairy
+Pollen,Wizard,Fairy
+Angel,Ash,Fallen Angel
+Angel,Blood,Fallen Angel
+Angel,Curse,Fallen Angel
+Angel,Darkness,Fallen Angel
+Angel,Death,Fallen Angel
+Angel,Demon,Fallen Angel
+Angel,Entropic Magic,Fallen Angel
+Angel,Madness,Fallen Angel
+Angel,Mutation,Fallen Angel
+Angel,Plague,Fallen Angel
+Angel,Undead,Fallen Angel
+Angel,Vampire,Fallen Angel
+Angel,Void,Fallen Angel
+Darkness,Wings,Fallen Angel
+Fire,Giant,Fire Giant
+Fire,Troll,Fire Giant
+Fire,Golem,Fire Golem
+Fairy,Fire,Fire Sprite
+Fire,Romance,Fire Sprite
+Fire,Spirit,Fire Sprite
+Air,Fire,Fireball
+Fire,Spell,Fireball
+Fire,Star,Fireball
+Fire,Wind,Fireball
+Fun,Mechanism,Floral Wreath
+Fun,Myth,Floral Wreath
+Fun,Plant,Floral Wreath
+Fun,Pollen,Floral Wreath
+Fun,Romance,Floral Wreath
+Fun,Totem,Floral Wreath
+Fun,Treasure,Floral Wreath
+Fun,Tree,Floral Wreath
+Beast,Ice,Frost Monster
+Giant,Ice,Frost Monster
+Golem,Ice,Frost Monster
+Ice,Troll,Frost Monster
+Game,Game,Gamer
+Game,Human,Gamer
+Game,Knowledge,Gamer
+Game,Shackles,Gamer
+Game,Time,Gamer
+Ash,Knowledge,Geomancer
+Ash,Magic,Geomancer
+Ash,Wizard,Geomancer
+Earth,Knowledge,Geomancer
+Earth,Magic,Geomancer
+Earth,Rune,Geomancer
+Earth,Science,Geomancer
+Earth,Wizard,Geomancer
+Knowledge,Plant,Geomancer
+Knowledge,Pollen,Geomancer
+Plant,Science,Geomancer
+Plant,Wizard,Geomancer
+Pollen,Science,Geomancer
+Tree,Wizard,Geomancer
+Air,Fairy,Ghost
+Death,Invisibility,Ghost
+Death,Spirit,Ghost
+Energy,Spirit,Ghost
+Human,Invisibility,Ghost
+Human,Spirit,Ghost
+Invisibility,Myth,Ghost
+Mind Control,Undead,Ghost
+Blood,Golem,Giant
+Giant,Human,Giant
+Domination,Immortality,Goddess
+Domination,Myth,Goddess
+Giant,Power,Goddess
+Human,Immortality,Goddess
+Immortality,Myth,Goddess
+Immortality,Power,Goddess
+Immortality,Secret,Goddess
+Light,Myth,Goddess
+Ash,Troll,Golem
+Earth,Giant,Golem
+Earth,Golem,Golem
+Earth,Human,Golem
+Earth,Magic Crystal,Golem
+Earth,Troll,Golem
+Earth,Knight,Green Knight
+Knight,Plant,Green Knight
+Knight,Poison,Green Knight
+Knight,Tree,Green Knight
+Domination,Fun,Hammock
+Fun,Madness,Hammock
+Fun,Shackles,Hammock
+Fun,Tentacle,Hammock
+Air,Death,Harpy
+Air,Plague,Harpy
+Air,Undead,Harpy
+Blood,Wings,Harpy
+Curse,Wings,Harpy
+Death,Wings,Harpy
+Mutation,Wings,Harpy
+Myth,Wings,Harpy
+Plague,Wings,Harpy
+Undead,Wind,Harpy
+Undead,Wings,Harpy
+Air,Blood,High Vampire
+Air,Vampire,High Vampire
+Blood,Game,High Vampire
+Blood,Vampire,High Vampire
+Demon,Vampire,High Vampire
+Domination,Vampire,High Vampire
+Energy,Vampire,High Vampire
+Entropic Magic,Vampire,High Vampire
+Immortality,Vampire,High Vampire
+Knowledge,Vampire,High Vampire
+Madness,Vampire,High Vampire
+Magic,Vampire,High Vampire
+Mind Control,Vampire,High Vampire
+Power,Vampire,High Vampire
+Romance,Vampire,High Vampire
+Vampire,Wings,High Vampire
+Blood,Romance,Honey
+Ice,Romance,Honey
+Pollen,Romance,Honey
+Romance,Shackles,Honey
+Mechanism,Pirate,Hook
+Mechanism,Tentacle,Hook
+Metal,Pirate,Hook
+Metal,Shackles,Hook
+Metal,Tentacle,Hook
+Darkness,Illusion,Horror
+Darkness,Immortality,Horror
+Darkness,Mutation,Horror
+Madness,Undead,Horror
+Madness,Void,Horror
+Mutation,Vampire,Horror
+Beast,Snake,Huge Snake
+Giant,Snake,Huge Snake
+Poison,Snake,Huge Snake
+Power,Snake,Huge Snake
+Blood,Bone,Human
+Blood,Robot,Human
+Blood,Shackles,Human
+Human,Human,Human
+Dragon,Snake,Hydra
+Snake,Snake,Hydra
+Snake,Water,Hydra
+Ice,Knowledge,Hydromancer
+Ice,Magic,Hydromancer
+Ice,Wizard,Hydromancer
+Knowledge,Water,Hydromancer
+Magic,Water,Hydromancer
+Rune,Water,Hydromancer
+Science,Water,Hydromancer
+Water,Wizard,Hydromancer
+Domination,Mind Control,Hypnotist
+Game,Mind Control,Hypnotist
+Illusion,Mind Control,Hypnotist
+Knowledge,Romance,Hypnotist
+Mind Control,Power,Hypnotist
+Mind Control,Science,Hypnotist
+Mind Control,Secret,Hypnotist
+Romance,Sleep,Hypnotist
+Romance,Wizard,Hypnotist
+Ice,Water,Ice
+Dragon,Ice,Ice Dragon
+Demon,Fairy,Ice Imp
+Demon,Ice,Ice Imp
+Demon,Water,Ice Imp
+Fairy,Ice,Ice Imp
+Fairy,Water,Ice Imp
+Ice,Wings,Ice Imp
+Water,Wings,Ice Imp
+Air,Mirror,Illusion
+Fun,Knowledge,Illusionist
+Fun,Wizard,Illusionist
+Game,Illusion,Illusionist
+Game,Invisibility,Illusionist
+Human,Illusion,Illusionist
+Illusion,Knowledge,Illusionist
+Illusion,Magic,Illusionist
+Illusion,Science,Illusionist
+Illusion,Wizard,Illusionist
+Invisibility,Knowledge,Illusionist
+Invisibility,Wizard,Illusionist
+Game,Undead,Infectious
+Madness,Wings,Infectious
+Mutation,Plague,Infectious
+Plague,Undead,Infectious
+Poison,Undead,Infectious
+Energy,Human,Inventor
+Energy,Science,Inventor
+Human,Science,Inventor
+Knowledge,Metal,Inventor
+Knowledge,Science,Inventor
+Game,Jewel,Jackpot
+Game,Metal,Jackpot
+Game,Myth,Jackpot
+Game,Pollen,Jackpot
+Game,Robot,Jackpot
+Game,Science,Jackpot
+Game,Treasure,Jackpot
+Light,Metal,Jewel
+Magic,Treasure,Jewel
+Air,Fun,Kite
+Angel,Fun,Kite
+Dragon,Fun,Kite
+Fairy,Fun,Kite
+Fun,Game,Kite
+Fun,Snake,Kite
+Fun,Wind,Kite
+Fun,Wings,Kite
+Light,Snake,Kite
+Human,Metal,Knight
+Curse,Tentacle,Kraken
+Domination,Tentacle,Kraken
+Energy,Tentacle,Kraken
+Entropic Magic,Tentacle,Kraken
+Madness,Tentacle,Kraken
+Mutation,Tentacle,Kraken
+Myth,Tentacle,Kraken
+Power,Tentacle,Kraken
+Tentacle,Time,Kraken
+Curse,Light,Laser
+Death,Light,Laser
+Fun,Robot,Laser
+Game,Light,Laser
+Game,Magic Crystal,Laser
+Jewel,Light,Laser
+Light,Magic Crystal,Laser
+Light,Mirror,Laser
+Death,Fire,Lava
+Earth,Fire,Lava
+Energy,Fire,Lava
+Entropic Magic,Fire,Lava
+Fire,Fire,Lava
+Fire,Power,Lava
+Blood,Poison,Leper
+Curse,Human,Leper
+Curse,Romance,Leper
+Curse,Tree,Leper
+Curse,Undead,Leper
+Entropic Magic,Romance,Leper
+Human,Mutation,Leper
+Human,Plague,Leper
+Human,Void,Leper
+Mutation,Romance,Leper
+Mutation,Undead,Leper
+Plague,Romance,Leper
+Power,Shackles,Leper
+Curse,Knowledge,Lich
+Darkness,Knowledge,Lich
+Darkness,Power,Lich
+Darkness,Undead,Lich
+Death,Magic Crystal,Lich
+Entropic Magic,Undead,Lich
+Immortality,Wizard,Lich
+Mutation,Wizard,Lich
+Power,Undead,Lich
+Curse,Domination,Lich King
+Curse,Ice,Lich King
+Domination,Ice,Lich King
+Domination,Undead,Lich King
+Ice,Immortality,Lich King
+Ice,Myth,Lich King
+Ice,Plague,Lich King
+Ice,Undead,Lich King
+Knight,Myth,Lich King
+Darkness,Fire,Light
+Darkness,Light,Light
+Fire,Mirror,Light
+Power,Star,Light
+Bone,Bone,Living Skeleton
+Bone,Curse,Living Skeleton
+Bone,Energy,Living Skeleton
+Bone,Fun,Living Skeleton
+Bone,Human,Living Skeleton
+Bone,Immortality,Living Skeleton
+Bone,Magic,Living Skeleton
+Bone,Myth,Living Skeleton
+Bone,Romance,Living Skeleton
+Bone,Spirit,Living Skeleton
+Bone,Undead,Living Skeleton
+Death,Fun,Living Skeleton
+Death,Romance,Living Skeleton
+Romance,Undead,Living Skeleton
+Energy,Romance,Lyre
+Mechanism,Romance,Lyre
+Myth,Romance,Lyre
+Romance,Treasure,Lyre
+Romance,Tree,Lyre
+Curse,Science,Mad Magician
+Darkness,Madness,Mad Magician
+Darkness,Wizard,Mad Magician
+Domination,Madness,Mad Magician
+Entropic Magic,Game,Mad Magician
+Entropic Magic,Knowledge,Mad Magician
+Entropic Magic,Madness,Mad Magician
+Entropic Magic,Science,Mad Magician
+Entropic Magic,Wizard,Mad Magician
+Game,Magic,Mad Magician
+Game,Wizard,Mad Magician
+Knowledge,Madness,Mad Magician
+Madness,Magic,Mad Magician
+Madness,Power,Mad Magician
+Madness,Wizard,Mad Magician
+Curse,Fun,Madness
+Entropic Magic,Fun,Madness
+Magic Crystal,Power,Magic
+Power,Spell,Magic
+Energy,Jewel,Magic Crystal
+Energy,Rune,Magic Crystal
+Entropic Magic,Jewel,Magic Crystal
+Entropic Magic,Rune,Magic Crystal
+Jewel,Magic,Magic Crystal
+Magic,Rune,Magic Crystal
+Power,Rune,Magic Crystal
+Angel,Mechanism,Mechanical Angel
+Angel,Metal,Mechanical Angel
+Angel,Robot,Mechanical Angel
+Angel,Science,Mechanical Angel
+Beast,Mechanism,Mechanical Beast
+Beast,Metal,Mechanical Beast
+Beast,Robot,Mechanical Beast
+Dragon,Mechanism,Mechanical Dragon
+Dragon,Metal,Mechanical Dragon
+Dragon,Robot,Mechanical Dragon
+Dragon,Science,Mechanical Dragon
+Golem,Mechanism,Mechanical Golem
+Golem,Metal,Mechanical Golem
+Energy,Metal,Mechanism
+Magic,Metal,Mechanism
+Metal,Metal,Mechanism
+Metal,Power,Mechanism
+Metal,Science,Mechanism
+Metal,Totem,Mechanism
+Fish,Human,Mermaid
+Human,Water,Mermaid
+Blood,Treasure,Mimic
+Curse,Treasure,Mimic
+Death,Treasure,Mimic
+Demon,Treasure,Mimic
+Entropic Magic,Treasure,Mimic
+Game,Tentacle,Mimic
+Illusion,Treasure,Mimic
+Madness,Treasure,Mimic
+Mutation,Treasure,Mimic
+Myth,Treasure,Mimic
+Plague,Treasure,Mimic
+Secret,Tentacle,Mimic
+Darkness,Spell,Mind Control
+Domination,Magic Crystal,Mind Control
+Domination,Spell,Mind Control
+Game,Madness,Mind Control
+Shackles,Spell,Mind Control
+Illusion,Metal,Mirror
+Illusion,Water,Mirror
+Light,Science,Mirror
+Secret,Secret,Myth
+Bone,Entropic Magic,Necromancer
+Bone,Knowledge,Necromancer
+Bone,Rune,Necromancer
+Bone,Science,Necromancer
+Bone,Wizard,Necromancer
+Death,Entropic Magic,Necromancer
+Death,Game,Necromancer
+Death,Knowledge,Necromancer
+Death,Rune,Necromancer
+Death,Science,Necromancer
+Death,Wizard,Necromancer
+Domination,Spirit,Necromancer
+Knowledge,Undead,Necromancer
+Science,Undead,Necromancer
+Demon,Human,Obsession
+Human,Madness,Obsession
+Human,Mind Control,Obsession
+Human,Romance,Obsession
+Human,Spell,Obsession
+Knowledge,Mind Control,Obsession
+Madness,Mind Control,Obsession
+Madness,Romance,Obsession
+Romance,Spell,Obsession
+Fish,Shackles,Octopus
+Fish,Tentacle,Octopus
+Tentacle,Tentacle,Octopus
+Tentacle,Water,Octopus
+Blood,Mechanism,Oil
+Invisibility,Romance,Oil
+Curse,Game,Pandora's Box
+Curse,Jewel,Pandora's Box
+Curse,Rune,Pandora's Box
+Curse,Shackles,Pandora's Box
+Curse,Totem,Pandora's Box
+Darkness,Game,Pandora's Box
+Darkness,Shackles,Pandora's Box
+Darkness,Totem,Pandora's Box
+Darkness,Treasure,Pandora's Box
+Entropic Magic,Shackles,Pandora's Box
+Madness,Shackles,Pandora's Box
+Madness,Totem,Pandora's Box
+Plague,Shackles,Pandora's Box
+Plague,Totem,Pandora's Box
+Beast,Fun,Picnic
+Fish,Fun,Picnic
+Fun,Light,Picnic
+Fun,Secret,Picnic
+Fun,Knight,Pirate
+Human,Treasure,Pirate
+Pirate,Water,Pirate
+Curse,Power,Plague
+Curse,Spell,Plague
+Death,Spell,Plague
+Entropic Magic,Pollen,Plague
+Mutation,Pollen,Plague
+Undead,Undead,Plague
+Game,Plague,Plague Doctor
+Magic,Plague,Plague Doctor
+Mind Control,Plague,Plague Doctor
+Myth,Plague,Plague Doctor
+Plague,Science,Plague Doctor
+Plague,Wizard,Plague Doctor
+Earth,Pollen,Plant
+Giant,Pollen,Plant
+Demon,Game,Playing Cards
+Domination,Game,Playing Cards
+Game,Immortality,Playing Cards
+Game,Mirror,Playing Cards
+Game,Tree,Playing Cards
+Curse,Water,Poison
+Death,Pollen,Poison
+Death,Snake,Poison
+Death,Water,Poison
+Plague,Water,Poison
+Poison,Water,Poison
+Domination,Poison,Poisoner
+Game,Poison,Poisoner
+Knowledge,Poison,Poisoner
+Poison,Pollen,Poisoner
+Poison,Romance,Poisoner
+Poison,Rune,Poisoner
+Poison,Science,Poisoner
+Poison,Wizard,Poisoner
+Dragon,Poison,Poisonous Dragon
+Air,Sleep,Pollen
+Ash,Fun,Pollen
+Ash,Light,Pollen
+Ash,Sleep,Pollen
+Jewel,Time,Pollen
+Magic Crystal,Time,Pollen
+Sleep,Spell,Pollen
+Sleep,Wind,Pollen
+Energy,Mirror,Portal
+Jewel,Mirror,Portal
+Magic,Mirror,Portal
+Mirror,Mirror,Portal
+Mirror,Rune,Portal
+Mirror,Time,Portal
+Domination,Fire,Pyromancer
+Fire,Game,Pyromancer
+Fire,Knowledge,Pyromancer
+Fire,Magic,Pyromancer
+Fire,Rune,Pyromancer
+Fire,Science,Pyromancer
+Fire,Wizard,Pyromancer
+Blood,Knight,Red Knight
+Fire,Knight,Red Knight
+Human,Mechanism,Robot
+Mechanism,Power,Robot
+Earth,Romance,Roses
+Jewel,Romance,Roses
+Mind Control,Romance,Roses
+Plant,Romance,Roses
+Romance,Water,Roses
+Air,Ash,Sand Storm
+Air,Energy,Sand Storm
+Ash,Ash,Sand Storm
+Ash,Death,Sand Storm
+Ash,Domination,Sand Storm
+Ash,Energy,Sand Storm
+Ash,Entropic Magic,Sand Storm
+Ash,Illusion,Sand Storm
+Ash,Power,Sand Storm
+Ash,Spell,Sand Storm
+Ash,Wind,Sand Storm
+Death,Wind,Sand Storm
+Earth,Wind,Sand Storm
+Blood,Mask,Schemer
+Curse,Mask,Schemer
+Darkness,Mask,Schemer
+Death,Mask,Schemer
+Demon,Mask,Schemer
+Entropic Magic,Mask,Schemer
+Mask,Mind Control,Schemer
+Mask,Pirate,Schemer
+Mask,Plague,Schemer
+Mask,Poison,Schemer
+Mask,Snake,Schemer
+Death,Mechanism,Scrap Metal
+Death,Robot,Scrap Metal
+Entropic Magic,Mechanism,Scrap Metal
+Entropic Magic,Metal,Scrap Metal
+Entropic Magic,Robot,Scrap Metal
+Mechanism,Time,Scrap Metal
+Mechanism,Water,Scrap Metal
+Metal,Time,Scrap Metal
+Metal,Water,Scrap Metal
+Robot,Time,Scrap Metal
+Robot,Water,Scrap Metal
+Shackles,Water,Scrap Metal
+Treasure,Water,Scrap Metal
+Bone,Mask,Secret Room
+Earth,Mask,Secret Room
+Golem,Mask,Secret Room
+Illusion,Mask,Secret Room
+Invisibility,Mask,Secret Room
+Knowledge,Mask,Secret Room
+Magic Crystal,Mask,Secret Room
+Mask,Mirror,Secret Room
+Mask,Myth,Secret Room
+Mask,Science,Secret Room
+Mask,Secret,Secret Room
+Mask,Shackles,Secret Room
+Mask,Treasure,Secret Room
+Mask,Troll,Secret Room
+Mask,Void,Secret Room
+Domination,Rune,Shaman
+Domination,Totem,Shaman
+Game,Spirit,Shaman
+Human,Totem,Shaman
+Illusion,Totem,Shaman
+Science,Spirit,Shaman
+Totem,Wizard,Shaman
+Magic,Troll,Shaman Troll
+Magic Crystal,Troll,Shaman Troll
+Mind Control,Troll,Shaman Troll
+Spell,Troll,Shaman Troll
+Star,Troll,Shaman Troll
+Totem,Troll,Shaman Troll
+Troll,Wizard,Shaman Troll
+Ash,Dragon,Skeletal Dragon
+Bone,Domination,Skeletal Dragon
+Bone,Dragon,Skeletal Dragon
+Bone,Power,Skeletal Dragon
+Darkness,Dragon,Skeletal Dragon
+Death,Dragon,Skeletal Dragon
+Dragon,Undead,Skeletal Dragon
+Bone,Snake,Skeletal Snake
+Snake,Undead,Skeletal Snake
+Darkness,Sleep,Sleep
+Fairy,Power,Sleep
+Pollen,Spell,Sleep
+Pollen,Wind,Sleep
+Human,Sleep,Sleepwalker
+Human,Star,Sleepwalker
+Knowledge,Sleep,Sleepwalker
+Mind Control,Sleep,Sleepwalker
+Shackles,Sleep,Sleepwalker
+Sleep,Wizard,Sleepwalker
+Death,Poison,Snake
+Earth,Game,Spin the Bottle
+Energy,Game,Spin the Bottle
+Game,Romance,Spin the Bottle
+Game,Vampire,Spin the Bottle
+Game,Water,Spin the Bottle
+Energy,Fairy,Spirit
+Fun,Invisibility,Spirit Pirate
+Fun,Undead,Spirit Pirate
+Fun,Vampire,Spirit Pirate
+Illusion,Pirate,Spirit Pirate
+Immortality,Pirate,Spirit Pirate
+Invisibility,Pirate,Spirit Pirate
+Light,Pirate,Spirit Pirate
+Pirate,Spirit,Spirit Pirate
+Darkness,Romance,Star
+Energy,Light,Sun
+Energy,Star,Sun
+Giant,Light,Sun
+Light,Light,Sun
+Light,Power,Sun
+Light,Star,Sun
+Beast,Romance,Teddy Bear
+Giant,Romance,Teddy Bear
+Golem,Romance,Teddy Bear
+Knight,Romance,Teddy Bear
+Robot,Romance,Teddy Bear
+Romance,Snake,Teddy Bear
+Romance,Troll,Teddy Bear
+Darkness,Myth,Thanatos
+Death,Domination,Thanatos
+Death,Myth,Thanatos
+Domination,Void,Thanatos
+Game,Void,Thanatos
+Myth,Undead,Thanatos
+Fun,Troll,Totem
+Dragon,Jewel,Treasure
+Earth,Jewel,Treasure
+Earth,Secret,Treasure
+Jewel,Myth,Treasure
+Jewel,Water,Treasure
+Pirate,Romance,Treasure
+Pirate,Secret,Treasure
+Secret,Water,Treasure
+Treasure,Treasure,Treasure
+Domination,Plant,Tree
+Earth,Plant,Tree
+Energy,Plant,Tree
+Giant,Plant,Tree
+Plant,Power,Tree
+Plant,Time,Tree
+Plant,Water,Tree
+Troll,Troll,Troll
+Death,Human,Undead
+Death,Magic,Undead
+Death,Mutation,Undead
+Death,Shackles,Undead
+Entropic Magic,Human,Undead
+Human,Undead,Undead
+Immortality,Undead,Undead
+Beast,Bone,Undead Beast
+Beast,Curse,Undead Beast
+Beast,Darkness,Undead Beast
+Beast,Death,Undead Beast
+Beast,Immortality,Undead Beast
+Beast,Mutation,Undead Beast
+Beast,Plague,Undead Beast
+Beast,Time,Undead Beast
+Beast,Undead,Undead Beast
+Beast,Void,Undead Beast
+Bone,Giant,Undead Giant
+Bone,Golem,Undead Giant
+Curse,Giant,Undead Giant
+Curse,Golem,Undead Giant
+Curse,Troll,Undead Giant
+Death,Giant,Undead Giant
+Demon,Golem,Undead Giant
+Entropic Magic,Giant,Undead Giant
+Entropic Magic,Troll,Undead Giant
+Giant,Mutation,Undead Giant
+Giant,Plague,Undead Giant
+Giant,Undead,Undead Giant
+Golem,Plague,Undead Giant
+Golem,Undead,Undead Giant
+Golem,Vampire,Undead Giant
+Mutation,Troll,Undead Giant
+Plague,Troll,Undead Giant
+Troll,Undead,Undead Giant
+Bone,Knight,Undead Knight
+Curse,Knight,Undead Knight
+Darkness,Knight,Undead Knight
+Death,Knight,Undead Knight
+Demon,Knight,Undead Knight
+Entropic Magic,Knight,Undead Knight
+Knight,Mutation,Undead Knight
+Knight,Plague,Undead Knight
+Knight,Undead,Undead Knight
+Knight,Void,Undead Knight
+Metal,Undead,Undead Knight
+Curse,Magic,Undead Mage
+Curse,Wizard,Undead Mage
+Light,Undead,Undead Mage
+Magic,Undead,Undead Mage
+Magic Crystal,Undead,Undead Mage
+Undead,Wizard,Undead Mage
+Bone,Pirate,Undead Pirate
+Curse,Pirate,Undead Pirate
+Darkness,Pirate,Undead Pirate
+Mutation,Pirate,Undead Pirate
+Pirate,Plague,Undead Pirate
+Pirate,Shackles,Undead Pirate
+Pirate,Time,Undead Pirate
+Pirate,Undead,Undead Pirate
+Beast,Light,Unicorn
+Beast,Magic,Unicorn
+Beast,Magic Crystal,Unicorn
+Air,Romance,Valentine
+Angel,Romance,Valentine
+Ash,Romance,Valentine
+Immortality,Romance,Valentine
+Romance,Secret,Valentine
+Romance,Spirit,Valentine
+Romance,Totem,Valentine
+Romance,Wind,Valentine
+Blood,Human,Vampire
+Blood,Undead,Vampire
+Human,Vampire,Vampire
+Domination,Romance,Vessel of Purification
+Light,Romance,Vessel of Purification
+Magic,Romance,Vessel of Purification
+Magic Crystal,Romance,Vessel of Purification
+Power,Romance,Vessel of Purification
+Romance,Rune,Vessel of Purification
+Romance,Time,Vessel of Purification
+Darkness,Darkness,Void
+Darkness,Star,Void
+Death,Immortality,Void
+Energy,Time,Void
+Mirror,Spirit,Void
+Mirror,Vampire,Void
+Air,Knight,Warrior Angel
+Angel,Knight,Warrior Angel
+Knight,Light,Warrior Angel
+Knight,Wings,Warrior Angel
+Blood,Illusion,Water
+Fire,Ice,Water
+Giant,Mirror,Water
+Ice,Time,Water
+Invisibility,Poison,Water
+Dragon,Water,Water Dragon
+Myth,Water,Water Dragon
+Domination,Water,Waterfall
+Earth,Water,Waterfall
+Energy,Water,Waterfall
+Power,Water,Waterfall
+Spell,Water,Waterfall
+Water,Water,Waterfall
+Fairy,Game,Wheel of Fortune
+Game,Mechanism,Wheel of Fortune
+Game,Power,Wheel of Fortune
+Game,Secret,Wheel of Fortune
+Game,Wings,Wheel of Fortune
+Air,Air,Wind
+Air,Pollen,Wind
+Air,Power,Wind
+Air,Spell,Wind
+Pollen,Wings,Wind
+Power,Wings,Wind
+Air,Demon,Wind Demon
+Curse,Wind,Wind Demon
+Demon,Romance,Wind Demon
+Demon,Wind,Wind Demon
+Energy,Wind,Wind Demon
+Giant,Wind,Wind Demon
+Human,Knowledge,Wizard
+Human,Magic,Wizard
+Human,Magic Crystal,Wizard
+Human,Rune,Wizard
+Knowledge,Magic,Wizard
+Knowledge,Magic Crystal,Wizard
+Energy,Tree,Wooden Golem
+Giant,Tree,Wooden Golem
+Golem,Plant,Wooden Golem
+Golem,Tree,Wooden Golem
+Magic,Tree,Wooden Golem
+Tree,Troll,Wooden Golem
+Bone,Demon,Wraith
+Curse,Death,Wraith
+Curse,Spirit,Wraith
+Darkness,Death,Wraith
+Darkness,Spirit,Wraith
+Death,Demon,Wraith
+Death,Illusion,Wraith
+Demon,Void,Wraith
+Spirit,Void,Wraith
+Air,Dragon,Wyvern
+Air,Snake,Wyvern
+Snake,Wind,Wyvern
+Snake,Wings,Wyvern

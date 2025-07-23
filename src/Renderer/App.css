@@ -33,15 +33,16 @@
     column-gap: 40px;
     row-gap: 10px;
     padding: 20px;
-    border-radius: 20px;
+    border-radius: 10px;
     border: 2px solid var(--clr-primary-text);
-    backdrop-filter: blur(10px) grayscale(66%) saturate(33%) brightness(33%);
-    box-shadow: var(--shd-medium);
+    background-color: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px) grayscale(25%) brightness(50%);
+    box-shadow: var(--shd-tiny), var(--shd-soft), var(--shd-medium);
     overflow: hidden;
 }
 
 .app .gridBody.combos {
-    grid-template-columns: repeat(3, minmax(120px, auto)) 120px;
+    grid-template-columns: repeat(3, minmax(120px, auto)) repeat(3, minmax(40px, auto)) 120px;
 }
 
 .app .gridBody.scores {
@@ -69,22 +70,18 @@
 .app .gridCell.desc {
 }
 
-.app .gridCell.CR0 {
-    color: red;
-}
-
-.app .gridCell.CR1 {
+.app .gridCell.Common {
     color: peru;
 }
 
-.app .gridCell.CR2 {
+.app .gridCell.Uncommon {
     color: silver;
 }
 
-.app .gridCell.CR3 {
+.app .gridCell.Rare {
     color: gold;
 }
 
-.app .gridCell.CR4 {
+.app .gridCell.Epic {
     color: plum;
 }
