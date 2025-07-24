@@ -1,4 +1,5 @@
-export type CardRarity = "Common" | "Uncommon" | "Rare" | "Epic";
+export const CARD_RARITIES = ["Common", "Uncommon", "Rare", "Epic"] as const;
+export type CardRarity = (typeof CARD_RARITIES)[number];
 
 export type CardName = string;
 

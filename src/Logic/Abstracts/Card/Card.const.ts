@@ -1,14 +1,7 @@
 import { parseCSV } from "../../Utils/csv";
-import { Card, CardCombo, CardMap, CardRarity } from "./Card.types";
+import { Card, CardCombo, CardMap } from "./Card.types";
 import cardsCSV from "./cards.csv?raw";
 import combosCSV from "./combos.csv?raw";
-
-export const CARD_RANK_SCORES: Record<CardRarity, number> = {
-    Common: 1,
-    Uncommon: 4,
-    Rare: 12,
-    Epic: 24,
-};
 
 export const PARSED_CARDS = parseCSV(cardsCSV) as unknown as Card[];
 

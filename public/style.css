@@ -73,6 +73,12 @@
     background-color: var(--clr-tertiary-highlight);
 }
 
+input:hover,
+label:hover,
+button:hover {
+    cursor: pointer;
+}
+
 a,
 a:visited {
     color: var(--clr-primary-text);

@@ -1,12 +1,13 @@
 import { For, Show, createMemo, createSignal } from "solid-js";
 
 import { ALL_CARDS, ALL_EXPANSIONS, PARSED_COMBOS } from "../Logic/Abstracts/Card/Card.const";
-import { ExpansionName } from "../Logic/Abstracts/Card/Card.types";
+import { CARD_RARITIES, ExpansionName } from "../Logic/Abstracts/Card/Card.types";
 import {
-    getAbsoluteCardScores,
-    getCardRelativeScores,
+    getAbsoluteScores,
     getComboArray,
+    getComboCounts,
     getComboMap,
+    getRelativeScores,
     getScoreArray,
 } from "../Logic/Abstracts/Card/Card.utils";
 import { sortArray } from "../Logic/Utils/array";
@@ -25,7 +26,7 @@ export const App = () => {
     const [getComboSortColDir, setComboSortColDir] = createSignal<"🠋" | "🠉">("🠋");
 
     const [getScoreSortFields, setScoreSortFields] = createSignal<ScoreArrayFields[]>(["absoluteScore", "card"]);
-    const [getScoreSortColIndex, setScoreSortColIndex] = createSignal(1);
+    const [getScoreSortColIndex, setScoreSortColIndex] = createSignal(5);
     const [getScoreSortColDir, setScoreSortColDir] = createSignal<"🠋" | "🠉">("🠋");
 
     const [getShowScoreBreakdown, setShowScoreBreakdown] = createSignal(false);
@@ -33,11 +34,23 @@ export const App = () => {
 
     const getData = createMemo(() => {
         const expansions = getExpansions();
+        const powerBias = getPowerBias();
         const { comboMap, symmetricalComboCount } = getComboMap(PARSED_COMBOS, expansions);
-        const absoluteScores = getAbsoluteCardScores(comboMap, expansions, getPowerBias());
-        const relativeScores = getCardRelativeScores(comboMap, expansions, absoluteScores);
+        const { byCard, totals, max } = getComboCounts(comboMap, expansions);
+        const absoluteScores = getAbsoluteScores(comboMap, expansions, powerBias);
+        const relativeScores = getRelativeScores(comboMap, expansions, powerBias, absoluteScores);
 
-        return { comboMap, symmetricalComboCount, absoluteScores, relativeScores };
+        console.log(max);
+
+        return {
+            comboMap,
+            symmetricalComboCount,
+            comboCountsByCard: byCard,
+            comboCountsTotal: totals,
+            comboCountsMax: max,
+            absoluteScores,
+            relativeScores,
+        };
     });
 
     const getComboRows = createMemo(() => {
@@ -50,7 +63,7 @@ export const App = () => {
 
     const getScoreRows = createMemo(() => {
         const data = getData();
-        const scoreArray = getScoreArray(data.absoluteScores, data.relativeScores);
+        const scoreArray = getScoreArray(data.absoluteScores, data.relativeScores, data.comboCountsByCard);
         const result = sortArray(scoreArray, ...getScoreSortFields());
 
         return getScoreSortColDir() === "🠋" ? result : result.reverse();
@@ -160,7 +173,7 @@ export const App = () => {
                 </For>
             </div>
 
-            <div class="title">{`Subjective scores based on combos\nCommon = 1, Uncommon = 4, Rare = 12, Epic = 24\nIndividual = result score sum, Comulative = pair * result score sum`}</div>
+            <div class="title">{`Subjective scores based on combos\nIndividual = Sum( result power ), Cumulative = Sum( pair individual * result power )`}</div>
 
             <div class="panel filters">
                 <label class="option">
@@ -180,16 +193,33 @@ export const App = () => {
                 <button class="gridCell header" onClick={() => handleScoreHeaderClick(0, "card")}>
                     {"Card " + (getScoreSortColIndex() === 0 ? getScoreSortColDir() : "")}
                 </button>
-                <button class="gridCell header" onClick={() => handleScoreHeaderClick(1, "absoluteScore", "card")}>
-                    {"Individual " + (getScoreSortColIndex() === 1 ? getScoreSortColDir() : "")}
+                <Show when={!getShowScoreBreakdown()}>
+                    <For each={CARD_RARITIES}>
+                        {(rarity, getIndex) => (
+                            <button
+                                class="gridCell header"
+                                onClick={() => handleScoreHeaderClick(getIndex() + 1, rarity, "absoluteScore", "card")}
+                            >
+                                {`${rarity.length < 5 ? rarity : rarity.slice(0, 3)} ` +
+                                    (getScoreSortColIndex() === getIndex() + 1 ? getScoreSortColDir() : "")}
+                            </button>
+                        )}
+                    </For>
+                </Show>
+                <button
+                    class="gridCell header"
+                    onClick={() => handleScoreHeaderClick(5, "absoluteScore", "relativeScore", "card")}
+                >
+                    {"Individual " + (getScoreSortColIndex() === 5 ? getScoreSortColDir() : "")}
                 </button>
-                <button class="gridCell header" onClick={() => handleScoreHeaderClick(2, "relativeScore", "card")}>
-                    {"Comulative " + (getScoreSortColIndex() === 2 ? getScoreSortColDir() : "")}
+                <button
+                    class="gridCell header"
+                    onClick={() => handleScoreHeaderClick(6, "relativeScore", "absoluteScore", "card")}
+                >
+                    {"Cumulative " + (getScoreSortColIndex() === 6 ? getScoreSortColDir() : "")}
                 </button>
                 <Show when={getShowScoreBreakdown()}>
                     <div class="gridCell header">{"Result Scores"}</div>
-                </Show>
-                <Show when={getShowScoreBreakdown()}>
                     <div class="gridCell header">{"Pair Scores"}</div>
                 </Show>
 
@@ -198,6 +228,25 @@ export const App = () => {
                         return row.absoluteScore ? (
                             <>
                                 <div class={`gridCell ${ALL_CARDS[row.card].rarity}`}>{row.card}</div>
+                                <Show when={!getShowScoreBreakdown()}>
+                                    <For each={CARD_RARITIES}>
+                                        {(rarity) => {
+                                            const mean = getData().comboCountsMax[rarity] / 2;
+                                            const distFromMean = row[rarity] - mean;
+
+                                            return (
+                                                <div
+                                                    class={`gridCell`}
+                                                    style={{
+                                                        color: `hsl(${distFromMean > 0 ? 120 : 0} 100% ${100 - (Math.abs(distFromMean) * 50) / mean}%)`,
+                                                    }}
+                                                >
+                                                    {row[rarity]}
+                                                </div>
+                                            );
+                                        }}
+                                    </For>
+                                </Show>
                                 <div class={`gridCell`}>{row.absoluteScore}</div>
                                 <div class={`gridCell`}>{row.relativeScore}</div>
                                 <Show when={getShowScoreBreakdown()}>
@@ -210,8 +259,6 @@ export const App = () => {
                                             )}
                                         </For>
                                     </div>
-                                </Show>
-                                <Show when={getShowScoreBreakdown()}>
                                     <div class={`gridCell`}>
                                         <For each={getData().relativeScores[row.card]}>
                                             {(item) => (
