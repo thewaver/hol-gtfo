@@ -2,7 +2,7 @@ import { ALL_CARDS, CARD_RANK_SCORES } from "./Card.const";
 import { Card, CardCombo, CardMap, CardName, ComboMap, ExpansionName } from "./Card.types";
 
 export const getCardPower = (card: Card, powerBias: number) =>
-    Math.round(card.baseAttack * powerBias * 0.01 + card.baseDefense * (1 - powerBias * 0.01));
+    Math.round(card.baseAttack * 2 * powerBias * 0.01 + card.baseDefense * 2 * (1 - powerBias * 0.01));
 
 export const getCardMap = (cardArray: Card[], expansions: Set<ExpansionName>) =>
     cardArray.reduce((res, cur) => {
