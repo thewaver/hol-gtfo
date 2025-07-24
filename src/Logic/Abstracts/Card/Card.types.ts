@@ -2,6 +2,8 @@ export type CardRarity = "Common" | "Uncommon" | "Rare" | "Epic";
 
 export type CardName = string;
 
+export type ExpansionName = string;
+
 export type Card = {
     name: CardName;
     rarity: CardRarity;
@@ -9,10 +11,15 @@ export type Card = {
     isResult: boolean;
     baseAttack: number;
     baseDefense: number;
+    expansion: ExpansionName;
 };
+
+export type CardMap = Record<CardName, Card>;
 
 export type CardCombo = {
     card1: string;
     card2: string;
     result: string;
 };
+
+export type ComboMap = Record<CardName, Record<CardName, CardName>>;

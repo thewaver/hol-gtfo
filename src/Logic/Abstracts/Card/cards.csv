@@ -1,233 +1,233 @@
-name,rarity,isBasic,isResult,baseAttack,baseDefense
-Adoel,Epic,0,0,22,8
-Aeromancer,Uncommon,0,1,7,7
-Air,Common,1,0,2,2
-Air Elemental,Uncommon,0,1,6,7
-Angel,Uncommon,1,1,1,5
-Angelic Rose,Epic,0,0,12,20
-Angry Giant,Epic,0,1,17,6
-Aphaleon,Epic,0,0,16,14
-Archangel,Rare,0,1,10,8
-Archmage,Rare,0,1,16,3
-Aristocrat,Epic,0,1,14,11
-Ash,Common,1,1,0,3
-Assassin,Epic,0,1,19,6
-Astra,Epic,0,0,17,13
-Astral Dragon,Rare,0,1,9,9
-Astronomer,Uncommon,0,1,0,12
-Banquet,Epic,0,1,13,13
-Basilisk,Rare,0,1,14,3
-Bathyscaphe,Common,0,1,3,5
-Battle Mage,Uncommon,0,1,8,6
-Beast,Common,1,0,3,3
-Beast Spirit,Epic,0,1,4,20
-Bird,Uncommon,0,1,6,6
-Blizzard,Rare,0,1,18,1
-Blood,Rare,1,1,6,3
-Blood Mage,Epic,0,1,16,7
-Blue Knight,Uncommon,0,1,5,7
-Bone,Common,1,1,3,1
-Breeze,Epic,0,0,8,22
-Callista,Epic,0,0,15,15
-Captain,Rare,0,1,7,10
-Carriage,Rare,0,1,5,17
-Cave Troll,Rare,0,1,12,7
-Cocktail,Rare,0,1,18,4
-Colossus,Rare,0,1,8,10
-Commander,Epic,0,1,13,11
-Compass,Common,0,1,4,5
-Cultist,Epic,0,1,16,7
-Curse,Rare,1,1,5,3
-Dance,Rare,0,1,10,11
-Dancer,Rare,0,1,11,11
-Darcy,Epic,0,0,25,5
-Darkness,Rare,1,0,8,2
-Darkwood,Epic,0,1,5,20
-Death,Common,1,1,6,0
-Death Sprite,Uncommon,0,1,10,4
-Decay Demon,Rare,0,1,7,12
-Decay Dragon,Epic,0,1,7,18
-Demon,Common,1,1,4,2
-Demonologist,Rare,0,1,4,14
-Devil,Rare,0,1,11,9
-Dice Roll,Epic,0,1,16,10
-Dirigible,Uncommon,0,1,6,7
-Domination,Rare,1,1,5,3
-Dragon,Uncommon,1,1,4,4
-Dreams Fairy,Uncommon,0,1,7,7
-Druid,Rare,0,1,2,17
-Dryad,Uncommon,0,1,3,11
-Dungeon,Rare,0,1,6,12
-Earth,Common,1,1,1,4
-Earthquake,Common,0,1,7,1
-Elf,Uncommon,0,1,4,8
-Energy,Rare,1,0,6,3
-Enraged Beast,Uncommon,0,1,8,5
-Enraged Demon,Uncommon,0,1,13,1
-Entropic Magic,Rare,1,1,7,3
-Explosion,Rare,0,1,20,0
-Fairy,Common,1,1,2,3
-Fallen Angel,Rare,0,1,6,12
-Fire,Common,1,0,3,1
-Fire Giant,Rare,0,1,8,10
-Fire Golem,Rare,0,1,12,5
-Fire Sprite,Uncommon,0,1,9,4
-Fireball,Uncommon,0,1,14,0
-Fish,Uncommon,1,0,3,3
-Floral Wreath,Epic,0,1,12,15
-Freya,Epic,0,0,10,20
-Frost Monster,Epic,0,1,18,6
-Fun,Rare,1,0,2,9
-Game,Rare,1,0,10,0
-Gamer,Epic,0,1,13,13
-Geomancer,Uncommon,0,1,4,9
-Ghost,Rare,0,1,5,13
-Giant,Uncommon,1,1,2,6
-Goddess,Epic,0,1,10,13
-Golem,Common,1,1,2,4
-Green Knight,Uncommon,0,1,2,10
-Gretta,Epic,0,0,21,9
-Hammock,Epic,0,1,13,13
-Harpy,Common,0,1,4,5
-High Vampire,Rare,0,1,10,10
-Hinoka,Epic,0,0,28,2
-Honey,Rare,0,1,9,12
-Hook,Uncommon,0,1,4,9
-Horror,Epic,0,1,25,0
-Huge Snake,Rare,0,1,9,8
-Human,Common,1,1,2,3
-Hydra,Uncommon,0,1,11,3
-Hydromancer,Uncommon,0,1,1,12
-Hypnotist,Epic,0,1,12,12
-Ice,Rare,1,1,2,7
-Ice Dragon,Epic,0,1,12,11
-Ice Imp,Uncommon,0,1,4,8
-Illusion,Rare,1,1,4,4
-Illusionist,Uncommon,0,1,4,9
-Immortality,Rare,1,0,0,8
-Infectious,Rare,0,1,18,1
-Inventor,Epic,0,1,8,15
-Invisibility,Common,1,0,0,5
-Irin,Epic,0,0,6,24
-Iris,Epic,0,0,8,22
-J. Verne,Epic,0,0,2,28
-Jackpot,Rare,0,1,14,7
-Jewel,Rare,1,1,2,7
-Kite,Rare,0,1,7,14
-Knight,Uncommon,1,1,3,4
-Knowledge,Rare,1,0,3,6
-Kraken,Rare,0,1,8,12
-Lady Luck,Epic,0,0,20,12
-Laser,Common,0,1,8,0
-Laurel,Epic,0,0,4,26
-Lava,Common,0,1,6,3
-Leper,Rare,0,1,12,6
-Lich,Rare,0,1,15,5
-Lich King,Epic,0,1,10,16
-Light,Common,1,1,2,3
-Living Skeleton,Uncommon,0,1,6,6
-Lyre,Rare,0,1,2,17
-Mad Magician,Epic,0,1,21,4
-Madness,Rare,1,1,7,2
-Maf,Epic,0,0,14,16
-Magic,Uncommon,1,1,4,3
-Magic Crystal,Uncommon,1,1,6,3
-Mask,Rare,1,0,4,7
-Mechanical Angel,Rare,0,1,6,12
-Mechanical Beast,Rare,0,1,7,11
-Mechanical Dragon,Uncommon,0,1,5,8
-Mechanical Golem,Uncommon,0,1,5,9
-Mechanism,Uncommon,1,1,3,4
-Mermaid,Rare,0,1,4,13
-Metal,Common,1,0,0,5
-Mimic,Rare,0,1,16,3
-Mind Control,Uncommon,1,1,4,3
-Mirror,Uncommon,1,1,2,5
-Mutation,Rare,1,0,6,3
-Mysterious Stranger,Epic,0,0,8,24
-Myth,Rare,1,1,4,4
-Necromancer,Uncommon,0,1,6,8
-Obsession,Rare,0,1,14,3
-Octopus,Uncommon,0,1,6,9
-Oil,Epic,0,1,0,25
-Pandora's Box,Epic,0,1,27,0
-Picnic,Epic,0,1,15,10
-Pirate,Common,1,1,3,1
-Plague,Rare,1,1,8,1
-Plague Doctor,Epic,0,1,15,8
-Plant,Uncommon,1,1,1,6
-Playing Cards,Rare,0,1,11,10
-Poison,Common,1,1,4,0
-Poisoner,Rare,0,1,8,11
-Poisonous Dragon,Rare,0,1,9,8
-Pollen,Common,1,1,0,4
-Portal,Rare,0,1,10,7
-Power,Rare,1,0,5,4
-Pyromancer,Uncommon,0,1,9,5
-Ravenna,Epic,0,0,12,18
-Red Knight,Uncommon,0,1,6,6
-Rene,Epic,0,0,19,11
-Robot,Rare,1,1,5,4
-Romance,Rare,1,0,9,1
-Roses,Rare,0,1,14,7
-Rune,Common,1,0,0,3
-Sand Storm,Uncommon,0,1,10,3
-Schemer,Epic,0,1,20,5
-Science,Rare,1,0,4,5
-Scrap Metal,Common,0,1,1,5
-Secret,Rare,1,0,3,5
-Secret Room,Rare,0,1,15,7
-Shackles,Uncommon,1,0,1,6
-Shaman,Epic,0,1,6,18
-Shaman Troll,Rare,0,1,8,11
-Skadi,Epic,0,0,5,25
-Skeletal Dragon,Rare,0,1,7,11
-Skeletal Snake,Uncommon,0,1,7,6
-Sleep,Uncommon,1,1,3,4
-Sleepwalker,Uncommon,0,1,6,9
-Snake,Common,1,1,2,1
-Somna,Epic,0,0,26,4
-Spell,Common,1,0,3,4
-Spin the Bottle,Rare,0,1,2,18
-Spirit,Rare,1,1,0,8
-Spirit Pirate,Uncommon,0,1,6,6
-Spring Nymph,Epic,0,0,14,18
-Star,Common,1,1,2,4
-Sun,Common,0,1,5,2
-Teddy Bear,Epic,0,1,19,8
-Tentacle,Uncommon,1,0,6,2
-Thanatos,Epic,0,1,9,16
-Time,Common,1,0,1,3
-Totem,Rare,1,1,4,5
-Treasure,Uncommon,1,1,2,6
-Tree,Common,1,1,2,2
-Troll,Uncommon,1,1,6,2
-Ukemo,Epic,0,0,13,17
-Undead,Common,1,1,2,3
-Undead Beast,Rare,0,1,15,3
-Undead Giant,Uncommon,0,1,8,6
-Undead Knight,Rare,0,1,8,9
-Undead Mage,Rare,0,1,12,5
-Undead Pirate,Common,0,1,6,4
-Unicorn,Rare,0,1,8,9
-Uriel,Epic,0,0,9,21
-Valais,Epic,0,0,11,19
-Valentine,Epic,0,1,13,13
-Vampire,Common,1,1,3,2
-Vanessa,Epic,0,0,20,10
-Vessel of Purification,Epic,0,1,0,27
-Victoria,Epic,0,0,7,23
-Violet,Epic,0,0,18,12
-Void,Uncommon,1,1,6,0
-Warrior Angel,Uncommon,0,1,7,7
-Water,Common,1,1,0,4
-Water Dragon,Rare,0,1,10,10
-Waterfall,Uncommon,0,1,5,7
-Wheel of Fortune,Epic,0,1,0,26
-Wind,Uncommon,1,1,4,2
-Wind Demon,Uncommon,0,1,8,5
-Wings,Common,1,0,1,3
-Wizard,Uncommon,1,1,5,2
-Wooden Golem,Rare,0,1,4,14
-Wraith,Rare,0,1,18,1
-Wyvern,Common,0,1,6,1
+name,rarity,isBasic,isResult,baseAttack,baseDefense,expansion
+Adoel,Epic,0,0,22,8,Base
+Aeromancer,Uncommon,0,1,7,7,Base
+Air,Common,1,0,2,2,Base
+Air Elemental,Uncommon,0,1,6,7,Base
+Angel,Uncommon,1,1,1,5,Base
+Angry Giant,Epic,0,1,17,6,Base
+Aphaleon,Epic,0,0,16,14,Base
+Archangel,Rare,0,1,10,8,Base
+Archmage,Rare,0,1,16,3,Base
+Ash,Common,1,1,0,3,Base
+Astra,Epic,0,0,17,13,Base
+Astral Dragon,Rare,0,1,9,9,Base
+Basilisk,Rare,0,1,14,3,Base
+Battle Mage,Uncommon,0,1,8,6,Base
+Beast,Common,1,0,3,3,Base
+Beast Spirit,Epic,0,1,4,20,Base
+Bird,Uncommon,0,1,6,6,Base
+Blizzard,Rare,0,1,18,1,Base
+Blood,Rare,1,1,6,3,Base
+Blood Mage,Epic,0,1,16,7,Base
+Blue Knight,Uncommon,0,1,5,7,Base
+Bone,Common,1,1,3,1,Base
+Breeze,Epic,0,0,8,22,Base
+Callista,Epic,0,0,15,15,Base
+Colossus,Rare,0,1,8,10,Base
+Cultist,Epic,0,1,16,7,Base
+Curse,Rare,1,1,5,3,Base
+Darcy,Epic,0,0,25,5,Base
+Death,Common,1,1,6,0,Base
+Death Sprite,Uncommon,0,1,10,4,Base
+Decay Demon,Rare,0,1,7,12,Base
+Decay Dragon,Epic,0,1,7,18,Base
+Demon,Common,1,1,4,2,Base
+Demonologist,Rare,0,1,4,14,Base
+Devil,Rare,0,1,11,9,Base
+Dirigible,Uncommon,0,1,6,7,Base
+Dragon,Uncommon,1,1,4,4,Base
+Druid,Rare,0,1,2,17,Base
+Dryad,Uncommon,0,1,3,11,Base
+Earth,Common,1,1,1,4,Base
+Earthquake,Common,0,1,7,1,Base
+Elf,Uncommon,0,1,4,8,Base
+Energy,Rare,1,0,6,3,Base
+Enraged Beast,Uncommon,0,1,8,5,Base
+Enraged Demon,Uncommon,0,1,13,1,Base
+Entropic Magic,Rare,1,1,7,3,Base
+Explosion,Rare,0,1,20,0,Base
+Fairy,Common,1,1,2,3,Base
+Fallen Angel,Rare,0,1,6,12,Base
+Fire,Common,1,0,3,1,Base
+Fire Giant,Rare,0,1,8,10,Base
+Fire Golem,Rare,0,1,12,5,Base
+Fire Sprite,Uncommon,0,1,9,4,Base
+Fireball,Uncommon,0,1,14,0,Base
+Freya,Epic,0,0,10,20,Base
+Frost Monster,Epic,0,1,18,6,Base
+Geomancer,Uncommon,0,1,4,9,Base
+Ghost,Rare,0,1,5,13,Base
+Giant,Uncommon,1,1,2,6,Base
+Golem,Common,1,1,2,4,Base
+Green Knight,Uncommon,0,1,2,10,Base
+Gretta,Epic,0,0,21,9,Base
+Harpy,Common,0,1,4,5,Base
+High Vampire,Rare,0,1,10,10,Base
+Hinoka,Epic,0,0,28,2,Base
+Horror,Epic,0,1,25,0,Base
+Huge Snake,Rare,0,1,9,8,Base
+Human,Common,1,1,2,3,Base
+Hydra,Uncommon,0,1,11,3,Base
+Hydromancer,Uncommon,0,1,1,12,Base
+Hypnotist,Epic,0,1,12,12,Base
+Ice,Rare,1,1,2,7,Base
+Ice Dragon,Epic,0,1,12,11,Base
+Ice Imp,Uncommon,0,1,4,8,Base
+Infectious,Rare,0,1,18,1,Base
+Inventor,Epic,0,1,8,15,Base
+Irin,Epic,0,0,6,24,Base
+Iris,Epic,0,0,8,22,Base
+J. Verne,Epic,0,0,2,28,Base
+Knight,Uncommon,1,1,3,4,Base
+Knowledge,Rare,1,0,3,6,Base
+Laurel,Epic,0,0,4,26,Base
+Lava,Common,0,1,6,3,Base
+Leper,Rare,0,1,12,6,Base
+Lich,Rare,0,1,15,5,Base
+Lich King,Epic,0,1,10,16,Base
+Living Skeleton,Uncommon,0,1,6,6,Base
+Mad Magician,Epic,0,1,21,4,Base
+Madness,Rare,1,1,7,2,Base
+Maf,Epic,0,0,14,16,Base
+Magic,Uncommon,1,1,4,3,Base
+Mechanical Angel,Rare,0,1,6,12,Base
+Mechanical Beast,Rare,0,1,7,11,Base
+Mechanical Dragon,Uncommon,0,1,5,8,Base
+Mechanical Golem,Uncommon,0,1,5,9,Base
+Mechanism,Uncommon,1,1,3,4,Base
+Mermaid,Rare,0,1,4,13,Base
+Metal,Common,1,0,0,5,Base
+Mind Control,Uncommon,1,1,4,3,Base
+Mutation,Rare,1,0,6,3,Base
+Myth,Rare,1,1,4,4,Base
+Necromancer,Uncommon,0,1,6,8,Base
+Obsession,Rare,0,1,14,3,Base
+Oil,Epic,0,1,0,25,Base
+Plague,Rare,1,1,8,1,Base
+Plague Doctor,Epic,0,1,15,8,Base
+Plant,Uncommon,1,1,1,6,Base
+Poison,Common,1,1,4,0,Base
+Poisoner,Rare,0,1,8,11,Base
+Poisonous Dragon,Rare,0,1,9,8,Base
+Pyromancer,Uncommon,0,1,9,5,Base
+Ravenna,Epic,0,0,12,18,Base
+Red Knight,Uncommon,0,1,6,6,Base
+Rene,Epic,0,0,19,11,Base
+Robot,Rare,1,1,5,4,Base
+Sand Storm,Uncommon,0,1,10,3,Base
+Science,Rare,1,0,4,5,Base
+Scrap Metal,Common,0,1,1,5,Base
+Shaman,Epic,0,1,6,18,Base
+Skadi,Epic,0,0,5,25,Base
+Skeletal Dragon,Rare,0,1,7,11,Base
+Skeletal Snake,Uncommon,0,1,7,6,Base
+Snake,Common,1,1,2,1,Base
+Somna,Epic,0,0,26,4,Base
+Spirit,Rare,1,1,0,8,Base
+Thanatos,Epic,0,1,9,16,Base
+Tree,Common,1,1,2,2,Base
+Ukemo,Epic,0,0,13,17,Base
+Undead,Common,1,1,2,3,Base
+Undead Beast,Rare,0,1,15,3,Base
+Undead Giant,Uncommon,0,1,8,6,Base
+Undead Knight,Rare,0,1,8,9,Base
+Undead Mage,Rare,0,1,12,5,Base
+Unicorn,Rare,0,1,8,9,Base
+Uriel,Epic,0,0,9,21,Base
+Valais,Epic,0,0,11,19,Base
+Vampire,Common,1,1,3,2,Base
+Vanessa,Epic,0,0,20,10,Base
+Victoria,Epic,0,0,7,23,Base
+Violet,Epic,0,0,18,12,Base
+Void,Uncommon,1,1,6,0,Base
+Warrior Angel,Uncommon,0,1,7,7,Base
+Water,Common,1,1,0,4,Base
+Water Dragon,Rare,0,1,10,10,Base
+Waterfall,Uncommon,0,1,5,7,Base
+Wind,Uncommon,1,1,4,2,Base
+Wind Demon,Uncommon,0,1,8,5,Base
+Wings,Common,1,0,1,3,Base
+Wizard,Uncommon,1,1,5,2,Base
+Wooden Golem,Rare,0,1,4,14,Base
+Wraith,Rare,0,1,18,1,Base
+Wyvern,Common,0,1,6,1,Base
+Assassin,Epic,0,1,19,6,Forbidden Depths
+Astronomer,Uncommon,0,1,0,12,Forbidden Depths
+Bathyscaphe,Common,0,1,3,5,Forbidden Depths
+Captain,Rare,0,1,7,10,Forbidden Depths
+Cave Troll,Rare,0,1,12,7,Forbidden Depths
+Commander,Epic,0,1,13,11,Forbidden Depths
+Compass,Common,0,1,4,5,Forbidden Depths
+Darkness,Rare,1,0,8,2,Forbidden Depths
+Darkwood,Epic,0,1,5,20,Forbidden Depths
+Domination,Rare,1,1,5,3,Forbidden Depths
+Dreams Fairy,Uncommon,0,1,7,7,Forbidden Depths
+Dungeon,Rare,0,1,6,12,Forbidden Depths
+Fish,Uncommon,1,0,3,3,Forbidden Depths
+Goddess,Epic,0,1,10,13,Forbidden Depths
+Hook,Uncommon,0,1,4,9,Forbidden Depths
+Illusion,Rare,1,1,4,4,Forbidden Depths
+Illusionist,Uncommon,0,1,4,9,Forbidden Depths
+Immortality,Rare,1,0,0,8,Forbidden Depths
+Invisibility,Common,1,0,0,5,Forbidden Depths
+Jewel,Rare,1,1,2,7,Forbidden Depths
+Kraken,Rare,0,1,8,12,Forbidden Depths
+Laser,Common,0,1,8,0,Forbidden Depths
+Light,Common,1,1,2,3,Forbidden Depths
+Magic Crystal,Uncommon,1,1,6,3,Forbidden Depths
+Mimic,Rare,0,1,16,3,Forbidden Depths
+Mirror,Uncommon,1,1,2,5,Forbidden Depths
+Octopus,Uncommon,0,1,6,9,Forbidden Depths
+Pandora's Box,Epic,0,1,27,0,Forbidden Depths
+Pirate,Common,1,1,3,1,Forbidden Depths
+Pollen,Common,1,1,0,4,Forbidden Depths
+Portal,Rare,0,1,10,7,Forbidden Depths
+Power,Rare,1,0,5,4,Forbidden Depths
+Rune,Common,1,0,0,3,Forbidden Depths
+Secret,Rare,1,0,3,5,Forbidden Depths
+Shackles,Uncommon,1,0,1,6,Forbidden Depths
+Shaman Troll,Rare,0,1,8,11,Forbidden Depths
+Sleep,Uncommon,1,1,3,4,Forbidden Depths
+Sleepwalker,Uncommon,0,1,6,9,Forbidden Depths
+Spell,Common,1,0,3,4,Forbidden Depths
+Spirit Pirate,Uncommon,0,1,6,6,Forbidden Depths
+Star,Common,1,1,2,4,Forbidden Depths
+Sun,Common,0,1,5,2,Forbidden Depths
+Tentacle,Uncommon,1,0,6,2,Forbidden Depths
+Time,Common,1,0,1,3,Forbidden Depths
+Totem,Rare,1,1,4,5,Forbidden Depths
+Treasure,Uncommon,1,1,2,6,Forbidden Depths
+Troll,Uncommon,1,1,6,2,Forbidden Depths
+Undead Pirate,Common,0,1,6,4,Forbidden Depths
+Aristocrat,Epic,0,1,14,11,Masquerade of Lust
+Banquet,Epic,0,1,13,13,Masquerade of Lust
+Carriage,Rare,0,1,5,17,Masquerade of Lust
+Dancer,Rare,0,1,11,11,Masquerade of Lust
+Mask,Rare,1,0,4,7,Masquerade of Lust
+Mysterious Stranger,Epic,0,0,8,24,Masquerade of Lust
+Schemer,Epic,0,1,20,5,Masquerade of Lust
+Secret Room,Rare,0,1,15,7,Masquerade of Lust
+Angelic Rose,Epic,0,0,12,20,Cupid on Vacation
+Honey,Rare,0,1,9,12,Cupid on Vacation
+Lyre,Rare,0,1,2,17,Cupid on Vacation
+Romance,Rare,1,0,9,1,Cupid on Vacation
+Roses,Rare,0,1,14,7,Cupid on Vacation
+Teddy Bear,Epic,0,1,19,8,Cupid on Vacation
+Valentine,Epic,0,1,13,13,Cupid on Vacation
+Vessel of Purification,Epic,0,1,0,27,Cupid on Vacation
+Cocktail,Rare,0,1,18,4,Spring Break
+Dance,Rare,0,1,10,11,Spring Break
+Floral Wreath,Epic,0,1,12,15,Spring Break
+Fun,Rare,1,0,2,9,Spring Break
+Hammock,Epic,0,1,13,13,Spring Break
+Kite,Rare,0,1,7,14,Spring Break
+Picnic,Epic,0,1,15,10,Spring Break
+Spring Nymph,Epic,0,0,14,18,Spring Break
+Dice Roll,Epic,0,1,16,10,Game Fest
+Game,Rare,1,0,10,0,Game Fest
+Gamer,Epic,0,1,13,13,Game Fest
+Jackpot,Rare,0,1,14,7,Game Fest
+Lady Luck,Epic,0,0,20,12,Game Fest
+Playing Cards,Rare,0,1,11,10,Game Fest
+Spin the Bottle,Rare,0,1,2,18,Game Fest
+Wheel of Fortune,Epic,0,1,0,26,Game Fest

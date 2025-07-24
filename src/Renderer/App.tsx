@@ -1,48 +1,128 @@
-import { For, createSignal } from "solid-js";
+import { For, Show, createMemo, createSignal } from "solid-js";
 
+import { ALL_CARDS, ALL_EXPANSIONS, PARSED_COMBOS } from "../Logic/Abstracts/Card/Card.const";
+import { ExpansionName } from "../Logic/Abstracts/Card/Card.types";
 import {
-    CARDS,
-    CARD_ABSOLUTE_SCORES,
-    CARD_COMBO_ARRAY,
-    CARD_RELATIVE_SCORES,
-    CARD_SCORE_ARRAY,
-    SYMMETRICAL_PAIR_COUNT,
-} from "../Logic/Abstracts/Card/Card.const";
+    getAbsoluteCardScores,
+    getCardRelativeScores,
+    getComboArray,
+    getComboMap,
+    getScoreArray,
+} from "../Logic/Abstracts/Card/Card.utils";
 import { sortArray } from "../Logic/Utils/array";
 import { ArrayType } from "../Logic/Utils/utilityTypes";
 
 import "./App.css";
 
+type ComboArrayFields = keyof ArrayType<ReturnType<typeof getComboArray>>;
+type ScoreArrayFields = keyof ArrayType<ReturnType<typeof getScoreArray>>;
+
 export const App = () => {
-    const [getComboRows, setComboRows] = createSignal(sortArray(CARD_COMBO_ARRAY, "card1", "card2"));
+    const [getExpansions, setExpansuions] = createSignal<Set<ExpansionName>>(new Set(["Base"]));
+
+    const [getComboSortFields, setComboSortFields] = createSignal<ComboArrayFields[]>(["card1", "card2"]);
     const [getComboSortColIndex, setComboSortColIndex] = createSignal(0);
     const [getComboSortColDir, setComboSortColDir] = createSignal<"🠋" | "🠉">("🠋");
 
-    const [getScoreRows, setScoreRows] = createSignal(sortArray(CARD_SCORE_ARRAY, "absoluteScore", "card"));
+    const [getScoreSortFields, setScoreSortFields] = createSignal<ScoreArrayFields[]>(["absoluteScore", "card"]);
     const [getScoreSortColIndex, setScoreSortColIndex] = createSignal(1);
     const [getScoreSortColDir, setScoreSortColDir] = createSignal<"🠋" | "🠉">("🠋");
 
-    const handleComboHeaderClick = (colIndex: number, ...keys: (keyof ArrayType<typeof CARD_COMBO_ARRAY>)[]) => {
+    const [getShowScoreBreakdown, setShowScoreBreakdown] = createSignal(false);
+    const [getPowerBias, setPowerBias] = createSignal(65);
+
+    const getData = createMemo(() => {
+        const expansions = getExpansions();
+        const { comboMap, symmetricalComboCount } = getComboMap(PARSED_COMBOS, expansions);
+        const absoluteScores = getAbsoluteCardScores(comboMap, expansions, getPowerBias());
+        const relativeScores = getCardRelativeScores(comboMap, expansions, absoluteScores);
+
+        return { comboMap, symmetricalComboCount, absoluteScores, relativeScores };
+    });
+
+    const getComboRows = createMemo(() => {
+        const data = getData();
+        const comboArray = getComboArray(data.comboMap, getPowerBias());
+        const result = sortArray(comboArray, ...getComboSortFields());
+
+        return getComboSortColDir() === "🠋" ? result : result.reverse();
+    });
+
+    const getScoreRows = createMemo(() => {
+        const data = getData();
+        const scoreArray = getScoreArray(data.absoluteScores, data.relativeScores);
+        const result = sortArray(scoreArray, ...getScoreSortFields());
+
+        return getScoreSortColDir() === "🠋" ? result : result.reverse();
+    });
+
+    const handleComboHeaderClick = (colIndex: number, ...keys: ComboArrayFields[]) => {
         const isSameColIndex = getComboSortColIndex() === colIndex;
 
         setComboSortColDir((prev) => (isSameColIndex ? (prev === "🠉" ? "🠋" : "🠉") : "🠋"));
         setComboSortColIndex(colIndex);
-        setComboRows(isSameColIndex ? getComboRows().slice().reverse() : sortArray(getComboRows(), ...keys));
+        setComboSortFields(keys);
     };
 
-    const handleScoreHeaderClick = (colIndex: number, ...keys: (keyof ArrayType<typeof CARD_SCORE_ARRAY>)[]) => {
+    const handleScoreHeaderClick = (colIndex: number, ...keys: ScoreArrayFields[]) => {
         const isSameColIndex = getScoreSortColIndex() === colIndex;
 
         setScoreSortColDir((prev) => (isSameColIndex ? (prev === "🠉" ? "🠋" : "🠉") : "🠋"));
         setScoreSortColIndex(colIndex);
-        setScoreRows(isSameColIndex ? getScoreRows().slice().reverse() : sortArray(getScoreRows(), ...keys));
+        setScoreSortFields(keys);
     };
 
     return (
         <div id="app" class="app">
-            <div class="title">{`Harem of Lust Combos\n${(getComboRows().length - SYMMETRICAL_PAIR_COUNT) / 2 + SYMMETRICAL_PAIR_COUNT} entries as of 22/07/2025`}</div>
+            <div class="title">{`Harem of Lust Combos\n${(getComboRows().length - getData().symmetricalComboCount) / 2 + getData().symmetricalComboCount} entries as of 24/07/2025`}</div>
 
-            <div class="gridBody combos">
+            <div class="panel filters">
+                <label class="range">
+                    <span>{"Power bias"}</span>
+                    <span>{`DEF ${100 - getPowerBias()}`}</span>
+                    <input
+                        type="range"
+                        min={0}
+                        max={100}
+                        step={5}
+                        value={getPowerBias()}
+                        onChange={(e) => {
+                            setPowerBias(parseFloat(e.target.value));
+                        }}
+                    />
+                    <span>{`ATK ${getPowerBias()}`}</span>
+                </label>
+            </div>
+
+            <div class="panel filters">
+                <For each={[...ALL_EXPANSIONS.keys()]}>
+                    {(expansion) => (
+                        <label class="option">
+                            <input
+                                type="checkbox"
+                                value={expansion}
+                                checked={getExpansions().has(expansion)}
+                                onChange={() =>
+                                    setExpansuions((prev) => {
+                                        const next = new Set(prev);
+
+                                        if (next.has(expansion)) {
+                                            next.delete(expansion);
+                                        } else {
+                                            next.add(expansion);
+                                        }
+
+                                        return next;
+                                    })
+                                }
+                            />
+                            {expansion}
+                        </label>
+                    )}
+                </For>
+            </div>
+
+            <div class="panel gridBody combos">
                 <button class="gridCell header" onClick={() => handleComboHeaderClick(0, "card1", "card2")}>
                     {"Card " + (getComboSortColIndex() === 0 ? getComboSortColDir() : "")}
                 </button>
@@ -67,13 +147,13 @@ export const App = () => {
                     {(row) => {
                         return (
                             <>
-                                <div class={`gridCell ${CARDS[row.card1].rarity}`}>{row.card1}</div>
-                                <div class={`gridCell ${CARDS[row.card2].rarity}`}>{row.card2}</div>
-                                <div class={`gridCell ${CARDS[row.result].rarity}`}>{row.result}</div>
+                                <div class={`gridCell ${ALL_CARDS[row.card1].rarity}`}>{row.card1}</div>
+                                <div class={`gridCell ${ALL_CARDS[row.card2].rarity}`}>{row.card2}</div>
+                                <div class={`gridCell ${ALL_CARDS[row.result].rarity}`}>{row.result}</div>
                                 <div class={`gridCell`}>{row.atk}</div>
                                 <div class={`gridCell`}>{row.def}</div>
                                 <div class={`gridCell`}>{row.power}</div>
-                                <div class={`gridCell ${CARDS[row.result].rarity}`}>{row.rarity}</div>
+                                <div class={`gridCell ${ALL_CARDS[row.result].rarity}`}>{row.rarity}</div>
                             </>
                         );
                     }}
@@ -82,7 +162,21 @@ export const App = () => {
 
             <div class="title">{`Subjective scores based on combos\nCommon = 1, Uncommon = 4, Rare = 12, Epic = 24\nIndividual = result score sum, Comulative = pair * result score sum`}</div>
 
-            <div class="gridBody scores">
+            <div class="panel filters">
+                <label class="option">
+                    <input
+                        type="checkbox"
+                        value="showBreakdown"
+                        checked={getShowScoreBreakdown()}
+                        onChange={() => {
+                            setShowScoreBreakdown((prev) => !prev);
+                        }}
+                    />
+                    {"Show breakdown"}
+                </label>
+            </div>
+
+            <div class={`panel gridBody scores ${getShowScoreBreakdown() ? "full" : "brief"}`}>
                 <button class="gridCell header" onClick={() => handleScoreHeaderClick(0, "card")}>
                     {"Card " + (getScoreSortColIndex() === 0 ? getScoreSortColDir() : "")}
                 </button>
@@ -92,34 +186,42 @@ export const App = () => {
                 <button class="gridCell header" onClick={() => handleScoreHeaderClick(2, "relativeScore", "card")}>
                     {"Comulative " + (getScoreSortColIndex() === 2 ? getScoreSortColDir() : "")}
                 </button>
-                <div class="gridCell header">{"Result Scores"}</div>
-                <div class="gridCell header">{"Pair Scores"}</div>
+                <Show when={getShowScoreBreakdown()}>
+                    <div class="gridCell header">{"Result Scores"}</div>
+                </Show>
+                <Show when={getShowScoreBreakdown()}>
+                    <div class="gridCell header">{"Pair Scores"}</div>
+                </Show>
 
                 <For each={getScoreRows()}>
                     {(row) => {
                         return row.absoluteScore ? (
                             <>
-                                <div class={`gridCell ${CARDS[row.card].rarity}`}>{row.card}</div>
+                                <div class={`gridCell ${ALL_CARDS[row.card].rarity}`}>{row.card}</div>
                                 <div class={`gridCell`}>{row.absoluteScore}</div>
                                 <div class={`gridCell`}>{row.relativeScore}</div>
-                                <div class={`gridCell`}>
-                                    <For each={CARD_ABSOLUTE_SCORES[row.card]}>
-                                        {(item) => (
-                                            <div
-                                                class={`gridCell ${CARDS[item.result].rarity}`}
-                                            >{`${item.score} (${item.result})`}</div>
-                                        )}
-                                    </For>
-                                </div>
-                                <div class={`gridCell`}>
-                                    <For each={CARD_RELATIVE_SCORES[row.card]}>
-                                        {(item) => (
-                                            <div
-                                                class={`gridCell ${CARDS[item.pair].rarity}`}
-                                            >{`${item.pairScore} (${item.pair})`}</div>
-                                        )}
-                                    </For>
-                                </div>
+                                <Show when={getShowScoreBreakdown()}>
+                                    <div class={`gridCell`}>
+                                        <For each={getData().absoluteScores[row.card]}>
+                                            {(item) => (
+                                                <div
+                                                    class={`gridCell ${ALL_CARDS[item.result].rarity}`}
+                                                >{`${item.score} (${item.result})`}</div>
+                                            )}
+                                        </For>
+                                    </div>
+                                </Show>
+                                <Show when={getShowScoreBreakdown()}>
+                                    <div class={`gridCell`}>
+                                        <For each={getData().relativeScores[row.card]}>
+                                            {(item) => (
+                                                <div
+                                                    class={`gridCell ${ALL_CARDS[item.pair].rarity}`}
+                                                >{`${item.pairScore} (${item.pair})`}</div>
+                                            )}
+                                        </For>
+                                    </div>
+                                </Show>
                             </>
                         ) : null;
                     }}
