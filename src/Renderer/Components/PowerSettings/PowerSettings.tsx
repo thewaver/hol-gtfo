@@ -4,7 +4,7 @@ import { PowerSettingsProps } from "./PowerSettings.types";
 export const PowerSettings = (props: PowerSettingsProps) => {
     return (
         <>
-            <label>
+            <label title="Higher values put more weight on ATK than DEF">
                 <span>{"Power bias"}</span>
                 <span>{`DEF ${100 - AppStore.getPowerBias()}`}</span>
                 <input
@@ -19,19 +19,33 @@ export const PowerSettings = (props: PowerSettingsProps) => {
                 />
                 <span>{`ATK ${AppStore.getPowerBias()}`}</span>
             </label>
-            <label>
-                <span>{"Power scale"}</span>
+            <label title="Higher values put more weight in stronger combos than total combo count">
+                <span>{"Power exponent"}</span>
                 <input
                     type="range"
                     min={1}
                     max={5}
                     step={1}
-                    value={AppStore.getPowerScale()}
+                    value={AppStore.getPowerExponent()}
                     onChange={(e) => {
-                        AppStore.setPowerScale(parseFloat(e.target.value));
+                        AppStore.setPowerExponent(parseFloat(e.target.value));
                     }}
                 />
-                <span>{`${AppStore.getPowerScale()}`}</span>
+                <span>{`${AppStore.getPowerExponent()}`}</span>
+            </label>
+            <label title="Determines ATK and DEF in conjunction with rarity">
+                <span>{"Card level"}</span>
+                <input
+                    type="range"
+                    min={1}
+                    max={5}
+                    step={1}
+                    value={AppStore.getCardLevel()}
+                    onChange={(e) => {
+                        AppStore.setCardLevel(parseFloat(e.target.value));
+                    }}
+                />
+                <span>{`${AppStore.getCardLevel()}`}</span>
             </label>
         </>
     );

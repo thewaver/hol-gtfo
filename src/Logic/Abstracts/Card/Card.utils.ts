@@ -1,18 +1,41 @@
 import { ArrayType } from "../../Utils/utilityTypes";
 import { ALL_CARDS, RARITY_INDEXES } from "./Card.const";
-import { Card, CardCombo, CardMap, CardName, CardRarity, ComboMap, ExpansionName } from "./Card.types";
+import { Card, CardCombo, CardMap, CardName, CardPowerOpts, CardRarity, ComboMap, ExpansionName } from "./Card.types";
 
 export type ComboArrayFields = keyof ArrayType<ReturnType<typeof CardUtils.getComboArray>>;
 export type ScoreArrayFields = keyof ArrayType<ReturnType<typeof CardUtils.getScoreArray>>;
 
 export namespace CardUtils {
-    export const getCardPower = (card: Card, powerBias: number, powerScale: number) =>
-        Math.round(
-            Math.pow(
-                card.baseAttack * 2 * powerBias * 0.01 + card.baseDefense * 2 * (1 - powerBias * 0.01),
-                powerScale,
-            ) / Math.pow(10, powerScale - 1),
+    export const getResultCardStats = (
+        result: CardName,
+        card1Rarity: CardRarity,
+        card2Rarity: CardRarity,
+        level: number,
+    ) => {
+        const { baseAttack, baseDefense, rarity } = ALL_CARDS[result];
+        const adjutedLevel = RARITY_INDEXES[rarity] >= 2 ? level + 1 : level;
+        const highestBasicCardRarityIndex = Math.max(RARITY_INDEXES[card1Rarity], RARITY_INDEXES[card2Rarity]) + 1;
+        const bonus = (adjutedLevel - 1) * highestBasicCardRarityIndex;
+
+        return {
+            def: Number(baseDefense) + bonus,
+            atk: Number(baseAttack) + bonus,
+        };
+    };
+
+    export const getResultCardPower = (
+        result: CardName,
+        card1Rarity: CardRarity,
+        card2Rarity: CardRarity,
+        powerOpts: CardPowerOpts,
+    ) => {
+        const { atk, def } = getResultCardStats(result, card1Rarity, card2Rarity, powerOpts.level);
+
+        return Math.round(
+            Math.pow(atk * 2 * powerOpts.bias * 0.01 + def * 2 * (1 - powerOpts.bias * 0.01), powerOpts.exponent) /
+                Math.pow(10, powerOpts.exponent - 1),
         );
+    };
 
     export const getCardMap = (cardArray: Card[], expansions: Set<ExpansionName>) =>
         cardArray.reduce((res, cur) => {
@@ -46,21 +69,18 @@ export namespace CardUtils {
         return { comboMap, symmetricalComboCount };
     };
 
-    export const getComboArray = (comboMap: ComboMap, powerBias: number, powerScale: number) =>
+    export const getComboArray = (comboMap: ComboMap, powerOpts: CardPowerOpts) =>
         (Object.keys(comboMap ?? {}) as CardName[]).flatMap((card1) => {
             return (Object.keys(comboMap[card1] ?? {}) as CardName[]).map((card2) => {
                 const result = comboMap[card1][card2];
-                const cardProps = ALL_CARDS[result];
-                const { rarity, baseAttack, baseDefense } = cardProps;
 
                 return {
                     card1,
                     card2,
                     result,
-                    rarityIndex: RARITY_INDEXES[rarity],
-                    atk: +baseAttack,
-                    def: +baseDefense,
-                    power: getCardPower(cardProps, powerBias, powerScale),
+                    rarityIndex: RARITY_INDEXES[ALL_CARDS[result].rarity],
+                    ...getResultCardStats(result, ALL_CARDS[card1].rarity, ALL_CARDS[card2].rarity, powerOpts.level),
+                    power: getResultCardPower(result, ALL_CARDS[card1].rarity, ALL_CARDS[card2].rarity, powerOpts),
                 };
             });
         });
@@ -103,23 +123,22 @@ export namespace CardUtils {
         return { byCard, totals, max };
     };
 
-    type AbsoluteScore = { score: number; pair: CardName; result: CardName };
+    type AbsoluteScore = { pair: CardName; result: CardName; resultScore: number };
 
-    export const getAbsoluteScores = (
-        comboMap: ComboMap,
-        expansions: Set<ExpansionName>,
-        powerBias: number,
-        powerScale: number,
-    ) =>
+    export const getAbsoluteScores = (comboMap: ComboMap, expansions: Set<ExpansionName>, powerOpts: CardPowerOpts) =>
         (Object.keys(ALL_CARDS ?? {}) as CardName[]).reduce(
             (res, card1) => {
                 res[card1] = (Object.keys(comboMap[card1] ?? {}) as CardName[]).reduce((sum, card2) => {
                     if (expansions.has(ALL_CARDS[card1].expansion) && expansions.has(ALL_CARDS[card2].expansion)) {
                         const result = comboMap[card1][card2];
-                        const cardProps = ALL_CARDS[result];
-                        const score = getCardPower(cardProps, powerBias, powerScale);
+                        const score = getResultCardPower(
+                            result,
+                            ALL_CARDS[card1].rarity,
+                            ALL_CARDS[card2].rarity,
+                            powerOpts,
+                        );
 
-                        sum.push({ score, pair: card2, result });
+                        sum.push({ resultScore: score, pair: card2, result });
                     }
 
                     return sum;
@@ -135,8 +154,7 @@ export namespace CardUtils {
     export const getRelativeScores = (
         comboMap: ComboMap,
         expansions: Set<ExpansionName>,
-        powerBias: number,
-        powerScale: number,
+        powerOpts: CardPowerOpts,
         absoluteScores: ReturnType<typeof getAbsoluteScores>,
     ) =>
         (Object.keys(ALL_CARDS ?? {}) as CardName[]).reduce(
@@ -144,8 +162,13 @@ export namespace CardUtils {
                 res[card1] = (Object.keys(comboMap[card1] ?? {}) as CardName[]).reduce((sum, card2) => {
                     if (expansions.has(ALL_CARDS[card1].expansion) && expansions.has(ALL_CARDS[card2].expansion)) {
                         const result = comboMap[card1][card2];
-                        const resultScore = getCardPower(ALL_CARDS[result], powerBias, powerScale);
-                        const pairScore = absoluteScores[card2].reduce((sum, { score }) => sum + score, 0);
+                        const resultScore = getResultCardPower(
+                            result,
+                            ALL_CARDS[card1].rarity,
+                            ALL_CARDS[card2].rarity,
+                            powerOpts,
+                        );
+                        const pairScore = absoluteScores[card2].reduce((sum, { resultScore: score }) => sum + score, 0);
 
                         sum.push({ pairScore, resultScore, pair: card2, result });
                     }
@@ -166,7 +189,7 @@ export namespace CardUtils {
         (Object.keys(relativeScores ?? {}) as CardName[]).map((card) => ({
             card,
             ...comboCounts[card],
-            absoluteScore: absoluteScores[card].reduce((sum, { score }) => sum + score, 0),
+            absoluteScore: absoluteScores[card].reduce((sum, { resultScore: score }) => sum + score, 0),
             relativeScore: relativeScores[card].reduce(
                 (sum, { pairScore, resultScore }) => sum + pairScore * resultScore,
                 0,

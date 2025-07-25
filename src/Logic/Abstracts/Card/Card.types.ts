@@ -24,3 +24,9 @@ export type CardCombo = {
 };
 
 export type ComboMap = Record<CardName, Record<CardName, CardName>>;
+
+export type CardPowerOpts = {
+    bias: number;
+    exponent: number;
+    level: number;
+};

@@ -50,28 +50,26 @@ export const ScoresPage = (props: ScoresPageProps) => {
                     <Expansions />
                 </SettingsGroup>
             </Surface>
-            <Grid templateColumns={() => "repeat(2, auto)"}>
-                <Surface>
-                    <SettingsGroup>
-                        <PowerSettings />
-                    </SettingsGroup>
-                </Surface>
-                <Surface>
-                    <SettingsGroup>
-                        <label>
-                            <input
-                                type="checkbox"
-                                value="showBreakdown"
-                                checked={getShowScoreBreakdown()}
-                                onChange={() => {
-                                    setShowScoreBreakdown((prev) => !prev);
-                                }}
-                            />
-                            {"Breakdowns"}
-                        </label>
-                    </SettingsGroup>
-                </Surface>
-            </Grid>
+            <Surface>
+                <SettingsGroup>
+                    <PowerSettings />
+                </SettingsGroup>
+            </Surface>
+            <Surface>
+                <SettingsGroup>
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="showBreakdown"
+                            checked={getShowScoreBreakdown()}
+                            onChange={() => {
+                                setShowScoreBreakdown((prev) => !prev);
+                            }}
+                        />
+                        {"Breakdowns"}
+                    </label>
+                </SettingsGroup>
+            </Surface>
 
             <Surface>
                 <Grid
@@ -140,7 +138,7 @@ export const ScoresPage = (props: ScoresPageProps) => {
                                                 {(item) => (
                                                     <RarityLabel
                                                         rarity={() => ALL_CARDS[item.result].rarity}
-                                                    >{`${item.score} (${item.result})`}</RarityLabel>
+                                                    >{`${item.resultScore} (${item.result})`}</RarityLabel>
                                                 )}
                                             </For>
                                         </div>

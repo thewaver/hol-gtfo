@@ -24,7 +24,12 @@ export const CombosPage = (props: CombosPageProps) => {
 
     const getComboRows = createMemo(() => {
         const data = AppStore.getComputedData();
-        const comboArray = CardUtils.getComboArray(data.comboMap, AppStore.getPowerBias(), AppStore.getPowerScale());
+        const powerOpts = {
+            bias: AppStore.getPowerBias(),
+            exponent: AppStore.getPowerExponent(),
+            level: AppStore.getCardLevel(),
+        };
+        const comboArray = CardUtils.getComboArray(data.comboMap, powerOpts);
         const result = sortArray(comboArray, ...getComboSortFields());
 
         return getComboSortColDir() === "🠋" ? result : result.reverse();
