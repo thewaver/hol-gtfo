@@ -7,7 +7,7 @@ import { CardUtils, ScoreArrayFields } from "../../../Logic/Abstracts/Card/Card.
 import { sortArray } from "../../../Logic/Utils/array";
 import { AppStore } from "../../App.store";
 import { Expansions } from "../../Components/Expansions/Expansions";
-import { PowerBias } from "../../Components/PowerBias/PowerBias";
+import { PowerSettings } from "../../Components/PowerSettings/PowerSettings";
 import { SettingsGroup } from "../../Components/SettingsGroup/SettingsGroup";
 import { Grid } from "../../Fundamentals/Grid/Grid";
 import { GridHeader } from "../../Fundamentals/Grid/GridHeader/GridHeader";
@@ -53,7 +53,7 @@ export const ScoresPage = (props: ScoresPageProps) => {
             <Grid templateColumns={() => "repeat(2, auto)"}>
                 <Surface>
                     <SettingsGroup>
-                        <PowerBias />
+                        <PowerSettings />
                     </SettingsGroup>
                 </Surface>
                 <Surface>
@@ -67,7 +67,7 @@ export const ScoresPage = (props: ScoresPageProps) => {
                                     setShowScoreBreakdown((prev) => !prev);
                                 }}
                             />
-                            {"Show breakdown"}
+                            {"Breakdowns"}
                         </label>
                     </SettingsGroup>
                 </Surface>

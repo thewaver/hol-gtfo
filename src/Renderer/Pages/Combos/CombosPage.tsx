@@ -1,11 +1,12 @@
 import { For, createMemo, createSignal } from "solid-js";
 
 import { ALL_CARDS } from "../../../Logic/Abstracts/Card/Card.const";
+import { CARD_RARITIES } from "../../../Logic/Abstracts/Card/Card.types";
 import { CardUtils, ComboArrayFields } from "../../../Logic/Abstracts/Card/Card.utils";
 import { sortArray } from "../../../Logic/Utils/array";
 import { AppStore } from "../../App.store";
 import { Expansions } from "../../Components/Expansions/Expansions";
-import { PowerBias } from "../../Components/PowerBias/PowerBias";
+import { PowerSettings } from "../../Components/PowerSettings/PowerSettings";
 import { SettingsGroup } from "../../Components/SettingsGroup/SettingsGroup";
 import { Grid } from "../../Fundamentals/Grid/Grid";
 import { GridHeader } from "../../Fundamentals/Grid/GridHeader/GridHeader";
@@ -23,7 +24,7 @@ export const CombosPage = (props: CombosPageProps) => {
 
     const getComboRows = createMemo(() => {
         const data = AppStore.getComputedData();
-        const comboArray = CardUtils.getComboArray(data.comboMap, AppStore.getPowerBias());
+        const comboArray = CardUtils.getComboArray(data.comboMap, AppStore.getPowerBias(), AppStore.getPowerScale());
         const result = sortArray(comboArray, ...getComboSortFields());
 
         return getComboSortColDir() === "🠋" ? result : result.reverse();
@@ -46,7 +47,7 @@ export const CombosPage = (props: CombosPageProps) => {
             </Surface>
             <Surface>
                 <SettingsGroup>
-                    <PowerBias />
+                    <PowerSettings />
                 </SettingsGroup>
             </Surface>
 
@@ -69,7 +70,7 @@ export const CombosPage = (props: CombosPageProps) => {
                         <button onClick={() => handleComboHeaderClick(5, "power", "result", "card1")}>
                             {"Pwr " + (getComboSortColIndex() === 5 ? getComboSortColDir() : "")}
                         </button>
-                        <button onClick={() => handleComboHeaderClick(6, "rarity", "result", "card1")}>
+                        <button onClick={() => handleComboHeaderClick(6, "rarityIndex", "result", "card1")}>
                             {"Rarity " + (getComboSortColIndex() === 6 ? getComboSortColDir() : "")}
                         </button>
                     </GridHeader>
@@ -84,7 +85,9 @@ export const CombosPage = (props: CombosPageProps) => {
                                     <div>{row.atk}</div>
                                     <div>{row.def}</div>
                                     <div>{row.power}</div>
-                                    <RarityLabel rarity={() => ALL_CARDS[row.result].rarity}>{row.rarity}</RarityLabel>
+                                    <RarityLabel rarity={() => ALL_CARDS[row.result].rarity}>
+                                        {CARD_RARITIES[row.rarityIndex]}
+                                    </RarityLabel>
                                 </>
                             );
                         }}
