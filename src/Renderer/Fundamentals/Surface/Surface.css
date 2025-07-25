@@ -1,0 +1,9 @@
+.surface {
+    width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid rgba(64, 64, 64, 0.25);
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: var(--shd-tiny), var(--shd-soft);
+    overflow: hidden;
+}

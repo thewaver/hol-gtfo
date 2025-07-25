@@ -1,0 +1,15 @@
+.rarityLabel.Common {
+    color: peru;
+}
+
+.rarityLabel.Uncommon {
+    color: silver;
+}
+
+.rarityLabel.Rare {
+    color: gold;
+}
+
+.rarityLabel.Epic {
+    color: plum;
+}

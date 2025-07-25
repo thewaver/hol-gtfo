@@ -1,0 +1,19 @@
+.gridHeader {
+    display: contents;
+    text-transform: uppercase;
+    font-weight: bold;
+    user-select: none;
+}
+
+.gridHeader button {
+    appearance: none;
+    padding: 0;
+    margin: 0;
+    border: none;
+    text-align: start;
+    text-transform: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    background: none;
+    color: inherit;
+}
