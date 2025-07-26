@@ -19,9 +19,11 @@ export namespace AppStore {
         };
 
         const { comboMap, symmetricalComboCount } = CardUtils.getComboMap(PARSED_COMBOS, expansions);
-        const { byCard, totals, max } = CardUtils.getComboCounts(comboMap, expansions);
-        const absoluteScores = CardUtils.getAbsoluteScores(comboMap, expansions, powerOpts);
-        const relativeScores = CardUtils.getRelativeScores(comboMap, expansions, powerOpts, absoluteScores);
+        const { byCard, totals, max } = CardUtils.getComboCounts(comboMap);
+        const absoluteScores = CardUtils.getAbsoluteScores(comboMap, powerOpts);
+        const bestDeck = CardUtils.getBestDeck(comboMap, absoluteScores);
+
+        console.log(bestDeck);
 
         return {
             comboMap,
@@ -30,7 +32,7 @@ export namespace AppStore {
             comboCountsTotal: totals,
             comboCountsMax: max,
             absoluteScores,
-            relativeScores,
+            bestDeck,
         };
     });
 }

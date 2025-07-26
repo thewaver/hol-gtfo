@@ -16,9 +16,9 @@ import { Surface } from "../../Fundamentals/Surface/Surface";
 import { Title } from "../../Fundamentals/Title/Title";
 import { ScoresPageProps } from "./ScoresPage.types";
 
-const TEMPLATE_COLUMNS_BREAKDOWN = "repeat(1, minmax(120px, auto)) repeat(4, minmax(120px, auto))";
+const TEMPLATE_COLUMNS_BREAKDOWN = "repeat(1, minmax(120px, auto)) repeat(1, minmax(120px, auto)) 1fr";
 const TEMPLATE_COLUMNS_BRIEF =
-    "repeat(1, minmax(120px, auto)) repeat(4, minmax(60px, auto)) repeat(2, minmax(120px, auto))";
+    "repeat(1, minmax(120px, auto)) repeat(4, minmax(60px, auto)) repeat(1, minmax(120px, auto))";
 
 export const ScoresPage = (props: ScoresPageProps) => {
     const [getScoreSortFields, setScoreSortFields] = createSignal<ScoreArrayFields[]>(["absoluteScore", "card"]);
@@ -29,7 +29,7 @@ export const ScoresPage = (props: ScoresPageProps) => {
 
     const getScoreRows = createMemo(() => {
         const data = AppStore.getComputedData();
-        const scoreArray = CardUtils.getScoreArray(data.absoluteScores, data.relativeScores, data.comboCountsByCard);
+        const scoreArray = CardUtils.getScoreArray(data.absoluteScores, data.comboCountsByCard);
         const result = sortArray(scoreArray, ...getScoreSortFields());
 
         return getScoreSortColDir() === "🠋" ? result : result.reverse();
@@ -95,15 +95,11 @@ export const ScoresPage = (props: ScoresPageProps) => {
                                 )}
                             </For>
                         </Show>
-                        <button onClick={() => handleScoreHeaderClick(5, "absoluteScore", "relativeScore", "card")}>
+                        <button onClick={() => handleScoreHeaderClick(5, "absoluteScore", "card")}>
                             {"Individual " + (getScoreSortColIndex() === 5 ? getScoreSortColDir() : "")}
                         </button>
-                        <button onClick={() => handleScoreHeaderClick(6, "relativeScore", "absoluteScore", "card")}>
-                            {"Cumulative " + (getScoreSortColIndex() === 6 ? getScoreSortColDir() : "")}
-                        </button>
                         <Show when={getShowScoreBreakdown()}>
-                            <div>{"Result Scores"}</div>
-                            <div>{"Pair Scores"}</div>
+                            <div>{"Breakdown"}</div>
                         </Show>
                     </GridHeader>
 
@@ -131,26 +127,25 @@ export const ScoresPage = (props: ScoresPageProps) => {
                                         </For>
                                     </Show>
                                     <div>{row.absoluteScore}</div>
-                                    <div>{row.relativeScore}</div>
                                     <Show when={getShowScoreBreakdown()}>
-                                        <div>
+                                        <Grid templateColumns={() => "2fr 2fr 1fr"}>
                                             <For each={AppStore.getComputedData().absoluteScores[row.card]}>
                                                 {(item) => (
-                                                    <RarityLabel
-                                                        rarity={() => ALL_CARDS[item.result].rarity}
-                                                    >{`${item.resultScore} (${item.result})`}</RarityLabel>
+                                                    <>
+                                                        <RarityLabel rarity={() => ALL_CARDS[item.pair].rarity}>
+                                                            {item.pair}
+                                                        </RarityLabel>
+                                                        <RarityLabel rarity={() => ALL_CARDS[item.result].rarity}>
+                                                            {item.result}
+                                                        </RarityLabel>
+                                                        <span>{item.resultScore}</span>
+                                                    </>
                                                 )}
                                             </For>
-                                        </div>
-                                        <div>
-                                            <For each={AppStore.getComputedData().relativeScores[row.card]}>
-                                                {(item) => (
-                                                    <RarityLabel
-                                                        rarity={() => ALL_CARDS[item.pair].rarity}
-                                                    >{`${item.pairScore} (${item.pair})`}</RarityLabel>
-                                                )}
-                                            </For>
-                                        </div>
+                                            <div style={{ opacity: 0 }}>{"-"}</div>
+                                            <div style={{ opacity: 0 }}>{"-"}</div>
+                                            <div style={{ opacity: 0 }}>{"-"}</div>
+                                        </Grid>
                                     </Show>
                                 </>
                             ) : null;

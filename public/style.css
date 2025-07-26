@@ -103,7 +103,7 @@ body {
     font-size: 16px;
     line-height: 1.25;
 
-    --c1: rgba(8, 8, 32, 0.5);
+    --c1: rgba(8, 16, 32, 0.5);
     --c2: rgba(0, 8, 16, 0.75);
 
     background-color: var(--clr-tertiary-bkg);

@@ -94,21 +94,19 @@ export namespace CardUtils {
         Epic: 0,
     };
 
-    export const getComboCounts = (comboMap: ComboMap, expansions: Set<ExpansionName>) => {
+    export const getComboCounts = (comboMap: ComboMap) => {
         const totals = { ...EMPTY_COUNTS };
         const max = { ...EMPTY_COUNTS };
         const byCard = (Object.keys(ALL_CARDS ?? {}) as CardName[]).reduce(
             (res, card1) => {
                 res[card1] = (Object.keys(comboMap[card1] ?? {}) as CardName[]).reduce(
                     (counts, card2) => {
-                        if (expansions.has(ALL_CARDS[card1].expansion) && expansions.has(ALL_CARDS[card2].expansion)) {
-                            const result = comboMap[card1][card2];
-                            const { rarity } = ALL_CARDS[result];
+                        const result = comboMap[card1][card2];
+                        const { rarity } = ALL_CARDS[result];
 
-                            counts[rarity] += 1;
-                            totals[rarity] += 1;
-                            max[rarity] = Math.max(max[rarity], counts[rarity]);
-                        }
+                        counts[rarity] += 1;
+                        totals[rarity] += 1;
+                        max[rarity] = Math.max(max[rarity], counts[rarity]);
 
                         return counts;
                     },
@@ -125,21 +123,19 @@ export namespace CardUtils {
 
     type AbsoluteScore = { pair: CardName; result: CardName; resultScore: number };
 
-    export const getAbsoluteScores = (comboMap: ComboMap, expansions: Set<ExpansionName>, powerOpts: CardPowerOpts) =>
+    export const getAbsoluteScores = (comboMap: ComboMap, powerOpts: CardPowerOpts) =>
         (Object.keys(ALL_CARDS ?? {}) as CardName[]).reduce(
             (res, card1) => {
                 res[card1] = (Object.keys(comboMap[card1] ?? {}) as CardName[]).reduce((sum, card2) => {
-                    if (expansions.has(ALL_CARDS[card1].expansion) && expansions.has(ALL_CARDS[card2].expansion)) {
-                        const result = comboMap[card1][card2];
-                        const score = getResultCardPower(
-                            result,
-                            ALL_CARDS[card1].rarity,
-                            ALL_CARDS[card2].rarity,
-                            powerOpts,
-                        );
+                    const result = comboMap[card1][card2];
+                    const score = getResultCardPower(
+                        result,
+                        ALL_CARDS[card1].rarity,
+                        ALL_CARDS[card2].rarity,
+                        powerOpts,
+                    );
 
-                        sum.push({ resultScore: score, pair: card2, result });
-                    }
+                    sum.push({ resultScore: score, pair: card2, result });
 
                     return sum;
                 }, [] as AbsoluteScore[]);
@@ -149,50 +145,57 @@ export namespace CardUtils {
             {} as Record<CardName, AbsoluteScore[]>,
         );
 
-    type RelativeScore = { pairScore: number; resultScore: number; pair: CardName; result: CardName };
-
-    export const getRelativeScores = (
-        comboMap: ComboMap,
-        expansions: Set<ExpansionName>,
-        powerOpts: CardPowerOpts,
-        absoluteScores: ReturnType<typeof getAbsoluteScores>,
-    ) =>
-        (Object.keys(ALL_CARDS ?? {}) as CardName[]).reduce(
-            (res, card1) => {
-                res[card1] = (Object.keys(comboMap[card1] ?? {}) as CardName[]).reduce((sum, card2) => {
-                    if (expansions.has(ALL_CARDS[card1].expansion) && expansions.has(ALL_CARDS[card2].expansion)) {
-                        const result = comboMap[card1][card2];
-                        const resultScore = getResultCardPower(
-                            result,
-                            ALL_CARDS[card1].rarity,
-                            ALL_CARDS[card2].rarity,
-                            powerOpts,
-                        );
-                        const pairScore = absoluteScores[card2].reduce((sum, { resultScore: score }) => sum + score, 0);
-
-                        sum.push({ pairScore, resultScore, pair: card2, result });
-                    }
-
-                    return sum;
-                }, [] as RelativeScore[]);
-
-                return res;
-            },
-            {} as Record<CardName, RelativeScore[]>,
-        );
-
     export const getScoreArray = (
         absoluteScores: ReturnType<typeof getAbsoluteScores>,
-        relativeScores: ReturnType<typeof getRelativeScores>,
         comboCounts: ReturnType<typeof getComboCounts>["byCard"],
     ) =>
-        (Object.keys(relativeScores ?? {}) as CardName[]).map((card) => ({
+        (Object.keys(absoluteScores ?? {}) as CardName[]).map((card) => ({
             card,
             ...comboCounts[card],
             absoluteScore: absoluteScores[card].reduce((sum, { resultScore: score }) => sum + score, 0),
-            relativeScore: relativeScores[card].reduce(
-                (sum, { pairScore, resultScore }) => sum + pairScore * resultScore,
-                0,
-            ),
         }));
+
+    export const getBestDeck = (
+        comboMap: ComboMap,
+        absoluteScores: ReturnType<typeof getAbsoluteScores>,
+        deckSize: number = 30,
+    ) => {
+        const absoluteScoreSums = Object.fromEntries(
+            Object.keys(absoluteScores).map((card) => [
+                card,
+                absoluteScores[card].reduce((sum, { resultScore: score }) => sum + score, 0),
+            ]),
+        );
+
+        const sortedCardNames = Object.keys(comboMap)
+            .sort((a, b) => absoluteScoreSums[b] - absoluteScoreSums[a])
+            .flatMap((card) => new Array<CardName>(3 - RARITY_INDEXES[ALL_CARDS[card].rarity]).fill(card));
+
+        let currentCard = sortedCardNames.shift()!;
+
+        const deck: CardName[] = [currentCard];
+
+        while (sortedCardNames.length > 0 && deck.length < deckSize) {
+            const candidates = comboMap[currentCard];
+
+            let foundCard = false;
+
+            for (let i = 0; i < sortedCardNames.length; i++) {
+                const cardName = sortedCardNames[i];
+
+                if (candidates[cardName]) {
+                    foundCard = true;
+                    currentCard = cardName;
+                    deck.push(cardName);
+                    sortedCardNames.splice(i, 1);
+
+                    break;
+                }
+            }
+
+            if (!foundCard) break;
+        }
+
+        return deck.sort();
+    };
 }
