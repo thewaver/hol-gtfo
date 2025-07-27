@@ -22,7 +22,7 @@ export const PowerSettings = (props: PowerSettingsProps) => {
             <label title="Higher values put more weight in stronger combos than total combo count">
                 <span>{"Power exponent"}</span>
                 <input
-                    type="range"
+                    type="number"
                     min={1}
                     max={5}
                     step={1}
@@ -31,12 +31,11 @@ export const PowerSettings = (props: PowerSettingsProps) => {
                         AppStore.setPowerExponent(parseFloat(e.target.value));
                     }}
                 />
-                <span>{`${AppStore.getPowerExponent()}`}</span>
             </label>
             <label title="Determines ATK and DEF in conjunction with rarity">
                 <span>{"Card level"}</span>
                 <input
-                    type="range"
+                    type="number"
                     min={1}
                     max={5}
                     step={1}
@@ -45,7 +44,6 @@ export const PowerSettings = (props: PowerSettingsProps) => {
                         AppStore.setCardLevel(parseFloat(e.target.value));
                     }}
                 />
-                <span>{`${AppStore.getCardLevel()}`}</span>
             </label>
         </>
     );

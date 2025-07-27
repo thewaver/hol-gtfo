@@ -2,9 +2,9 @@
     display: grid;
     grid-template-columns: minmax(auto, 960px);
     justify-content: center;
+    align-items: start;
     gap: 40px;
     max-width: 100vw;
-    min-height: 100vh;
     padding: 40px;
 }
 

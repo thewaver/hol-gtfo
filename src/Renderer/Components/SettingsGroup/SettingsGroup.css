@@ -6,10 +6,3 @@
     flex-wrap: wrap;
     gap: 20px 40px;
 }
-
-.settingsGroup label {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-}

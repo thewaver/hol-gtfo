@@ -1,6 +1,16 @@
 import { ArrayType } from "../../Utils/utilityTypes";
 import { ALL_CARDS, RARITY_INDEXES } from "./Card.const";
-import { Card, CardCombo, CardMap, CardName, CardPowerOpts, CardRarity, ComboMap, ExpansionName } from "./Card.types";
+import {
+    Card,
+    CardCombo,
+    CardDeckOpts,
+    CardMap,
+    CardName,
+    CardPowerOpts,
+    CardRarity,
+    ComboMap,
+    ExpansionName,
+} from "./Card.types";
 
 export type ComboArrayFields = keyof ArrayType<ReturnType<typeof CardUtils.getComboArray>>;
 export type ScoreArrayFields = keyof ArrayType<ReturnType<typeof CardUtils.getScoreArray>>;
@@ -158,44 +168,75 @@ export namespace CardUtils {
     export const getBestDeck = (
         comboMap: ComboMap,
         absoluteScores: ReturnType<typeof getAbsoluteScores>,
+        deckOpts: CardDeckOpts,
         deckSize: number = 30,
     ) => {
+        const rarityCounts = { ...deckOpts.cardsOfRarity };
         const absoluteScoreSums = Object.fromEntries(
             Object.keys(absoluteScores).map((card) => [
                 card,
                 absoluteScores[card].reduce((sum, { resultScore: score }) => sum + score, 0),
             ]),
         );
-
         const sortedCardNames = Object.keys(comboMap)
             .sort((a, b) => absoluteScoreSums[b] - absoluteScoreSums[a])
-            .flatMap((card) => new Array<CardName>(3 - RARITY_INDEXES[ALL_CARDS[card].rarity]).fill(card));
+            .flatMap((card) => new Array<CardName>(deckOpts.copiesOfCard[ALL_CARDS[card].rarity]).fill(card));
 
         let currentCard = sortedCardNames.shift()!;
+        rarityCounts[ALL_CARDS[currentCard].rarity] -= 1;
 
         const deck: CardName[] = [currentCard];
 
-        while (sortedCardNames.length > 0 && deck.length < deckSize) {
-            const candidates = comboMap[currentCard];
+        while (
+            deck.length < deckSize &&
+            sortedCardNames.length > 0 &&
+            Object.values(rarityCounts).reduce((res, cur) => res + cur, 0) > 0
+        ) {
+            const availableSet = new Set(sortedCardNames);
+            const pickedSet = new Set(deck);
+            const candidateScores = Array.from(pickedSet).reduce(
+                (res, card1) => {
+                    for (const card2 in comboMap[card1]) {
+                        if (!availableSet.has(card2) || !(rarityCounts[ALL_CARDS[card2].rarity] > 0)) continue;
 
-            let foundCard = false;
+                        res[card2] = (res[card2] ?? 0) + (absoluteScoreSums[card2] ?? 0);
+                    }
 
-            for (let i = 0; i < sortedCardNames.length; i++) {
-                const cardName = sortedCardNames[i];
+                    return res;
+                },
+                {} as Record<CardName, number>,
+            );
 
-                if (candidates[cardName]) {
-                    foundCard = true;
-                    currentCard = cardName;
-                    deck.push(cardName);
-                    sortedCardNames.splice(i, 1);
+            let cardName: CardName | undefined;
+            let cardScore = 0;
 
-                    break;
+            for (const [candidateName, candidateScore] of Object.entries(candidateScores)) {
+                if (candidateScore >= cardScore) {
+                    cardScore = candidateScore;
+                    cardName = candidateName;
                 }
             }
 
-            if (!foundCard) break;
+            if (!cardName) break;
+
+            currentCard = cardName;
+            deck.push(cardName);
+            sortedCardNames.splice(
+                sortedCardNames.findIndex((e) => e === cardName),
+                1,
+            );
+            rarityCounts[ALL_CARDS[cardName].rarity] -= 1;
         }
 
-        return deck.sort();
+        const goupedDeck = deck.sort().reduce(
+            (res, cur) => {
+                res[cur] = (res[cur] ?? 0) + 1;
+
+                return res;
+            },
+            {} as Record<CardName, number>,
+        );
+
+        return Object.entries(goupedDeck).map(([card, count]) => ({ card, count }));
     };
 }

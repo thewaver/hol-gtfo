@@ -30,3 +30,8 @@ export type CardPowerOpts = {
     exponent: number;
     level: number;
 };
+
+export type CardDeckOpts = {
+    copiesOfCard: Record<CardRarity, 0 | 1 | 2 | 3>;
+    cardsOfRarity: Record<CardRarity, number>;
+};
