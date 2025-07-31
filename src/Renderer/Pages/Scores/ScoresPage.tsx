@@ -20,6 +20,15 @@ const TEMPLATE_COLUMNS_BREAKDOWN = "repeat(1, minmax(120px, auto)) repeat(1, min
 const TEMPLATE_COLUMNS_BRIEF =
     "repeat(1, minmax(120px, auto)) repeat(4, minmax(60px, auto)) repeat(1, minmax(120px, auto))";
 
+const formatScore = (num: number) => {
+    const str = num.toLocaleString("en", {
+        notation: "compact",
+        maximumSignificantDigits: 4,
+    });
+
+    return str.replace(/^([\d.,]+)([^\d\s]+)$/, "$1 $2");
+};
+
 export const ScoresPage = (props: ScoresPageProps) => {
     const [getScoreSortFields, setScoreSortFields] = createSignal<ScoreArrayFields[]>(["absoluteScore", "card"]);
     const [getScoreSortColIndex, setScoreSortColIndex] = createSignal(5);
@@ -126,7 +135,7 @@ export const ScoresPage = (props: ScoresPageProps) => {
                                             }}
                                         </For>
                                     </Show>
-                                    <div>{row.absoluteScore}</div>
+                                    <div>{formatScore(row.absoluteScore)}</div>
                                     <Show when={getShowScoreBreakdown()}>
                                         <Grid templateColumns={() => "2fr 2fr 1fr"}>
                                             <For each={AppStore.getComputedData().absoluteScores[row.card]}>
@@ -138,7 +147,7 @@ export const ScoresPage = (props: ScoresPageProps) => {
                                                         <RarityLabel rarity={() => ALL_CARDS[item.result].rarity}>
                                                             {item.result}
                                                         </RarityLabel>
-                                                        <span>{item.resultScore}</span>
+                                                        <span>{formatScore(item.resultScore)}</span>
                                                     </>
                                                 )}
                                             </For>

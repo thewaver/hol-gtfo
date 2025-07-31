@@ -42,9 +42,15 @@ export namespace CardUtils {
         const { atk, def } = getResultCardStats(result, card1Rarity, card2Rarity, powerOpts.level);
 
         return Math.round(
+            Math.pow(atk * 2 * powerOpts.bias * 0.01 + def * 2 * (1 - powerOpts.bias * 0.01), powerOpts.exponent),
+        );
+
+        /*
+        return Math.round(
             Math.pow(atk * 2 * powerOpts.bias * 0.01 + def * 2 * (1 - powerOpts.bias * 0.01), powerOpts.exponent) /
                 Math.pow(10, powerOpts.exponent - 1),
         );
+        */
     };
 
     export const getCardMap = (cardArray: Card[], expansions: Set<ExpansionName>) =>
