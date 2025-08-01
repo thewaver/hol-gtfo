@@ -5,7 +5,7 @@ import { CardDeckOpts, ExpansionName } from "../Logic/Abstracts/Card/Card.types"
 import { CardUtils } from "../Logic/Abstracts/Card/Card.utils";
 
 export namespace AppStore {
-    export const [getExpansions, setExpansuions] = createSignal<Set<ExpansionName>>(new Set(["Base"]));
+    export const [getExpansions, setExpansuions] = createSignal<Set<ExpansionName>>(new Set(["Base Game"]));
     export const [getPowerBias, setPowerBias] = createSignal(65);
     export const [getPowerExponent, setPowerExponent] = createSignal(3);
     export const [getCardLevel, setCardLevel] = createSignal(4);

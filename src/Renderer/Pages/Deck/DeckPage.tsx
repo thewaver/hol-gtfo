@@ -52,7 +52,9 @@ export const DeckPage = (props: DeckPageProps) => {
                         {(row) => {
                             return (
                                 <>
-                                    <RarityLabel rarity={() => ALL_CARDS[row.card].rarity}>{row.card}</RarityLabel>
+                                    <RarityLabel rarity={() => ALL_CARDS[row.card].rarity}>
+                                        {CardUtils.getCardNameAndExpansion(row.card)}
+                                    </RarityLabel>
                                     <div>{row.count}</div>
                                 </>
                             );

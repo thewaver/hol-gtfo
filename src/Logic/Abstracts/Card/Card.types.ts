@@ -3,7 +3,13 @@ export type CardRarity = (typeof CARD_RARITIES)[number];
 
 export type CardName = string;
 
-export type ExpansionName = string;
+export type ExpansionName =
+    | "Base Game"
+    | "Forbidden Depths"
+    | "Masquerade of Lust"
+    | "Cupid on Vacation"
+    | "Spring Break"
+    | "Game Fest";
 
 export type Card = {
     name: CardName;

@@ -1,5 +1,5 @@
 import { ArrayType } from "../../Utils/utilityTypes";
-import { ALL_CARDS, RARITY_INDEXES } from "./Card.const";
+import { ALL_CARDS, EXPANSION_ACRONYMMS, RARITY_INDEXES } from "./Card.const";
 import {
     Card,
     CardCombo,
@@ -16,6 +16,9 @@ export type ComboArrayFields = keyof ArrayType<ReturnType<typeof CardUtils.getCo
 export type ScoreArrayFields = keyof ArrayType<ReturnType<typeof CardUtils.getScoreArray>>;
 
 export namespace CardUtils {
+    export const getCardNameAndExpansion = (card: CardName) =>
+        `[${EXPANSION_ACRONYMMS[ALL_CARDS[card].expansion]}] ${card}`;
+
     export const getResultCardStats = (
         result: CardName,
         card1Rarity: CardRarity,

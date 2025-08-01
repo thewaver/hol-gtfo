@@ -116,7 +116,9 @@ export const ScoresPage = (props: ScoresPageProps) => {
                         {(row) => {
                             return row.absoluteScore ? (
                                 <>
-                                    <RarityLabel rarity={() => ALL_CARDS[row.card].rarity}>{row.card}</RarityLabel>
+                                    <RarityLabel rarity={() => ALL_CARDS[row.card].rarity}>
+                                        {CardUtils.getCardNameAndExpansion(row.card)}
+                                    </RarityLabel>
                                     <Show when={!getShowScoreBreakdown()}>
                                         <For each={CARD_RARITIES}>
                                             {(rarity) => {
@@ -142,7 +144,7 @@ export const ScoresPage = (props: ScoresPageProps) => {
                                                 {(item) => (
                                                     <>
                                                         <RarityLabel rarity={() => ALL_CARDS[item.pair].rarity}>
-                                                            {item.pair}
+                                                            {CardUtils.getCardNameAndExpansion(item.pair)}
                                                         </RarityLabel>
                                                         <RarityLabel rarity={() => ALL_CARDS[item.result].rarity}>
                                                             {item.result}

@@ -84,8 +84,12 @@ export const CombosPage = (props: CombosPageProps) => {
                         {(row) => {
                             return (
                                 <>
-                                    <RarityLabel rarity={() => ALL_CARDS[row.card1].rarity}>{row.card1}</RarityLabel>
-                                    <RarityLabel rarity={() => ALL_CARDS[row.card2].rarity}>{row.card2}</RarityLabel>
+                                    <RarityLabel rarity={() => ALL_CARDS[row.card1].rarity}>
+                                        {CardUtils.getCardNameAndExpansion(row.card1)}
+                                    </RarityLabel>
+                                    <RarityLabel rarity={() => ALL_CARDS[row.card2].rarity}>
+                                        {CardUtils.getCardNameAndExpansion(row.card2)}
+                                    </RarityLabel>
                                     <RarityLabel rarity={() => ALL_CARDS[row.result].rarity}>{row.result}</RarityLabel>
                                     <div>{row.atk}</div>
                                     <div>{row.def}</div>

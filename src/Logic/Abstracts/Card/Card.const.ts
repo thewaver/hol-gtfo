@@ -1,5 +1,5 @@
 import { parseCSV } from "../../Utils/csv";
-import { CARD_RARITIES, Card, CardCombo, CardMap } from "./Card.types";
+import { CARD_RARITIES, Card, CardCombo, CardMap, ExpansionName } from "./Card.types";
 import cardsCSV from "./cards.csv?raw";
 import combosCSV from "./combos.csv?raw";
 
@@ -16,3 +16,12 @@ export const ALL_CARDS = PARSED_CARDS.reduce((res, cur) => {
 export const ALL_EXPANSIONS = new Set(PARSED_CARDS.map((card) => card.expansion));
 
 export const PARSED_COMBOS = parseCSV(combosCSV) as unknown as CardCombo[];
+
+export const EXPANSION_ACRONYMMS: Record<ExpansionName, string> = {
+    "Base Game": "BG",
+    "Forbidden Depths": "FD",
+    "Masquerade of Lust": "MoL",
+    "Cupid on Vacation": "CoV",
+    "Spring Break": "SB",
+    "Game Fest": "GF",
+};
