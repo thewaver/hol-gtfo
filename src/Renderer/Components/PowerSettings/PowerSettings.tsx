@@ -20,9 +20,10 @@ export const PowerSettings = (props: PowerSettingsProps) => {
                 <span>{`ATK ${AppStore.getPowerBias()}`}</span>
             </label>
             <label title="Higher values put more weight in stronger combos than total combo count">
-                <span>{"Power exponent"}</span>
+                <span>{"Combo bias"}</span>
+                <span>{`CNT ${5 - AppStore.getPowerExponent()}`}</span>
                 <input
-                    type="number"
+                    type="range"
                     min={1}
                     max={5}
                     step={1}
@@ -31,6 +32,7 @@ export const PowerSettings = (props: PowerSettingsProps) => {
                         AppStore.setPowerExponent(parseFloat(e.target.value));
                     }}
                 />
+                <span>{`PWR ${AppStore.getPowerExponent()}`}</span>
             </label>
             <label title="Determines ATK and DEF in conjunction with rarity">
                 <span>{"Card level"}</span>
@@ -41,7 +43,7 @@ export const PowerSettings = (props: PowerSettingsProps) => {
                     step={1}
                     value={AppStore.getCardLevel()}
                     onChange={(e) => {
-                        AppStore.setCardLevel(parseFloat(e.target.value));
+                        AppStore.setCardLevel(Number(e.target.value));
                     }}
                 />
             </label>

@@ -1,6 +1,6 @@
 import { For, createMemo, createSignal } from "solid-js";
 
-import { ALL_CARDS } from "../../../Logic/Abstracts/Card/Card.const";
+import { ALL_CARDS, PARSED_COMBOS } from "../../../Logic/Abstracts/Card/Card.const";
 import { CARD_RARITIES } from "../../../Logic/Abstracts/Card/Card.types";
 import { CardUtils, ComboArrayFields } from "../../../Logic/Abstracts/Card/Card.utils";
 import { sortArray } from "../../../Logic/Utils/array";
@@ -13,26 +13,30 @@ import { GridHeader } from "../../Fundamentals/Grid/GridHeader/GridHeader";
 import { RarityLabel } from "../../Fundamentals/RarityLabel/RarityLabel";
 import { Surface } from "../../Fundamentals/Surface/Surface";
 import { Title } from "../../Fundamentals/Title/Title";
-import { CombosPageProps } from "./CombosPage.types";
 
-const TEMPLATE_COLUMNS = "repeat(3, minmax(120px, auto)) repeat(3, minmax(40px, auto)) repeat(1, minmax(120px, auto))";
+const TEMPLATE_COLUMNS = "repeat(3, minmax(120px, auto)) repeat(3, minmax(40px, auto)) repeat(1, minmax(80px, auto))";
 
-export const CombosPage = (props: CombosPageProps) => {
+export const CombosPage = () => {
     const [getComboSortFields, setComboSortFields] = createSignal<ComboArrayFields[]>(["card1", "card2"]);
     const [getComboSortColIndex, setComboSortColIndex] = createSignal(0);
     const [getComboSortColDir, setComboSortColDir] = createSignal<"🠋" | "🠉">("🠋");
 
-    const getComboRows = createMemo(() => {
-        const data = AppStore.getComputedData();
+    const getComputedData = createMemo(() => {
         const powerOpts = {
             bias: AppStore.getPowerBias(),
             exponent: AppStore.getPowerExponent(),
             level: AppStore.getCardLevel(),
         };
-        const comboArray = CardUtils.getComboArray(data.comboMap, powerOpts);
+        const { comboMap, symmetricalComboCount } = CardUtils.getComboMap(PARSED_COMBOS, {
+            expansions: AppStore.getExpansions(),
+        });
+        const comboArray = CardUtils.getComboArray(comboMap, powerOpts);
         const result = sortArray(comboArray, ...getComboSortFields());
 
-        return getComboSortColDir() === "🠋" ? result : result.reverse();
+        return {
+            comboRows: getComboSortColDir() === "🠋" ? result : result.reverse(),
+            symmetricalComboCount,
+        };
     });
 
     const handleComboHeaderClick = (colIndex: number, ...keys: ComboArrayFields[]) => {
@@ -47,12 +51,12 @@ export const CombosPage = (props: CombosPageProps) => {
         <>
             <Surface>
                 <SettingsGroup>
-                    <Expansions />
+                    <PowerSettings />
                 </SettingsGroup>
             </Surface>
             <Surface>
                 <SettingsGroup>
-                    <PowerSettings />
+                    <Expansions />
                 </SettingsGroup>
             </Surface>
 
@@ -80,7 +84,7 @@ export const CombosPage = (props: CombosPageProps) => {
                         </button>
                     </GridHeader>
 
-                    <For each={getComboRows()}>
+                    <For each={getComputedData().comboRows}>
                         {(row) => {
                             return (
                                 <>
@@ -91,9 +95,9 @@ export const CombosPage = (props: CombosPageProps) => {
                                         {CardUtils.getCardNameAndExpansion(row.card2)}
                                     </RarityLabel>
                                     <RarityLabel rarity={() => ALL_CARDS[row.result].rarity}>{row.result}</RarityLabel>
-                                    <div>{row.atk}</div>
-                                    <div>{row.def}</div>
-                                    <div>{row.power}</div>
+                                    <div>{CardUtils.formatScore(row.atk)}</div>
+                                    <div>{CardUtils.formatScore(row.def)}</div>
+                                    <div>{CardUtils.formatScore(row.power)}</div>
                                     <RarityLabel rarity={() => ALL_CARDS[row.result].rarity}>
                                         {CARD_RARITIES[row.rarityIndex]}
                                     </RarityLabel>
@@ -104,7 +108,7 @@ export const CombosPage = (props: CombosPageProps) => {
                 </Grid>
             </Surface>
 
-            <Title>{`${(getComboRows().length - AppStore.getComputedData().symmetricalComboCount) / 2 + AppStore.getComputedData().symmetricalComboCount} entries as of 25/07/2025`}</Title>
+            <Title>{`${(getComputedData().comboRows.length - getComputedData().symmetricalComboCount) / 2 + getComputedData().symmetricalComboCount} entries as of 02/08/2025\nCards shown are not affected by "My Deck"`}</Title>
         </>
     );
 };

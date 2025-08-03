@@ -1,12 +1,11 @@
 import { For, Show } from "solid-js";
 import { createMemo, createSignal } from "solid-js";
 
-import { ALL_CARDS } from "../../../Logic/Abstracts/Card/Card.const";
+import { ALL_CARDS, PARSED_COMBOS } from "../../../Logic/Abstracts/Card/Card.const";
 import { CARD_RARITIES } from "../../../Logic/Abstracts/Card/Card.types";
 import { CardUtils, ScoreArrayFields } from "../../../Logic/Abstracts/Card/Card.utils";
 import { sortArray } from "../../../Logic/Utils/array";
 import { AppStore } from "../../App.store";
-import { Expansions } from "../../Components/Expansions/Expansions";
 import { PowerSettings } from "../../Components/PowerSettings/PowerSettings";
 import { SettingsGroup } from "../../Components/SettingsGroup/SettingsGroup";
 import { Grid } from "../../Fundamentals/Grid/Grid";
@@ -14,34 +13,35 @@ import { GridHeader } from "../../Fundamentals/Grid/GridHeader/GridHeader";
 import { RarityLabel } from "../../Fundamentals/RarityLabel/RarityLabel";
 import { Surface } from "../../Fundamentals/Surface/Surface";
 import { Title } from "../../Fundamentals/Title/Title";
-import { ScoresPageProps } from "./ScoresPage.types";
 
-const TEMPLATE_COLUMNS_BREAKDOWN = "repeat(1, minmax(120px, auto)) repeat(1, minmax(120px, auto)) 1fr";
+const TEMPLATE_COLUMNS_BREAKDOWN = "repeat(1, minmax(120px, auto)) repeat(1, minmax(80px, auto)) 1fr";
 const TEMPLATE_COLUMNS_BRIEF =
-    "repeat(1, minmax(120px, auto)) repeat(4, minmax(60px, auto)) repeat(1, minmax(120px, auto))";
+    "repeat(1, minmax(120px, auto)) repeat(4, minmax(40px, auto)) repeat(1, minmax(80px, auto))";
 
-const formatScore = (num: number) => {
-    const str = num.toLocaleString("en", {
-        notation: "compact",
-        maximumSignificantDigits: 4,
-    });
-
-    return str.replace(/^([\d.,]+)([^\d\s]+)$/, "$1 $2");
-};
-
-export const ScoresPage = (props: ScoresPageProps) => {
+export const ScoresPage = () => {
     const [getScoreSortFields, setScoreSortFields] = createSignal<ScoreArrayFields[]>(["absoluteScore", "card"]);
     const [getScoreSortColIndex, setScoreSortColIndex] = createSignal(5);
     const [getScoreSortColDir, setScoreSortColDir] = createSignal<"🠋" | "🠉">("🠋");
 
     const [getShowScoreBreakdown, setShowScoreBreakdown] = createSignal(false);
 
-    const getScoreRows = createMemo(() => {
-        const data = AppStore.getComputedData();
-        const scoreArray = CardUtils.getScoreArray(data.absoluteScores, data.comboCountsByCard);
+    const getComputedData = createMemo(() => {
+        const powerOpts = {
+            bias: AppStore.getPowerBias(),
+            exponent: AppStore.getPowerExponent(),
+            level: AppStore.getCardLevel(),
+        };
+        const { comboMap } = CardUtils.getComboMap(PARSED_COMBOS, { cardCounts: AppStore.myCardCounts });
+        const { byCard: comboCountsByCard, max: comboCountsMax } = CardUtils.getComboCounts(comboMap);
+        const absoluteScores = CardUtils.getAbsoluteScores(comboMap, powerOpts);
+        const scoreArray = CardUtils.getScoreArray(absoluteScores, comboCountsByCard);
         const result = sortArray(scoreArray, ...getScoreSortFields());
 
-        return getScoreSortColDir() === "🠋" ? result : result.reverse();
+        return {
+            scoreRows: getScoreSortColDir() === "🠋" ? result : result.reverse(),
+            absoluteScores,
+            comboCountsMax,
+        };
     });
 
     const handleScoreHeaderClick = (colIndex: number, ...keys: ScoreArrayFields[]) => {
@@ -54,11 +54,6 @@ export const ScoresPage = (props: ScoresPageProps) => {
 
     return (
         <>
-            <Surface>
-                <SettingsGroup>
-                    <Expansions />
-                </SettingsGroup>
-            </Surface>
             <Surface>
                 <SettingsGroup>
                     <PowerSettings />
@@ -112,7 +107,7 @@ export const ScoresPage = (props: ScoresPageProps) => {
                         </Show>
                     </GridHeader>
 
-                    <For each={getScoreRows()}>
+                    <For each={getComputedData().scoreRows}>
                         {(row) => {
                             return row.absoluteScore ? (
                                 <>
@@ -122,7 +117,7 @@ export const ScoresPage = (props: ScoresPageProps) => {
                                     <Show when={!getShowScoreBreakdown()}>
                                         <For each={CARD_RARITIES}>
                                             {(rarity) => {
-                                                const mean = AppStore.getComputedData().comboCountsMax[rarity] / 2;
+                                                const mean = getComputedData().comboCountsMax[rarity] / 2;
                                                 const distFromMean = row[rarity] - mean;
 
                                                 return (
@@ -137,10 +132,10 @@ export const ScoresPage = (props: ScoresPageProps) => {
                                             }}
                                         </For>
                                     </Show>
-                                    <div>{formatScore(row.absoluteScore)}</div>
+                                    <div>{CardUtils.formatScore(row.absoluteScore)}</div>
                                     <Show when={getShowScoreBreakdown()}>
-                                        <Grid templateColumns={() => "2fr 2fr 1fr"}>
-                                            <For each={AppStore.getComputedData().absoluteScores[row.card]}>
+                                        <Grid templateColumns={() => "2fr 2fr minmax(80px, auto)"}>
+                                            <For each={getComputedData().absoluteScores[row.card]}>
                                                 {(item) => (
                                                     <>
                                                         <RarityLabel rarity={() => ALL_CARDS[item.pair].rarity}>
@@ -149,7 +144,7 @@ export const ScoresPage = (props: ScoresPageProps) => {
                                                         <RarityLabel rarity={() => ALL_CARDS[item.result].rarity}>
                                                             {item.result}
                                                         </RarityLabel>
-                                                        <span>{formatScore(item.resultScore)}</span>
+                                                        <span>{CardUtils.formatScore(item.resultScore)}</span>
                                                     </>
                                                 )}
                                             </For>

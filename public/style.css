@@ -5,14 +5,14 @@
     --clr-page-text-light-secondary: rgb(192, 192, 192);
 
     --clr-primary-bkg: rgb(16, 48, 32);
-    --clr-primary-highlight: rgb(64, 255, 255);
-    --clr-primary-text: rgb(112, 144, 128);
+    --clr-primary-highlight: rgb(64, 255, 192);
+    --clr-primary-text: rgb(160, 224, 192);
     --clr-secondary-bkg: rgb(48, 32, 16);
-    --clr-secondary-highlight: rgb(255, 255, 64);
-    --clr-secondary-text: rgb(144, 128, 112);
+    --clr-secondary-highlight: rgb(255, 192, 64);
+    --clr-secondary-text: rgb(224, 192, 160);
     --clr-tertiary-bkg: rgb(32, 16, 48);
-    --clr-tertiary-highlight: rgb(255, 64, 255);
-    --clr-tertiary-text: rgb(128, 112, 144);
+    --clr-tertiary-highlight: rgb(192, 64, 255);
+    --clr-tertiary-text: rgb(192, 160, 224);
 
     --txt-size-check: 10px;
     --txt-size-small: 12px;
@@ -20,11 +20,11 @@
     --txt-size-large: 20px;
     --txt-size-extra: 24px;
 
-    --shd-tiny: 0 2px 4px 2px rgba(0, 0, 0, 0.33);
-    --shd-soft: 0 4px 16px 4px rgba(0, 0, 0, 0.5);
-    --shd-medium: 0 8px 64px 8px rgba(0, 0, 0, 0.66);
+    --shd-tiny: 0 2px 5px 2px rgba(0, 0, 0, 0.66);
+    --shd-soft: 0 5px 20px 5px rgba(0, 0, 0, 0.5);
+    --shd-medium: 0 10px 80px 10px rgba(0, 0, 0, 0.33);
 
-    --anim-duration: 0.5s;
+    --anim-duration: 0.25s;
 
     --scroll-width: 8px; /* FF "thin" */
 
@@ -76,6 +76,8 @@
 }
 
 input:hover,
+select:hover,
+textarea:hover,
 label:hover,
 button:hover {
     cursor: pointer;
@@ -89,7 +91,10 @@ label {
     width: fit-content;
 }
 
-input {
+input,
+select,
+textarea,
+button {
     color: var(--clr-page-text-light);
     background-color: black;
     box-shadow: var(--shd-tiny);
@@ -99,7 +104,22 @@ input {
     line-height: 1.25;
 }
 
-input[type="range"] {
+button {
+    padding-inline: 20px;
+    background-color: rgb(from var(--clr-tertiary-text) r g b / 0.5);
+    border: 2px solid transparent;
+    border-radius: 20px;
+}
+
+button:hover {
+    background-color: rgb(from var(--clr-tertiary-text) r g b / 0.75);
+    box-shadow:
+        inset 0 0 10px var(--clr-tertiary-text),
+        0 0 10px var(--clr-tertiary-text);
+}
+
+input[type="range"],
+input[type="select"] {
     width: 120px;
 }
 

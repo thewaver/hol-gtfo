@@ -1,10 +1,9 @@
 import { For, createMemo } from "solid-js";
 
-import { ALL_CARDS } from "../../../Logic/Abstracts/Card/Card.const";
+import { ALL_CARDS, PARSED_COMBOS } from "../../../Logic/Abstracts/Card/Card.const";
 import { CardUtils } from "../../../Logic/Abstracts/Card/Card.utils";
 import { AppStore } from "../../App.store";
 import { DeckSettings } from "../../Components/DeckSettings/DeckSettings";
-import { Expansions } from "../../Components/Expansions/Expansions";
 import { PowerSettings } from "../../Components/PowerSettings/PowerSettings";
 import { SettingsGroup } from "../../Components/SettingsGroup/SettingsGroup";
 import { Grid } from "../../Fundamentals/Grid/Grid";
@@ -12,33 +11,35 @@ import { GridHeader } from "../../Fundamentals/Grid/GridHeader/GridHeader";
 import { RarityLabel } from "../../Fundamentals/RarityLabel/RarityLabel";
 import { Surface } from "../../Fundamentals/Surface/Surface";
 import { Title } from "../../Fundamentals/Title/Title";
-import { DeckPageProps } from "./DeckPages.types";
 
 const TEMPLATE_COLUMNS = "repeat(1, minmax(120px, auto)) repeat(1, minmax(40px, auto))";
 
-export const DeckPage = (props: DeckPageProps) => {
-    const getDeckRows = createMemo(() => {
-        const data = AppStore.getComputedData();
+export const BestDeckPage = () => {
+    const getComputedData = createMemo(() => {
+        const powerOpts = {
+            bias: AppStore.getPowerBias(),
+            exponent: AppStore.getPowerExponent(),
+            level: AppStore.getCardLevel(),
+        };
+        const { comboMap } = CardUtils.getComboMap(PARSED_COMBOS, { cardCounts: AppStore.myCardCounts });
+        const absoluteScores = CardUtils.getAbsoluteScores(comboMap, powerOpts);
 
-        return CardUtils.getBestDeck(data.comboMap, data.absoluteScores, AppStore.getDeckSettings());
+        return {
+            deckRows: CardUtils.getBestDeck(comboMap, absoluteScores, AppStore.myCardCounts, AppStore.deckSettings),
+        };
     });
 
     return (
         <>
             <Surface>
                 <SettingsGroup>
-                    <Expansions />
-                </SettingsGroup>
-            </Surface>
-            <Surface>
-                <SettingsGroup>
                     <PowerSettings />
                 </SettingsGroup>
             </Surface>
             <Surface>
-                <Grid templateColumns={() => "repeat(1, minmax(240px, auto)) repeat(3, minmax(120px, auto))"}>
+                <SettingsGroup>
                     <DeckSettings />
-                </Grid>
+                </SettingsGroup>
             </Surface>
 
             <Surface>
@@ -48,7 +49,7 @@ export const DeckPage = (props: DeckPageProps) => {
                         <div>{"Count"}</div>
                     </GridHeader>
 
-                    <For each={getDeckRows()}>
+                    <For each={getComputedData().deckRows}>
                         {(row) => {
                             return (
                                 <>
@@ -63,7 +64,7 @@ export const DeckPage = (props: DeckPageProps) => {
                 </Grid>
             </Surface>
 
-            <Title>{`Currently based on shallow node comparison - interpret results with caution`}</Title>
+            <Title>{`Currently based on shallow graph node comparison\nInterpret results with caution`}</Title>
         </>
     );
 };

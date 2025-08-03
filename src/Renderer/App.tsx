@@ -2,8 +2,9 @@ import { ParentProps } from "solid-js";
 
 import { A, Navigate, Route, Router } from "@solidjs/router";
 
+import { BestDeckPage } from "./Pages/BestDeck/BestDeckPage";
 import { CombosPage } from "./Pages/Combos/CombosPage";
-import { DeckPage } from "./Pages/Deck/DeckPage";
+import { MyCardsPage } from "./Pages/MyCards/MyCardsPage";
 import { ScoresPage } from "./Pages/Scores/ScoresPage";
 
 import "./App.css";
@@ -14,9 +15,10 @@ const Layout = (props: ParentProps<{}>) => {
             <div class="navWrapper">
                 <div>{"Harem of Lust"}</div>
                 <nav class="nav">
+                    <A href="/my-cards">{"My Cards"}</A>
                     <A href="/combos">{"Combos"}</A>
                     <A href="/scores">{"Scores"}</A>
-                    <A href="/deck">{"Deck"}</A>
+                    <A href="/best-deck">{"Best Deck"}</A>
                 </nav>
                 <div style={{ "opacity": 0, "user-select": "none" }}>{"Harem of Lust"}</div>
             </div>
@@ -31,9 +33,10 @@ export const App = () => {
             <Router>
                 <Route path="/" component={Layout}>
                     <Route path="/" component={() => <Navigate href="/combos" />} />
+                    <Route path="/my-cards" component={MyCardsPage} />
                     <Route path="/combos" component={CombosPage} />
                     <Route path="/scores" component={ScoresPage} />
-                    <Route path="/deck" component={DeckPage} />
+                    <Route path="/best-deck" component={BestDeckPage} />
                 </Route>
             </Router>
         </div>

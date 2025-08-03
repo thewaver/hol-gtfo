@@ -3,6 +3,7 @@ import { ALL_CARDS, EXPANSION_ACRONYMMS, RARITY_INDEXES } from "./Card.const";
 import {
     Card,
     CardCombo,
+    CardCount,
     CardDeckOpts,
     CardMap,
     CardName,
@@ -16,6 +17,15 @@ export type ComboArrayFields = keyof ArrayType<ReturnType<typeof CardUtils.getCo
 export type ScoreArrayFields = keyof ArrayType<ReturnType<typeof CardUtils.getScoreArray>>;
 
 export namespace CardUtils {
+    export const formatScore = (num: number) => {
+        const str = num.toLocaleString("en", {
+            notation: "compact",
+            maximumSignificantDigits: 4,
+        });
+
+        return str.replace(/^([\d.,]+)([^\d\s]+)$/, "$1 $2");
+    };
+
     export const getCardNameAndExpansion = (card: CardName) =>
         `[${EXPANSION_ACRONYMMS[ALL_CARDS[card].expansion]}] ${card}`;
 
@@ -31,8 +41,8 @@ export namespace CardUtils {
         const bonus = (adjutedLevel - 1) * highestBasicCardRarityIndex;
 
         return {
-            def: Number(baseDefense) + bonus,
-            atk: Number(baseAttack) + bonus,
+            def: baseDefense + bonus,
+            atk: baseAttack + bonus,
         };
     };
 
@@ -43,17 +53,15 @@ export namespace CardUtils {
         powerOpts: CardPowerOpts,
     ) => {
         const { atk, def } = getResultCardStats(result, card1Rarity, card2Rarity, powerOpts.level);
-
+        /*
         return Math.round(
             Math.pow(atk * 2 * powerOpts.bias * 0.01 + def * 2 * (1 - powerOpts.bias * 0.01), powerOpts.exponent),
         );
-
-        /*
+        */
         return Math.round(
             Math.pow(atk * 2 * powerOpts.bias * 0.01 + def * 2 * (1 - powerOpts.bias * 0.01), powerOpts.exponent) /
                 Math.pow(10, powerOpts.exponent - 1),
         );
-        */
     };
 
     export const getCardMap = (cardArray: Card[], expansions: Set<ExpansionName>) =>
@@ -65,7 +73,10 @@ export namespace CardUtils {
             return res;
         }, {} as CardMap);
 
-    export const getComboMap = (comboArray: CardCombo[], expansions: Set<ExpansionName>) => {
+    export const getComboMap = (
+        comboArray: CardCombo[],
+        opts?: { cardCounts?: Record<CardName, CardCount>; expansions?: Set<ExpansionName> },
+    ) => {
         let symmetricalComboCount = 0;
 
         const comboMap: ComboMap = {};
@@ -73,7 +84,17 @@ export namespace CardUtils {
         for (const combo of comboArray) {
             const { card1, card2, result } = combo;
 
-            if (!expansions.has(ALL_CARDS[card1].expansion) || !expansions.has(ALL_CARDS[card2].expansion)) continue;
+            if (
+                opts?.expansions &&
+                (!opts.expansions.has(ALL_CARDS[card1].expansion) || !opts.expansions.has(ALL_CARDS[card2].expansion))
+            )
+                continue;
+
+            if (
+                opts?.cardCounts &&
+                (!opts.cardCounts[card1] || !opts.cardCounts[card2] || (card1 === card2 && opts.cardCounts[card1] < 2))
+            )
+                continue;
 
             comboMap[card1] ??= {};
             comboMap[card1][card2] = result;
@@ -177,10 +198,11 @@ export namespace CardUtils {
     export const getBestDeck = (
         comboMap: ComboMap,
         absoluteScores: ReturnType<typeof getAbsoluteScores>,
+        cardCounts: Record<CardName, CardCount>,
         deckOpts: CardDeckOpts,
         deckSize: number = 30,
     ) => {
-        const rarityCounts = { ...deckOpts.cardsOfRarity };
+        const rarityCounts = { ...deckOpts.maxCardsOfRarity };
         const absoluteScoreSums = Object.fromEntries(
             Object.keys(absoluteScores).map((card) => [
                 card,
@@ -189,7 +211,7 @@ export namespace CardUtils {
         );
         const sortedCardNames = Object.keys(comboMap)
             .sort((a, b) => absoluteScoreSums[b] - absoluteScoreSums[a])
-            .flatMap((card) => new Array<CardName>(deckOpts.copiesOfCard[ALL_CARDS[card].rarity]).fill(card));
+            .flatMap((card) => new Array<CardName>(cardCounts[card]).fill(card));
 
         let currentCard = sortedCardNames.shift()!;
         rarityCounts[ALL_CARDS[currentCard].rarity] -= 1;

@@ -1,6 +1,7 @@
 .title {
     white-space: pre;
     text-align: center;
-    font-size: 16px;
-    line-height: 1.25;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 32px;
 }

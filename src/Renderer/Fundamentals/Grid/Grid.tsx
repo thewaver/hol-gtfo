@@ -6,7 +6,13 @@ import "./Grid.css";
 
 export const Grid = (props: ParentProps<GridProps>) => {
     return (
-        <div class="grid" style={{ "grid-template-columns": props.templateColumns() }}>
+        <div
+            class="grid"
+            style={{
+                "align-items": props.center?.() ? "center" : undefined,
+                "grid-template-columns": props.templateColumns(),
+            }}
+        >
             {props.children}
         </div>
     );

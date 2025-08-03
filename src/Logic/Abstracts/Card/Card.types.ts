@@ -37,7 +37,8 @@ export type CardPowerOpts = {
     level: number;
 };
 
+export type CardCount = 0 | 1 | 2 | 3;
+
 export type CardDeckOpts = {
-    copiesOfCard: Record<CardRarity, 0 | 1 | 2 | 3>;
-    cardsOfRarity: Record<CardRarity, number>;
+    maxCardsOfRarity: Record<CardRarity, number>;
 };

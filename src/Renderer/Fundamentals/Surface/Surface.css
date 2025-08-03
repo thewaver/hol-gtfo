@@ -2,7 +2,7 @@
     width: 100%;
     padding: 20px;
     border-radius: 10px;
-    border: 2px solid rgb(from var(--clr-tertiary-text) r g b / 0.25);
+    border: 2px solid rgb(from var(--clr-tertiary-text) r g b / 0.125);
     background-color: rgba(0, 0, 0, 0.5);
     box-shadow: var(--shd-tiny), var(--shd-soft);
     overflow: hidden;

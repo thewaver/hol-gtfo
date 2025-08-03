@@ -5,7 +5,12 @@ import combosCSV from "./combos.csv?raw";
 
 export const RARITY_INDEXES = Object.fromEntries(CARD_RARITIES.map((value, index) => [value, index]));
 
-export const PARSED_CARDS = parseCSV(cardsCSV) as unknown as Card[];
+export const PARSED_CARDS = parseCSV<Card>(cardsCSV, {
+    isBasic: (v) => v === "1",
+    isResult: (v) => v === "1",
+    baseAttack: (v) => Number(v),
+    baseDefense: (v) => Number(v),
+});
 
 export const ALL_CARDS = PARSED_CARDS.reduce((res, cur) => {
     res[cur.name] = cur;
@@ -15,7 +20,7 @@ export const ALL_CARDS = PARSED_CARDS.reduce((res, cur) => {
 
 export const ALL_EXPANSIONS = new Set(PARSED_CARDS.map((card) => card.expansion));
 
-export const PARSED_COMBOS = parseCSV(combosCSV) as unknown as CardCombo[];
+export const PARSED_COMBOS = parseCSV<CardCombo>(combosCSV);
 
 export const EXPANSION_ACRONYMMS: Record<ExpansionName, string> = {
     "Base Game": "BG",

@@ -14,28 +14,6 @@ export const DeckSettings = (props: DeckSettingsProps) => {
 
     return (
         <>
-            <span>{"Max same card by rarity"}</span>
-            <For each={getCardRarities()}>
-                {(rarity) => (
-                    <label>
-                        <span>{rarity}</span>
-                        <input
-                            type="number"
-                            min={0}
-                            max={3}
-                            step={1}
-                            value={AppStore.getDeckSettings().copiesOfCard[rarity]}
-                            onChange={(e) => {
-                                AppStore.setDeckSettings((prev) => ({
-                                    ...prev,
-                                    copiesOfCard: { ...prev.copiesOfCard, [rarity]: e.target.value },
-                                }));
-                            }}
-                        />
-                    </label>
-                )}
-            </For>
-
             <span>{"Max total cards by rarity"}</span>
             <For each={getCardRarities()}>
                 {(rarity) => (
@@ -46,12 +24,9 @@ export const DeckSettings = (props: DeckSettingsProps) => {
                             min={0}
                             max={30}
                             step={1}
-                            value={AppStore.getDeckSettings().cardsOfRarity[rarity]}
+                            value={AppStore.deckSettings.maxCardsOfRarity[rarity]}
                             onChange={(e) => {
-                                AppStore.setDeckSettings((prev) => ({
-                                    ...prev,
-                                    cardsOfRarity: { ...prev.cardsOfRarity, [rarity]: e.target.value },
-                                }));
+                                AppStore.setDeckSettings("maxCardsOfRarity", rarity, Number(e.target.value));
                             }}
                         />
                     </label>
