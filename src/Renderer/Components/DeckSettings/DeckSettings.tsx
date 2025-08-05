@@ -14,11 +14,10 @@ export const DeckSettings = (props: DeckSettingsProps) => {
 
     return (
         <>
-            <span>{"Max total cards by rarity"}</span>
             <For each={getCardRarities()}>
                 {(rarity) => (
                     <label>
-                        <span>{rarity}</span>
+                        <span>{`Max ${rarity}`}</span>
                         <input
                             type="number"
                             min={0}
@@ -32,6 +31,19 @@ export const DeckSettings = (props: DeckSettingsProps) => {
                     </label>
                 )}
             </For>
+            <label>
+                <span>{`Deck size`}</span>
+                <input
+                    type="number"
+                    min={1}
+                    max={120}
+                    step={1}
+                    value={AppStore.deckSettings.deckSize}
+                    onChange={(e) => {
+                        AppStore.setDeckSettings("deckSize", Number(e.target.value));
+                    }}
+                />
+            </label>
         </>
     );
 };

@@ -9,7 +9,6 @@ export const Grid = (props: ParentProps<GridProps>) => {
         <div
             class="grid"
             style={{
-                "align-items": props.center?.() ? "center" : undefined,
                 "grid-template-columns": props.templateColumns(),
             }}
         >

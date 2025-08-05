@@ -10,6 +10,7 @@ import { PowerSettings } from "../../Components/PowerSettings/PowerSettings";
 import { SettingsGroup } from "../../Components/SettingsGroup/SettingsGroup";
 import { Grid } from "../../Fundamentals/Grid/Grid";
 import { GridHeader } from "../../Fundamentals/Grid/GridHeader/GridHeader";
+import { GridRow } from "../../Fundamentals/Grid/GridRow/GridRow";
 import { RarityLabel } from "../../Fundamentals/RarityLabel/RarityLabel";
 import { Surface } from "../../Fundamentals/Surface/Surface";
 import { Title } from "../../Fundamentals/Title/Title";
@@ -60,7 +61,7 @@ export const CombosPage = () => {
                 </SettingsGroup>
             </Surface>
 
-            <Surface>
+            <Surface unpadded={() => true}>
                 <Grid templateColumns={() => TEMPLATE_COLUMNS}>
                     <GridHeader>
                         <button onClick={() => handleComboHeaderClick(0, "card1", "card2")}>
@@ -85,9 +86,9 @@ export const CombosPage = () => {
                     </GridHeader>
 
                     <For each={getComputedData().comboRows}>
-                        {(row) => {
+                        {(row, getIndex) => {
                             return (
-                                <>
+                                <GridRow index={getIndex}>
                                     <RarityLabel rarity={() => ALL_CARDS[row.card1].rarity}>
                                         {CardUtils.getCardNameAndExpansion(row.card1)}
                                     </RarityLabel>
@@ -101,14 +102,14 @@ export const CombosPage = () => {
                                     <RarityLabel rarity={() => ALL_CARDS[row.result].rarity}>
                                         {CARD_RARITIES[row.rarityIndex]}
                                     </RarityLabel>
-                                </>
+                                </GridRow>
                             );
                         }}
                     </For>
                 </Grid>
             </Surface>
 
-            <Title>{`${(getComputedData().comboRows.length - getComputedData().symmetricalComboCount) / 2 + getComputedData().symmetricalComboCount} entries as of 02/08/2025\nCards shown are not affected by "My Deck"`}</Title>
+            <Title>{`${(getComputedData().comboRows.length - getComputedData().symmetricalComboCount) / 2 + getComputedData().symmetricalComboCount} entries as of 05/08/2025\nCards shown are not affected by "My Deck"`}</Title>
         </>
     );
 };

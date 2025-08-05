@@ -10,6 +10,7 @@ import { PowerSettings } from "../../Components/PowerSettings/PowerSettings";
 import { SettingsGroup } from "../../Components/SettingsGroup/SettingsGroup";
 import { Grid } from "../../Fundamentals/Grid/Grid";
 import { GridHeader } from "../../Fundamentals/Grid/GridHeader/GridHeader";
+import { GridRow } from "../../Fundamentals/Grid/GridRow/GridRow";
 import { RarityLabel } from "../../Fundamentals/RarityLabel/RarityLabel";
 import { Surface } from "../../Fundamentals/Surface/Surface";
 import { Title } from "../../Fundamentals/Title/Title";
@@ -75,7 +76,7 @@ export const ScoresPage = () => {
                 </SettingsGroup>
             </Surface>
 
-            <Surface>
+            <Surface unpadded={() => true}>
                 <Grid
                     templateColumns={() =>
                         getShowScoreBreakdown() ? TEMPLATE_COLUMNS_BREAKDOWN : TEMPLATE_COLUMNS_BRIEF
@@ -108,9 +109,9 @@ export const ScoresPage = () => {
                     </GridHeader>
 
                     <For each={getComputedData().scoreRows}>
-                        {(row) => {
+                        {(row, getIndex) => {
                             return row.absoluteScore ? (
-                                <>
+                                <GridRow index={getIndex}>
                                     <RarityLabel rarity={() => ALL_CARDS[row.card].rarity}>
                                         {CardUtils.getCardNameAndExpansion(row.card)}
                                     </RarityLabel>
@@ -134,26 +135,25 @@ export const ScoresPage = () => {
                                     </Show>
                                     <div>{CardUtils.formatScore(row.absoluteScore)}</div>
                                     <Show when={getShowScoreBreakdown()}>
-                                        <Grid templateColumns={() => "2fr 2fr minmax(80px, auto)"}>
-                                            <For each={getComputedData().absoluteScores[row.card]}>
-                                                {(item) => (
-                                                    <>
-                                                        <RarityLabel rarity={() => ALL_CARDS[item.pair].rarity}>
-                                                            {CardUtils.getCardNameAndExpansion(item.pair)}
-                                                        </RarityLabel>
-                                                        <RarityLabel rarity={() => ALL_CARDS[item.result].rarity}>
-                                                            {item.result}
-                                                        </RarityLabel>
-                                                        <span>{CardUtils.formatScore(item.resultScore)}</span>
-                                                    </>
-                                                )}
-                                            </For>
-                                            <div style={{ opacity: 0 }}>{"-"}</div>
-                                            <div style={{ opacity: 0 }}>{"-"}</div>
-                                            <div style={{ opacity: 0 }}>{"-"}</div>
-                                        </Grid>
+                                        <div>
+                                            <Grid templateColumns={() => "2fr 2fr minmax(80px, auto)"}>
+                                                <For each={getComputedData().absoluteScores[row.card]}>
+                                                    {(item) => (
+                                                        <>
+                                                            <RarityLabel rarity={() => ALL_CARDS[item.pair].rarity}>
+                                                                {CardUtils.getCardNameAndExpansion(item.pair)}
+                                                            </RarityLabel>
+                                                            <RarityLabel rarity={() => ALL_CARDS[item.result].rarity}>
+                                                                {item.result}
+                                                            </RarityLabel>
+                                                            <span>{CardUtils.formatScore(item.resultScore)}</span>
+                                                        </>
+                                                    )}
+                                                </For>
+                                            </Grid>
+                                        </div>
                                     </Show>
-                                </>
+                                </GridRow>
                             ) : null;
                         }}
                     </For>

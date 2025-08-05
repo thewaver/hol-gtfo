@@ -6,6 +6,7 @@ import { AppStore } from "../../App.store";
 import { SettingsGroup } from "../../Components/SettingsGroup/SettingsGroup";
 import { Grid } from "../../Fundamentals/Grid/Grid";
 import { GridHeader } from "../../Fundamentals/Grid/GridHeader/GridHeader";
+import { GridRow } from "../../Fundamentals/Grid/GridRow/GridRow";
 import { RarityLabel } from "../../Fundamentals/RarityLabel/RarityLabel";
 import { Surface } from "../../Fundamentals/Surface/Surface";
 import { Title } from "../../Fundamentals/Title/Title";
@@ -83,17 +84,21 @@ export const MyCardsPage = () => {
                             </Surface>
                         </Show>
 
-                        <Surface>
-                            <Grid templateColumns={() => TEMPLATE_COLUMNS} center={() => true}>
+                        <Surface unpadded={() => true}>
+                            <Grid templateColumns={() => TEMPLATE_COLUMNS}>
                                 <GridHeader>
                                     <div>{"Card"}</div>
                                     <div>{"Count"}</div>
                                 </GridHeader>
 
-                                <For each={Object.entries(AppStore.myCardCounts)}>
-                                    {([card, count]) => {
-                                        return ALL_CARDS[card].expansion === expansion && ALL_CARDS[card].isBasic ? (
-                                            <>
+                                <For
+                                    each={Object.entries(AppStore.myCardCounts).filter(
+                                        ([card]) => ALL_CARDS[card].expansion === expansion && ALL_CARDS[card].isBasic,
+                                    )}
+                                >
+                                    {([card, count], getIndex) => {
+                                        return (
+                                            <GridRow index={getIndex}>
                                                 <RarityLabel rarity={() => ALL_CARDS[card].rarity}>{card}</RarityLabel>
                                                 <label title="Determines ATK and DEF in conjunction with rarity">
                                                     <input
@@ -113,8 +118,8 @@ export const MyCardsPage = () => {
                                                         }}
                                                     />
                                                 </label>
-                                            </>
-                                        ) : null;
+                                            </GridRow>
+                                        );
                                     }}
                                 </For>
                             </Grid>

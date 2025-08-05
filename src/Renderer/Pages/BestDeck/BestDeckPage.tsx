@@ -8,6 +8,7 @@ import { PowerSettings } from "../../Components/PowerSettings/PowerSettings";
 import { SettingsGroup } from "../../Components/SettingsGroup/SettingsGroup";
 import { Grid } from "../../Fundamentals/Grid/Grid";
 import { GridHeader } from "../../Fundamentals/Grid/GridHeader/GridHeader";
+import { GridRow } from "../../Fundamentals/Grid/GridRow/GridRow";
 import { RarityLabel } from "../../Fundamentals/RarityLabel/RarityLabel";
 import { Surface } from "../../Fundamentals/Surface/Surface";
 import { Title } from "../../Fundamentals/Title/Title";
@@ -42,7 +43,7 @@ export const BestDeckPage = () => {
                 </SettingsGroup>
             </Surface>
 
-            <Surface>
+            <Surface unpadded={() => true}>
                 <Grid templateColumns={() => TEMPLATE_COLUMNS}>
                     <GridHeader>
                         <div>{"Card"}</div>
@@ -50,14 +51,14 @@ export const BestDeckPage = () => {
                     </GridHeader>
 
                     <For each={getComputedData().deckRows}>
-                        {(row) => {
+                        {(row, getIndex) => {
                             return (
-                                <>
+                                <GridRow index={getIndex}>
                                     <RarityLabel rarity={() => ALL_CARDS[row.card].rarity}>
                                         {CardUtils.getCardNameAndExpansion(row.card)}
                                     </RarityLabel>
                                     <div>{row.count}</div>
-                                </>
+                                </GridRow>
                             );
                         }}
                     </For>

@@ -88,7 +88,6 @@ label {
     flex-direction: row;
     align-items: center;
     gap: 10px;
-    width: fit-content;
 }
 
 input,
@@ -104,6 +103,12 @@ button {
     line-height: 1.25;
 }
 
+input:hover,
+select:hover,
+textarea:hover {
+    border: 2px solid rgb(from var(--clr-tertiary-text) r g b / 0.75);
+}
+
 button {
     padding-inline: 20px;
     background-color: rgb(from var(--clr-tertiary-text) r g b / 0.5);
@@ -114,8 +119,8 @@ button {
 button:hover {
     background-color: rgb(from var(--clr-tertiary-text) r g b / 0.75);
     box-shadow:
-        inset 0 0 10px var(--clr-tertiary-text),
-        0 0 10px var(--clr-tertiary-text);
+        inset 0 0 16px var(--clr-tertiary-text),
+        0 0 16px var(--clr-tertiary-text);
 }
 
 input[type="range"],

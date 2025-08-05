@@ -200,7 +200,6 @@ export namespace CardUtils {
         absoluteScores: ReturnType<typeof getAbsoluteScores>,
         cardCounts: Record<CardName, CardCount>,
         deckOpts: CardDeckOpts,
-        deckSize: number = 30,
     ) => {
         const rarityCounts = { ...deckOpts.maxCardsOfRarity };
         const absoluteScoreSums = Object.fromEntries(
@@ -219,7 +218,7 @@ export namespace CardUtils {
         const deck: CardName[] = [currentCard];
 
         while (
-            deck.length < deckSize &&
+            deck.length < deckOpts.deckSize &&
             sortedCardNames.length > 0 &&
             Object.values(rarityCounts).reduce((res, cur) => res + cur, 0) > 0
         ) {

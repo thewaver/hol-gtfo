@@ -40,5 +40,6 @@ export type CardPowerOpts = {
 export type CardCount = 0 | 1 | 2 | 3;
 
 export type CardDeckOpts = {
+    deckSize: number;
     maxCardsOfRarity: Record<CardRarity, number>;
 };

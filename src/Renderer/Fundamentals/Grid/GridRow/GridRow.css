@@ -1,0 +1,19 @@
+.gridRow {
+    display: contents;
+    line-height: 1.5;
+}
+
+.gridRow.even {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.gridRow.odd {
+    background-color: transparent;
+}
+
+.gridRow > * {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: inherit;
+}

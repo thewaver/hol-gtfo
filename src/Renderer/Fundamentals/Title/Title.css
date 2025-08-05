@@ -1,7 +1,11 @@
 .title {
     white-space: pre;
     text-align: center;
-    font-weight: bold;
     font-size: 24px;
     line-height: 32px;
+    text-shadow:
+        0 0 1px black,
+        0 0 2px black,
+        0 0 4px black,
+        0 0 8px black;
 }
