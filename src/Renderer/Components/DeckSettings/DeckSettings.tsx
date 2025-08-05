@@ -21,11 +21,15 @@ export const DeckSettings = (props: DeckSettingsProps) => {
                         <input
                             type="number"
                             min={0}
-                            max={30}
+                            max={120}
                             step={1}
                             value={AppStore.deckSettings.maxCardsOfRarity[rarity]}
                             onChange={(e) => {
-                                AppStore.setDeckSettings("maxCardsOfRarity", rarity, Number(e.target.value));
+                                AppStore.setDeckSettings(
+                                    "maxCardsOfRarity",
+                                    rarity,
+                                    Math.max(Math.min(Number(e.target.value), 120), 0),
+                                );
                             }}
                         />
                     </label>
@@ -40,7 +44,7 @@ export const DeckSettings = (props: DeckSettingsProps) => {
                     step={1}
                     value={AppStore.deckSettings.deckSize}
                     onChange={(e) => {
-                        AppStore.setDeckSettings("deckSize", Number(e.target.value));
+                        AppStore.setDeckSettings("deckSize", Math.max(Math.min(Number(e.target.value), 120), 0));
                     }}
                 />
             </label>
