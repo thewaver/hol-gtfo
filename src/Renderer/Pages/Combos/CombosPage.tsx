@@ -13,7 +13,7 @@ import { GridHeader } from "../../Fundamentals/Grid/GridHeader/GridHeader";
 import { GridRow } from "../../Fundamentals/Grid/GridRow/GridRow";
 import { RarityLabel } from "../../Fundamentals/RarityLabel/RarityLabel";
 import { Surface } from "../../Fundamentals/Surface/Surface";
-import { Title } from "../../Fundamentals/Title/Title";
+import { SubTitle, Title } from "../../Fundamentals/Title/Title";
 
 const TEMPLATE_COLUMNS = "repeat(3, minmax(120px, auto)) repeat(3, minmax(40px, auto)) repeat(1, minmax(80px, auto))";
 
@@ -60,6 +60,11 @@ export const CombosPage = () => {
                     <Expansions />
                 </SettingsGroup>
             </Surface>
+
+            <Title>
+                {`${(getComputedData().comboRows.length - getComputedData().symmetricalComboCount) / 2 + getComputedData().symmetricalComboCount} entries as of 06/08/2025\n`}
+                <SubTitle>{`Cards shown are not affected by "My Deck"`}</SubTitle>
+            </Title>
 
             <Surface unpadded={() => true}>
                 <Grid templateColumns={() => TEMPLATE_COLUMNS}>
@@ -108,8 +113,6 @@ export const CombosPage = () => {
                     </For>
                 </Grid>
             </Surface>
-
-            <Title>{`${(getComputedData().comboRows.length - getComputedData().symmetricalComboCount) / 2 + getComputedData().symmetricalComboCount} entries as of 05/08/2025\nCards shown are not affected by "My Deck"`}</Title>
         </>
     );
 };

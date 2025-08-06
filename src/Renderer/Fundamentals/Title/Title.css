@@ -9,3 +9,8 @@
         0 0 4px black,
         0 0 8px black;
 }
+
+.title.sub {
+    font-size: 20px;
+    line-height: 24px;
+}

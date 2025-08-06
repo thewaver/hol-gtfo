@@ -211,20 +211,27 @@ export namespace CardUtils {
         const sortedCardNames = Object.keys(comboMap)
             .sort((a, b) => absoluteScoreSums[b] - absoluteScoreSums[a])
             .flatMap((card) => new Array<CardName>(cardCounts[card]).fill(card));
+        const deck: CardName[] = [];
+        const graph: { pickedCard: CardName; candidateScores: Record<CardName, number> }[] = [];
+        const startingCards: CardName[] = deckOpts.autoIncludedCards?.length
+            ? deckOpts.autoIncludedCards
+            : [sortedCardNames[0]];
 
-        let currentCard = sortedCardNames.shift()!;
-        rarityCounts[ALL_CARDS[currentCard].rarity] -= 1;
+        const addToDeck = (pickedCard: CardName, candidateScores: Record<CardName, number>) => {
+            deck.push(pickedCard);
+            graph.push({ pickedCard, candidateScores });
+            sortedCardNames.splice(
+                sortedCardNames.findIndex((e) => e === pickedCard),
+                1,
+            );
+            rarityCounts[ALL_CARDS[pickedCard].rarity] -= 1;
+        };
 
-        const deck: CardName[] = [currentCard];
-
-        while (
-            deck.length < deckOpts.deckSize &&
-            sortedCardNames.length > 0 &&
-            Object.values(rarityCounts).reduce((res, cur) => res + cur, 0) > 0
-        ) {
+        const getCandidateScores = (pickedCards: CardName[]) => {
             const availableSet = new Set(sortedCardNames);
-            const pickedSet = new Set(deck);
-            const candidateScores = Array.from(pickedSet).reduce(
+            const pickedSet = new Set(pickedCards);
+
+            return Array.from(pickedSet).reduce(
                 (res, card1) => {
                     for (const card2 in comboMap[card1]) {
                         if (!availableSet.has(card2) || !(rarityCounts[ALL_CARDS[card2].rarity] > 0)) continue;
@@ -236,6 +243,22 @@ export namespace CardUtils {
                 },
                 {} as Record<CardName, number>,
             );
+        };
+
+        startingCards.forEach((card) => {
+            const candidateScores = deck.length
+                ? getCandidateScores(deck)
+                : { [card]: absoluteScoreSums[card], ...getCandidateScores([card]) };
+
+            addToDeck(card, candidateScores);
+        });
+
+        while (
+            deck.length < deckOpts.deckSize &&
+            sortedCardNames.length > 0 &&
+            Object.values(rarityCounts).reduce((res, cur) => res + cur, 0) > 0
+        ) {
+            const candidateScores = getCandidateScores(deck);
 
             let cardName: CardName | undefined;
             let cardScore = 0;
@@ -249,13 +272,7 @@ export namespace CardUtils {
 
             if (!cardName) break;
 
-            currentCard = cardName;
-            deck.push(cardName);
-            sortedCardNames.splice(
-                sortedCardNames.findIndex((e) => e === cardName),
-                1,
-            );
-            rarityCounts[ALL_CARDS[cardName].rarity] -= 1;
+            addToDeck(cardName, candidateScores);
         }
 
         const goupedDeck = deck.sort().reduce(
@@ -267,6 +284,9 @@ export namespace CardUtils {
             {} as Record<CardName, number>,
         );
 
-        return Object.entries(goupedDeck).map(([card, count]) => ({ card, count }));
+        return {
+            deck: Object.entries(goupedDeck).map(([card, count]) => ({ card, count })),
+            graph,
+        };
     };
 }

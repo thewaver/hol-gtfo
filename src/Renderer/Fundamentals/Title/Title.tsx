@@ -5,5 +5,9 @@ import { TitleProps } from "./Title.types";
 import "./Title.css";
 
 export const Title = (props: ParentProps<TitleProps>) => {
-    return <div class="title">{props.children}</div>;
+    return <span class="title">{props.children}</span>;
+};
+
+export const SubTitle = (props: ParentProps<TitleProps>) => {
+    return <span class="sub title">{props.children}</span>;
 };

@@ -13,7 +13,6 @@ import { GridHeader } from "../../Fundamentals/Grid/GridHeader/GridHeader";
 import { GridRow } from "../../Fundamentals/Grid/GridRow/GridRow";
 import { RarityLabel } from "../../Fundamentals/RarityLabel/RarityLabel";
 import { Surface } from "../../Fundamentals/Surface/Surface";
-import { Title } from "../../Fundamentals/Title/Title";
 
 const TEMPLATE_COLUMNS_BREAKDOWN = "repeat(1, minmax(120px, auto)) repeat(1, minmax(80px, auto)) 1fr";
 const TEMPLATE_COLUMNS_BRIEF =
@@ -159,8 +158,6 @@ export const ScoresPage = () => {
                     </For>
                 </Grid>
             </Surface>
-
-            <Title>{`Individual = Sum( result power ), Cumulative = Sum( pair individual * result power )`}</Title>
         </>
     );
 };
