@@ -21,7 +21,7 @@
 }
 
 .gridHeader > button:hover {
-    color: var(--clr-secondary-text);
+    color: var(--clr-primary-highlight);
     background: none;
     box-shadow: none;
 }
