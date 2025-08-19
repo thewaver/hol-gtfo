@@ -62,7 +62,7 @@ export const CombosPage = () => {
             </Surface>
 
             <Title>
-                {`${(getComputedData().comboRows.length - getComputedData().symmetricalComboCount) / 2 + getComputedData().symmetricalComboCount} entries as of 06/08/2025\n`}
+                {`${(getComputedData().comboRows.length - getComputedData().symmetricalComboCount) / 2 + getComputedData().symmetricalComboCount} entries as of 18/08/2025\n`}
                 <SubTitle>{`Cards shown are not affected by "My Deck"`}</SubTitle>
             </Title>
 

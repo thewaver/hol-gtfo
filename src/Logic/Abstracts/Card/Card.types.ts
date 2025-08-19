@@ -9,7 +9,8 @@ export type ExpansionName =
     | "Masquerade of Lust"
     | "Cupid on Vacation"
     | "Spring Break"
-    | "Game Fest";
+    | "Game Fest"
+    | "Deeper Into the Tale";
 
 export type Card = {
     name: CardName;

@@ -7,14 +7,13 @@ import { CardCount, CardDeckOpts, CardName, ExpansionName } from "../Logic/Abstr
 const CARD_COUNT_BY_RARITY: Record<CardName, CardCount> = { Common: 3, Uncommon: 2, Rare: 1, Epic: 0 };
 
 const getStoredMyCards = (): Record<CardName, CardCount> => {
-    const storedCards = localStorage.getItem("MY_CARDS");
-    const result = storedCards
-        ? (JSON.parse(storedCards) as Record<CardName, CardCount>)
-        : Object.fromEntries(
-              PARSED_CARDS.filter((card) => card.isBasic).map((card) => [card.name, CARD_COUNT_BY_RARITY[card.rarity]]),
-          );
+    const allCards = Object.fromEntries(
+        PARSED_CARDS.filter((card) => card.isBasic).map((card) => [card.name, CARD_COUNT_BY_RARITY[card.rarity]]),
+    );
+    const userCards = localStorage.getItem("MY_CARDS");
+    const parsedUserCards = userCards ? (JSON.parse(userCards) as Record<CardName, CardCount>) : {};
 
-    return result;
+    return { ...allCards, ...parsedUserCards };
 };
 
 const setStoredMyCards = (cards: Record<CardName, CardCount>) => {

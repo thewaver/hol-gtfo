@@ -3,6 +3,7 @@ Air,Knowledge,Aeromancer
 Air,Magic,Aeromancer
 Air,Rune,Aeromancer
 Air,Wizard,Aeromancer
+Fairy Tale,Wind,Aeromancer
 Game,Wind,Aeromancer
 Knowledge,Wind,Aeromancer
 Rune,Wind,Aeromancer
@@ -24,6 +25,7 @@ Light,Wings,Angel
 Blood,Troll,Angry Giant
 Domination,Giant,Angry Giant
 Domination,Troll,Angry Giant
+Fairy Tale,Giant,Angry Giant
 Giant,Madness,Angry Giant
 Giant,Myth,Angry Giant
 Madness,Troll,Angry Giant
@@ -143,6 +145,7 @@ Ice,Wind,Blizzard
 Darkness,Vampire,Blood
 Blood,Domination,Blood Mage
 Blood,Entropic Magic,Blood Mage
+Blood,Fairy Tale,Blood Mage
 Blood,Power,Blood Mage
 Blood,Spell,Blood Mage
 Blood,Wizard,Blood Mage
@@ -201,6 +204,7 @@ Mechanism,Troll,Colossus
 Metal,Troll,Colossus
 Myth,Robot,Colossus
 Robot,Science,Colossus
+Domination,Fairy Tale,Commander
 Domination,Knight,Commander
 Domination,Power,Commander
 Domination,Science,Commander
@@ -236,6 +240,7 @@ Mask,Star,Dancer
 Mask,Wind,Dancer
 Mask,Wings,Dancer
 Mask,Wizard,Dancer
+Darkness,Fairy Tale,Darkwood
 Darkness,Plant,Darkwood
 Darkness,Tree,Darkwood
 Immortality,Tree,Darkwood
@@ -283,6 +288,7 @@ Knowledge,Tentacle,Demonologist
 Tentacle,Wizard,Demonologist
 Angel,Shackles,Devil
 Demon,Domination,Devil
+Demon,Fairy Tale,Devil
 Demon,Fun,Devil
 Demon,Giant,Devil
 Demon,Immortality,Devil
@@ -315,6 +321,7 @@ Magic,Spell,Domination
 Dragon,Fire,Dragon
 Fire,Treasure,Dragon
 Angel,Sleep,Dreams Fairy
+Fairy,Fairy Tale,Dreams Fairy
 Fairy,Illusion,Dreams Fairy
 Fairy,Invisibility,Dreams Fairy
 Fairy,Romance,Dreams Fairy
@@ -340,6 +347,7 @@ Game,Plant,Dryad
 Spirit,Tree,Dryad
 Darkness,Secret,Dungeon
 Earth,Myth,Dungeon
+Fairy Tale,Shackles,Dungeon
 Human,Shackles,Dungeon
 Jewel,Secret,Dungeon
 Jewel,Shackles,Dungeon
@@ -398,6 +406,8 @@ Magic,Void,Explosion
 Power,Power,Explosion
 Star,Time,Explosion
 Void,Void,Explosion
+Fairy Tale,Pollen,Fairy
+Fairy Tale,Wings,Fairy
 Myth,Pollen,Fairy
 Pollen,Spirit,Fairy
 Pollen,Wizard,Fairy
@@ -419,6 +429,7 @@ Fire,Giant,Fire Giant
 Fire,Troll,Fire Giant
 Fire,Golem,Fire Golem
 Fairy,Fire,Fire Sprite
+Fairy Tale,Fire,Fire Sprite
 Fire,Romance,Fire Sprite
 Fire,Spirit,Fire Sprite
 Air,Fire,Fireball
@@ -442,6 +453,11 @@ Game,Human,Gamer
 Game,Knowledge,Gamer
 Game,Shackles,Gamer
 Game,Time,Gamer
+Fairy Tale,Jewel,Genie's Lamp
+Fairy Tale,Knowledge,Genie's Lamp
+Fairy Tale,Magic,Genie's Lamp
+Fairy Tale,Magic Crystal,Genie's Lamp
+Fairy Tale,Treasure,Genie's Lamp
 Ash,Knowledge,Geomancer
 Ash,Magic,Geomancer
 Ash,Wizard,Geomancer
@@ -466,8 +482,15 @@ Invisibility,Myth,Ghost
 Mind Control,Undead,Ghost
 Blood,Golem,Giant
 Giant,Human,Giant
+Entropic Magic,Fairy Tale,Gingerbread House
+Fairy Tale,Mask,Gingerbread House
+Fairy Tale,Secret,Gingerbread House
+Fairy Tale,Spell,Gingerbread House
+Fairy Tale,Wizard,Gingerbread House
 Domination,Immortality,Goddess
 Domination,Myth,Goddess
+Fairy Tale,Immortality,Goddess
+Fairy Tale,Light,Goddess
 Giant,Power,Goddess
 Human,Immortality,Goddess
 Immortality,Myth,Goddess
@@ -475,6 +498,7 @@ Immortality,Power,Goddess
 Immortality,Secret,Goddess
 Light,Myth,Goddess
 Ash,Troll,Golem
+Earth,Fairy Tale,Golem
 Earth,Giant,Golem
 Earth,Golem,Golem
 Earth,Human,Golem
@@ -489,6 +513,7 @@ Fun,Madness,Hammock
 Fun,Shackles,Hammock
 Fun,Tentacle,Hammock
 Air,Death,Harpy
+Air,Fairy Tale,Harpy
 Air,Plague,Harpy
 Air,Undead,Harpy
 Blood,Wings,Harpy
@@ -507,6 +532,7 @@ Demon,Vampire,High Vampire
 Domination,Vampire,High Vampire
 Energy,Vampire,High Vampire
 Entropic Magic,Vampire,High Vampire
+Fairy Tale,Vampire,High Vampire
 Immortality,Vampire,High Vampire
 Knowledge,Vampire,High Vampire
 Madness,Vampire,High Vampire
@@ -527,6 +553,7 @@ Metal,Tentacle,Hook
 Darkness,Illusion,Horror
 Darkness,Immortality,Horror
 Darkness,Mutation,Horror
+Fairy Tale,Mutation,Horror
 Madness,Undead,Horror
 Madness,Void,Horror
 Mutation,Vampire,Horror
@@ -550,6 +577,7 @@ Rune,Water,Hydromancer
 Science,Water,Hydromancer
 Water,Wizard,Hydromancer
 Domination,Mind Control,Hypnotist
+Fairy Tale,Mind Control,Hypnotist
 Game,Mind Control,Hypnotist
 Illusion,Mind Control,Hypnotist
 Knowledge,Romance,Hypnotist
@@ -560,6 +588,7 @@ Romance,Sleep,Hypnotist
 Romance,Wizard,Hypnotist
 Ice,Water,Ice
 Dragon,Ice,Ice Dragon
+Fairy Tale,Ice,Ice Dragon
 Demon,Fairy,Ice Imp
 Demon,Ice,Ice Imp
 Demon,Water,Ice Imp
@@ -586,6 +615,7 @@ Plague,Undead,Infectious
 Poison,Undead,Infectious
 Energy,Human,Inventor
 Energy,Science,Inventor
+Fairy Tale,Science,Inventor
 Human,Science,Inventor
 Knowledge,Metal,Inventor
 Knowledge,Science,Inventor
@@ -607,11 +637,13 @@ Fun,Snake,Kite
 Fun,Wind,Kite
 Fun,Wings,Kite
 Light,Snake,Kite
+Fairy Tale,Human,Knight
 Human,Metal,Knight
 Curse,Tentacle,Kraken
 Domination,Tentacle,Kraken
 Energy,Tentacle,Kraken
 Entropic Magic,Tentacle,Kraken
+Fairy Tale,Tentacle,Kraken
 Madness,Tentacle,Kraken
 Mutation,Tentacle,Kraken
 Myth,Tentacle,Kraken
@@ -669,6 +701,7 @@ Power,Star,Light
 Bone,Bone,Living Skeleton
 Bone,Curse,Living Skeleton
 Bone,Energy,Living Skeleton
+Bone,Fairy Tale,Living Skeleton
 Bone,Fun,Living Skeleton
 Bone,Human,Living Skeleton
 Bone,Immortality,Living Skeleton
@@ -711,6 +744,11 @@ Entropic Magic,Rune,Magic Crystal
 Jewel,Magic,Magic Crystal
 Magic,Rune,Magic Crystal
 Power,Rune,Magic Crystal
+Fairy Tale,Knight,Magic Sword
+Fairy Tale,Metal,Magic Sword
+Fairy Tale,Myth,Magic Sword
+Fairy Tale,Power,Magic Sword
+Fairy Tale,Rune,Magic Sword
 Angel,Mechanism,Mechanical Angel
 Angel,Metal,Mechanical Angel
 Angel,Robot,Mechanical Angel
@@ -722,6 +760,8 @@ Dragon,Mechanism,Mechanical Dragon
 Dragon,Metal,Mechanical Dragon
 Dragon,Robot,Mechanical Dragon
 Dragon,Science,Mechanical Dragon
+Fairy Tale,Robot,Mechanical Dragon
+Fairy Tale,Mechanism,Mechanical Golem
 Golem,Mechanism,Mechanical Golem
 Golem,Metal,Mechanical Golem
 Energy,Metal,Mechanism
@@ -730,6 +770,8 @@ Metal,Metal,Mechanism
 Metal,Power,Mechanism
 Metal,Science,Mechanism
 Metal,Totem,Mechanism
+Fairy Tale,Fish,Mermaid
+Fairy Tale,Water,Mermaid
 Fish,Human,Mermaid
 Human,Water,Mermaid
 Blood,Treasure,Mimic
@@ -792,6 +834,7 @@ Darkness,Shackles,Pandora's Box
 Darkness,Totem,Pandora's Box
 Darkness,Treasure,Pandora's Box
 Entropic Magic,Shackles,Pandora's Box
+Fairy Tale,Plague,Pandora's Box
 Madness,Shackles,Pandora's Box
 Madness,Totem,Pandora's Box
 Plague,Shackles,Pandora's Box
@@ -828,6 +871,12 @@ Death,Snake,Poison
 Death,Water,Poison
 Plague,Water,Poison
 Poison,Water,Poison
+Curse,Fairy Tale,Poisoned Apple
+Death,Fairy Tale,Poisoned Apple
+Fairy Tale,Plant,Poisoned Apple
+Fairy Tale,Poison,Poisoned Apple
+Fairy Tale,Snake,Poisoned Apple
+Fairy Tale,Tree,Poisoned Apple
 Domination,Poison,Poisoner
 Game,Poison,Poisoner
 Knowledge,Poison,Poisoner
@@ -838,6 +887,7 @@ Poison,Science,Poisoner
 Poison,Wizard,Poisoner
 Dragon,Poison,Poisonous Dragon
 Air,Sleep,Pollen
+Ash,Fairy Tale,Pollen
 Ash,Fun,Pollen
 Ash,Light,Pollen
 Ash,Sleep,Pollen
@@ -926,6 +976,8 @@ Human,Totem,Shaman
 Illusion,Totem,Shaman
 Science,Spirit,Shaman
 Totem,Wizard,Shaman
+Fairy Tale,Totem,Shaman Troll
+Fairy Tale,Troll,Shaman Troll
 Magic,Troll,Shaman Troll
 Magic Crystal,Troll,Shaman Troll
 Mind Control,Troll,Shaman Troll
@@ -1071,6 +1123,7 @@ Beast,Magic Crystal,Unicorn
 Air,Romance,Valentine
 Angel,Romance,Valentine
 Ash,Romance,Valentine
+Fairy Tale,Romance,Valentine
 Immortality,Romance,Valentine
 Romance,Secret,Valentine
 Romance,Spirit,Valentine
@@ -1114,6 +1167,11 @@ Game,Mechanism,Wheel of Fortune
 Game,Power,Wheel of Fortune
 Game,Secret,Wheel of Fortune
 Game,Wings,Wheel of Fortune
+Beast,Fairy Tale,White Rabbit
+Energy,Fairy Tale,White Rabbit
+Fairy Tale,Fun,White Rabbit
+Fairy Tale,Game,White Rabbit
+Fairy Tale,Time,White Rabbit
 Air,Air,Wind
 Air,Pollen,Wind
 Air,Power,Wind
@@ -1132,6 +1190,11 @@ Human,Magic Crystal,Wizard
 Human,Rune,Wizard
 Knowledge,Magic,Wizard
 Knowledge,Magic Crystal,Wizard
+Fairy Tale,Fairy Tale,Wonderland
+Fairy Tale,Illusion,Wonderland
+Fairy Tale,Madness,Wonderland
+Fairy Tale,Mirror,Wonderland
+Fairy Tale,Sleep,Wonderland
 Energy,Tree,Wooden Golem
 Giant,Tree,Wooden Golem
 Golem,Plant,Wooden Golem
