@@ -3,6 +3,7 @@ import { ParentProps } from "solid-js";
 import { A, Navigate, Route, Router } from "@solidjs/router";
 
 import { BestDeckPage } from "./Pages/BestDeck/BestDeckPage";
+import { BruteForcePage } from "./Pages/BruteForce/BruteForcePage";
 import { CombosPage } from "./Pages/Combos/CombosPage";
 import { MyCardsPage } from "./Pages/MyCards/MyCardsPage";
 import { ScoresPage } from "./Pages/Scores/ScoresPage";
@@ -19,6 +20,7 @@ const Layout = (props: ParentProps<{}>) => {
                     <A href="/combos">{"Combos"}</A>
                     <A href="/scores">{"Scores"}</A>
                     <A href="/best-deck">{"Best Deck"}</A>
+                    {/*<A href="/brute-force">{"Brute Force"}</A>*/}
                 </nav>
                 <div style={{ "opacity": 0, "user-select": "none" }}>{"Harem of Lust"}</div>
             </div>
@@ -37,6 +39,7 @@ export const App = () => {
                     <Route path="/combos" component={CombosPage} />
                     <Route path="/scores" component={ScoresPage} />
                     <Route path="/best-deck" component={BestDeckPage} />
+                    <Route path="/brute-force" component={BruteForcePage} />
                 </Route>
             </Router>
         </div>

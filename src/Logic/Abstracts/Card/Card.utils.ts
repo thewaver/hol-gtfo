@@ -1,5 +1,6 @@
+import { binomial, generateAllSubsets } from "../../Utils/math";
 import { ArrayType } from "../../Utils/utilityTypes";
-import { ALL_CARDS, EXPANSION_ACRONYMMS, RARITY_INDEXES } from "./Card.const";
+import { ALL_CARDS, EXPANSION_ACRONYMMS, PARSED_COMBOS, RARITY_INDEXES } from "./Card.const";
 import {
     Card,
     CardCombo,
@@ -63,6 +64,19 @@ export namespace CardUtils {
                 Math.pow(10, powerOpts.exponent - 1),
         );
     };
+
+    export const getUngroupedCards = (cards: Record<CardName, CardCount>) =>
+        Object.entries(cards).flatMap(([card, count]) => new Array<CardName>(count).fill(card));
+
+    export const getGroupedCards = (cards: CardName[]) =>
+        [...cards].sort().reduce(
+            (res, cur) => {
+                res[cur] = ((res[cur] ?? 0) + 1) as CardCount;
+
+                return res;
+            },
+            {} as Record<CardName, CardCount>,
+        );
 
     export const getCardMap = (cardArray: Card[], expansions: Set<ExpansionName>) =>
         cardArray.reduce((res, cur) => {
@@ -275,18 +289,54 @@ export namespace CardUtils {
             addToDeck(cardName, candidateScores);
         }
 
-        const goupedDeck = deck.sort().reduce(
-            (res, cur) => {
-                res[cur] = (res[cur] ?? 0) + 1;
-
-                return res;
-            },
-            {} as Record<CardName, number>,
-        );
-
         return {
-            deck: Object.entries(goupedDeck).map(([card, count]) => ({ card, count })),
+            deck: Object.entries(getGroupedCards(deck)).map(([card, count]) => ({ card, count })),
             graph,
         };
     };
+
+    export function* getBruteForceBestDeck(
+        cards: Record<CardName, CardCount>,
+        deckSize: number = 30,
+        powerOpts: CardPowerOpts,
+        yieldInterval: number = 10000,
+    ) {
+        const cardArray = getUngroupedCards(cards);
+        const setSize = cardArray.length;
+        const allSubsets = generateAllSubsets(setSize, deckSize);
+        const totalSubsetCount = binomial(setSize, deckSize);
+
+        let bestDeck: { card: CardName; count: CardCount }[] = [];
+        let bestScore = 0;
+        let computedSubsetCount = 0;
+
+        do {
+            const { value, done } = allSubsets.next();
+
+            if (done) break;
+
+            computedSubsetCount++;
+
+            const deck = value.map((index) => cardArray[index]);
+            const cardCounts = getGroupedCards(deck);
+            const { comboMap } = getComboMap(PARSED_COMBOS, { cardCounts });
+            const absoluteScores = getAbsoluteScores(comboMap, powerOpts);
+            const totalScore = Object.values(absoluteScores).reduce(
+                (totalSum, scores) =>
+                    totalSum + scores.reduce((currentSum, score) => currentSum + score.resultScore, 0),
+                0,
+            );
+
+            if (totalScore > bestScore) {
+                bestDeck = Object.entries(cardCounts).map(([card, count]) => ({ card, count }));
+                bestScore = totalScore;
+
+                yield { bestDeck, bestScore, computedSubsetCount, totalSubsetCount };
+            } else if (computedSubsetCount % yieldInterval === 0) {
+                yield { bestDeck, bestScore, computedSubsetCount, totalSubsetCount };
+            }
+        } while (true);
+
+        yield { bestDeck, bestScore, computedSubsetCount, totalSubsetCount };
+    }
 }

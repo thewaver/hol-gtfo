@@ -27,7 +27,7 @@ export namespace AppStore {
     export const [getCardLevel, setCardLevel] = createSignal(4);
     export const [deckSettings, setDeckSettings] = createStore<CardDeckOpts>({
         deckSize: 30,
-        maxCardsOfRarity: { Common: 30, Uncommon: 10, Rare: 5, Epic: 0 },
+        maxCardsOfRarity: { Common: 30, Uncommon: 30, Rare: 30, Epic: 0 },
     });
     export const [myCardCounts, setMyCardCounts] = createStore(getStoredMyCards());
 
