@@ -1,6 +1,6 @@
 import { For, createMemo, createSignal } from "solid-js";
 
-import { ALL_CARDS, PARSED_COMBOS } from "../../../Logic/Abstracts/Card/Card.const";
+import { ALL_CARDS } from "../../../Logic/Abstracts/Card/Card.const";
 import { CARD_RARITIES } from "../../../Logic/Abstracts/Card/Card.types";
 import { CardUtils, ComboArrayFields } from "../../../Logic/Abstracts/Card/Card.utils";
 import { sortArray } from "../../../Logic/Utils/array";
@@ -28,10 +28,10 @@ export const CombosPage = () => {
             exponent: AppStore.getPowerExponent(),
             level: AppStore.getCardLevel(),
         };
-        const { comboMap, symmetricalComboCount } = CardUtils.getComboMap(PARSED_COMBOS, {
+        const { comboMap, symmetricalComboCount } = CardUtils.getComboMap(powerOpts, {
             expansions: AppStore.getExpansions(),
         });
-        const comboArray = CardUtils.getComboArray(comboMap, powerOpts);
+        const comboArray = CardUtils.getComboArrayFromMap(comboMap);
         const result = sortArray(comboArray, ...getComboSortFields());
 
         return {
@@ -82,10 +82,10 @@ export const CombosPage = () => {
                         <button onClick={() => handleComboHeaderClick(4, "def", "result", "card1")}>
                             {"Def " + (getComboSortColIndex() === 4 ? getComboSortColDir() : "")}
                         </button>
-                        <button onClick={() => handleComboHeaderClick(5, "power", "result", "card1")}>
+                        <button onClick={() => handleComboHeaderClick(5, "resultScore", "result", "card1")}>
                             {"Pwr " + (getComboSortColIndex() === 5 ? getComboSortColDir() : "")}
                         </button>
-                        <button onClick={() => handleComboHeaderClick(6, "rarityIndex", "result", "card1")}>
+                        <button onClick={() => handleComboHeaderClick(6, "resultRarityIndex", "result", "card1")}>
                             {"Rarity " + (getComboSortColIndex() === 6 ? getComboSortColDir() : "")}
                         </button>
                     </GridHeader>
@@ -103,9 +103,9 @@ export const CombosPage = () => {
                                     <RarityLabel rarity={() => ALL_CARDS[row.result].rarity}>{row.result}</RarityLabel>
                                     <div>{CardUtils.formatScore(row.atk)}</div>
                                     <div>{CardUtils.formatScore(row.def)}</div>
-                                    <div>{CardUtils.formatScore(row.power)}</div>
+                                    <div>{CardUtils.formatScore(row.resultScore)}</div>
                                     <RarityLabel rarity={() => ALL_CARDS[row.result].rarity}>
-                                        {CARD_RARITIES[row.rarityIndex]}
+                                        {CARD_RARITIES[row.resultRarityIndex]}
                                     </RarityLabel>
                                 </GridRow>
                             );

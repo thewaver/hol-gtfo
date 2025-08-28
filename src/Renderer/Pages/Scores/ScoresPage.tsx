@@ -1,7 +1,7 @@
-import { For, Show } from "solid-js";
+import { For } from "solid-js";
 import { createMemo, createSignal } from "solid-js";
 
-import { ALL_CARDS, PARSED_COMBOS } from "../../../Logic/Abstracts/Card/Card.const";
+import { ALL_CARDS } from "../../../Logic/Abstracts/Card/Card.const";
 import { CARD_RARITIES } from "../../../Logic/Abstracts/Card/Card.types";
 import { CardUtils, ScoreArrayFields } from "../../../Logic/Abstracts/Card/Card.utils";
 import { sortArray } from "../../../Logic/Utils/array";
@@ -14,16 +14,12 @@ import { GridRow } from "../../Fundamentals/Grid/GridRow/GridRow";
 import { RarityLabel } from "../../Fundamentals/RarityLabel/RarityLabel";
 import { Surface } from "../../Fundamentals/Surface/Surface";
 
-const TEMPLATE_COLUMNS_BREAKDOWN = "repeat(1, minmax(120px, auto)) repeat(1, minmax(80px, auto)) 1fr";
-const TEMPLATE_COLUMNS_BRIEF =
-    "repeat(1, minmax(120px, auto)) repeat(4, minmax(40px, auto)) repeat(1, minmax(80px, auto))";
+const TEMPLATE_COLUMNS = "repeat(1, minmax(120px, auto)) repeat(4, minmax(40px, auto)) repeat(1, minmax(80px, auto))";
 
 export const ScoresPage = () => {
-    const [getScoreSortFields, setScoreSortFields] = createSignal<ScoreArrayFields[]>(["absoluteScore", "card"]);
+    const [getScoreSortFields, setScoreSortFields] = createSignal<ScoreArrayFields[]>(["totalScore", "card"]);
     const [getScoreSortColIndex, setScoreSortColIndex] = createSignal(5);
     const [getScoreSortColDir, setScoreSortColDir] = createSignal<"🠋" | "🠉">("🠋");
-
-    const [getShowScoreBreakdown, setShowScoreBreakdown] = createSignal(false);
 
     const getComputedData = createMemo(() => {
         const powerOpts = {
@@ -31,15 +27,13 @@ export const ScoresPage = () => {
             exponent: AppStore.getPowerExponent(),
             level: AppStore.getCardLevel(),
         };
-        const { comboMap } = CardUtils.getComboMap(PARSED_COMBOS, { cardCounts: AppStore.myCardCounts });
-        const { byCard: comboCountsByCard, max: comboCountsMax } = CardUtils.getComboCounts(comboMap);
-        const absoluteScores = CardUtils.getAbsoluteScores(comboMap, powerOpts);
-        const scoreArray = CardUtils.getScoreArray(absoluteScores, comboCountsByCard);
+        const { comboMap } = CardUtils.getComboMap(powerOpts, { cardCounts: AppStore.myCardCounts });
+        const { max: comboCountsMax } = CardUtils.getComboCounts(comboMap);
+        const scoreArray = CardUtils.getScoreArray(comboMap);
         const result = sortArray(scoreArray, ...getScoreSortFields());
 
         return {
             scoreRows: getScoreSortColDir() === "🠋" ? result : result.reverse(),
-            absoluteScores,
             comboCountsMax,
         };
     });
@@ -59,99 +53,52 @@ export const ScoresPage = () => {
                     <PowerSettings />
                 </SettingsGroup>
             </Surface>
-            <Surface>
-                <SettingsGroup>
-                    <label>
-                        <input
-                            type="checkbox"
-                            value="showBreakdown"
-                            checked={getShowScoreBreakdown()}
-                            onChange={() => {
-                                setShowScoreBreakdown((prev) => !prev);
-                            }}
-                        />
-                        {"Breakdowns"}
-                    </label>
-                </SettingsGroup>
-            </Surface>
 
             <Surface unpadded={() => true}>
-                <Grid
-                    templateColumns={() =>
-                        getShowScoreBreakdown() ? TEMPLATE_COLUMNS_BREAKDOWN : TEMPLATE_COLUMNS_BRIEF
-                    }
-                >
+                <Grid templateColumns={() => TEMPLATE_COLUMNS}>
                     <GridHeader>
                         <button onClick={() => handleScoreHeaderClick(0, "card")}>
                             {"Card " + (getScoreSortColIndex() === 0 ? getScoreSortColDir() : "")}
                         </button>
-                        <Show when={!getShowScoreBreakdown()}>
-                            <For each={CARD_RARITIES}>
-                                {(rarity, getIndex) => (
-                                    <button
-                                        onClick={() =>
-                                            handleScoreHeaderClick(getIndex() + 1, rarity, "absoluteScore", "card")
-                                        }
-                                    >
-                                        {`${rarity.length < 5 ? rarity : rarity.slice(0, 3)} ` +
-                                            (getScoreSortColIndex() === getIndex() + 1 ? getScoreSortColDir() : "")}
-                                    </button>
-                                )}
-                            </For>
-                        </Show>
-                        <button onClick={() => handleScoreHeaderClick(5, "absoluteScore", "card")}>
+                        <For each={CARD_RARITIES}>
+                            {(rarity, getIndex) => (
+                                <button
+                                    onClick={() => handleScoreHeaderClick(getIndex() + 1, rarity, "totalScore", "card")}
+                                >
+                                    {`${rarity.length < 5 ? rarity : rarity.slice(0, 3)} ` +
+                                        (getScoreSortColIndex() === getIndex() + 1 ? getScoreSortColDir() : "")}
+                                </button>
+                            )}
+                        </For>
+                        <button onClick={() => handleScoreHeaderClick(5, "totalScore", "card")}>
                             {"Individual " + (getScoreSortColIndex() === 5 ? getScoreSortColDir() : "")}
                         </button>
-                        <Show when={getShowScoreBreakdown()}>
-                            <div>{"Breakdown"}</div>
-                        </Show>
                     </GridHeader>
 
                     <For each={getComputedData().scoreRows}>
                         {(row, getIndex) => {
-                            return row.absoluteScore ? (
+                            return row.totalScore ? (
                                 <GridRow index={getIndex}>
                                     <RarityLabel rarity={() => ALL_CARDS[row.card].rarity}>
                                         {CardUtils.getCardNameAndExpansion(row.card)}
                                     </RarityLabel>
-                                    <Show when={!getShowScoreBreakdown()}>
-                                        <For each={CARD_RARITIES}>
-                                            {(rarity) => {
-                                                const mean = getComputedData().comboCountsMax[rarity] / 2;
-                                                const distFromMean = row[rarity] - mean;
+                                    <For each={CARD_RARITIES}>
+                                        {(rarity) => {
+                                            const mean = getComputedData().comboCountsMax[rarity] / 2;
+                                            const distFromMean = row[rarity] - mean;
 
-                                                return (
-                                                    <div
-                                                        style={{
-                                                            color: `hsl(${distFromMean > 0 ? 120 : 0} 100% ${100 - (Math.abs(distFromMean) * 50) / mean}%)`,
-                                                        }}
-                                                    >
-                                                        {row[rarity]}
-                                                    </div>
-                                                );
-                                            }}
-                                        </For>
-                                    </Show>
-                                    <div>{CardUtils.formatScore(row.absoluteScore)}</div>
-                                    <Show when={getShowScoreBreakdown()}>
-                                        <div>
-                                            <Grid templateColumns={() => "2fr 2fr minmax(80px, auto)"}>
-                                                <For each={getComputedData().absoluteScores[row.card]}>
-                                                    {(item) => (
-                                                        <>
-                                                            <RarityLabel rarity={() => ALL_CARDS[item.pair].rarity}>
-                                                                {CardUtils.getCardNameAndExpansion(item.pair)}
-                                                            </RarityLabel>
-                                                            <RarityLabel rarity={() => ALL_CARDS[item.result].rarity}>
-                                                                {item.result}
-                                                            </RarityLabel>
-                                                            <span>{CardUtils.formatScore(item.resultScore)}</span>
-                                                        </>
-                                                    )}
-                                                </For>
-                                            </Grid>
-                                        </div>
-                                    </Show>
+                                            return (
+                                                <div
+                                                    style={{
+                                                        color: `hsl(${distFromMean > 0 ? 120 : 0} 100% ${100 - (Math.abs(distFromMean) * 50) / mean}%)`,
+                                                    }}
+                                                >
+                                                    {row[rarity]}
+                                                </div>
+                                            );
+                                        }}
+                                    </For>
+                                    <div>{CardUtils.formatScore(row.totalScore)}</div>
                                 </GridRow>
                             ) : null;
                         }}

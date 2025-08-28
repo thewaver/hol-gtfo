@@ -23,6 +23,8 @@ export const BruteForcePage = () => {
     const [getBestComputedDeck, setBestComputedDeck] = createSignal<{ card: CardName; count: CardCount }[]>([]);
     const [getComputedSubsetCount, setComputedSubsetCount] = createSignal(0);
     const [getIsComputing, setIsComputing] = createSignal(false);
+    const [getStartTime, setStartTime] = createSignal(0);
+    const [getPace, setPace] = createSignal(0);
 
     const getComputedData = createMemo(() => {
         const powerOpts = {
@@ -40,17 +42,22 @@ export const BruteForcePage = () => {
 
     const handleCompute = async () => {
         setIsComputing(true);
+        setStartTime(Date.now());
 
         const callback = CardUtils.getBruteForceBestDeck(AppStore.myCardCounts, DECK_SIZE, getComputedData().powerOpts);
 
         let lastBestScore = 0;
 
         for await (const step of callback) {
+            const timeElapsed = Date.now() - getStartTime();
+            const pace = Math.floor((step.computedSubsetCount * 1000) / timeElapsed);
+
             if (step.bestScore > lastBestScore) {
                 setBestComputedDeck(step.bestDeck);
                 lastBestScore = step.bestScore;
             }
             setComputedSubsetCount(step.computedSubsetCount);
+            setPace(pace);
 
             await new Promise(requestAnimationFrame);
         }
@@ -68,7 +75,7 @@ export const BruteForcePage = () => {
 
             <Title>
                 {"Brute Force Best Deck\n"}
-                <SubTitle>{`This is definitely slow as it must compute ${getComputedData().variationCount} variations\n`}</SubTitle>
+                <SubTitle>{`This is definitely slow as it must compute an enormous number of variations\n`}</SubTitle>
                 <SubTitle>{"Remove known low-value cards from your deck to greatly simplify the computation"}</SubTitle>
             </Title>
 
@@ -76,8 +83,8 @@ export const BruteForcePage = () => {
                 <SettingsGroup>
                     <button type="button" disabled={getIsComputing()} onClick={handleCompute}>
                         {getIsComputing()
-                            ? `computing ${getComputedSubsetCount()} of ${getComputedData().variationCount}`
-                            : "Compute"}
+                            ? `Computed ${getComputedSubsetCount()} of ${getComputedData().variationCount} variations (${getPace()} v/s)`
+                            : `Compute ${getComputedData().variationCount} variations`}
                     </button>
                 </SettingsGroup>
             </Surface>

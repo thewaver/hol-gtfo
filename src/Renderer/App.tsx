@@ -20,7 +20,7 @@ const Layout = (props: ParentProps<{}>) => {
                     <A href="/combos">{"Combos"}</A>
                     <A href="/scores">{"Scores"}</A>
                     <A href="/best-deck">{"Best Deck"}</A>
-                    {/*<A href="/brute-force">{"Brute Force"}</A>*/}
+                    <A href="/brute-force">{"Brute Force"}</A>
                 </nav>
                 <div style={{ "opacity": 0, "user-select": "none" }}>{"Harem of Lust"}</div>
             </div>

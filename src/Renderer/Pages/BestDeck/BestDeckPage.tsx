@@ -1,6 +1,6 @@
 import { For, createMemo, createSignal } from "solid-js";
 
-import { ALL_CARDS, PARSED_COMBOS } from "../../../Logic/Abstracts/Card/Card.const";
+import { ALL_CARDS } from "../../../Logic/Abstracts/Card/Card.const";
 import { CardName } from "../../../Logic/Abstracts/Card/Card.types";
 import { CardUtils } from "../../../Logic/Abstracts/Card/Card.utils";
 import { AppStore } from "../../App.store";
@@ -27,9 +27,8 @@ export const BestDeckPage = () => {
             exponent: AppStore.getPowerExponent(),
             level: AppStore.getCardLevel(),
         };
-        const { comboMap } = CardUtils.getComboMap(PARSED_COMBOS, { cardCounts: AppStore.myCardCounts });
-        const absoluteScores = CardUtils.getAbsoluteScores(comboMap, powerOpts);
-        const { deck, graph } = CardUtils.getBestDeck(comboMap, absoluteScores, AppStore.myCardCounts, {
+        const { comboMap } = CardUtils.getComboMap(powerOpts, { cardCounts: AppStore.myCardCounts });
+        const { deck, graph } = CardUtils.getBestDeck(comboMap, AppStore.myCardCounts, {
             ...AppStore.deckSettings,
             autoIncludedCards: getAutoIncludedCards(),
         });

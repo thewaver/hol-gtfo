@@ -3,7 +3,6 @@ import { ArrayType } from "../../Utils/utilityTypes";
 import { ALL_CARDS, EXPANSION_ACRONYMMS, PARSED_COMBOS, RARITY_INDEXES } from "./Card.const";
 import {
     Card,
-    CardCombo,
     CardCount,
     CardDeckOpts,
     CardMap,
@@ -14,7 +13,7 @@ import {
     ExpansionName,
 } from "./Card.types";
 
-export type ComboArrayFields = keyof ArrayType<ReturnType<typeof CardUtils.getComboArray>>;
+export type ComboArrayFields = keyof ArrayType<ReturnType<typeof CardUtils.getComboArrayFromMap>>;
 export type ScoreArrayFields = keyof ArrayType<ReturnType<typeof CardUtils.getScoreArray>>;
 
 export namespace CardUtils {
@@ -47,7 +46,7 @@ export namespace CardUtils {
         };
     };
 
-    export const getResultCardPower = (
+    export const getResultCardScore = (
         result: CardName,
         card1Rarity: CardRarity,
         card2Rarity: CardRarity,
@@ -88,32 +87,54 @@ export namespace CardUtils {
         }, {} as CardMap);
 
     export const getComboMap = (
-        comboArray: CardCombo[],
-        opts?: { cardCounts?: Record<CardName, CardCount>; expansions?: Set<ExpansionName> },
+        powerOpts: CardPowerOpts,
+        inclusionOpts?: { cardCounts?: Record<CardName, CardCount>; expansions?: Set<ExpansionName> },
     ) => {
         let symmetricalComboCount = 0;
 
         const comboMap: ComboMap = {};
 
-        for (const combo of comboArray) {
+        for (const combo of PARSED_COMBOS) {
             const { card1, card2, result } = combo;
 
             if (
-                opts?.expansions &&
-                (!opts.expansions.has(ALL_CARDS[card1].expansion) || !opts.expansions.has(ALL_CARDS[card2].expansion))
+                inclusionOpts?.expansions &&
+                (!inclusionOpts.expansions.has(ALL_CARDS[card1].expansion) ||
+                    !inclusionOpts.expansions.has(ALL_CARDS[card2].expansion))
             )
                 continue;
 
             if (
-                opts?.cardCounts &&
-                (!opts.cardCounts[card1] || !opts.cardCounts[card2] || (card1 === card2 && opts.cardCounts[card1] < 2))
+                inclusionOpts?.cardCounts &&
+                (!inclusionOpts.cardCounts[card1] ||
+                    !inclusionOpts.cardCounts[card2] ||
+                    (card1 === card2 && inclusionOpts.cardCounts[card1] < 2))
             )
                 continue;
 
-            comboMap[card1] ??= {};
-            comboMap[card1][card2] = result;
-            comboMap[card2] ??= {};
-            comboMap[card2][card1] = result;
+            const resultScore = getResultCardScore(result, ALL_CARDS[card1].rarity, ALL_CARDS[card2].rarity, powerOpts);
+            const resultStats = getResultCardStats(
+                result,
+                ALL_CARDS[card1].rarity,
+                ALL_CARDS[card2].rarity,
+                powerOpts.level,
+            );
+            const resultRarityIndex = RARITY_INDEXES[ALL_CARDS[result].rarity];
+            const newEntry = { result, resultScore, resultStats, resultRarityIndex };
+
+            comboMap[card1] ??= {
+                pairs: {},
+                totalScore: 0,
+            };
+            comboMap[card1].pairs = { ...comboMap[card1].pairs, [card2]: newEntry };
+            comboMap[card1].totalScore += resultScore;
+
+            comboMap[card2] ??= {
+                pairs: {},
+                totalScore: 0,
+            };
+            comboMap[card2].pairs = { ...comboMap[card2].pairs, [card1]: newEntry };
+            comboMap[card2].totalScore += resultScore;
 
             if (card1 === card2) {
                 symmetricalComboCount += 1;
@@ -123,18 +144,16 @@ export namespace CardUtils {
         return { comboMap, symmetricalComboCount };
     };
 
-    export const getComboArray = (comboMap: ComboMap, powerOpts: CardPowerOpts) =>
+    export const getComboArrayFromMap = (comboMap: ComboMap) =>
         (Object.keys(comboMap ?? {}) as CardName[]).flatMap((card1) => {
-            return (Object.keys(comboMap[card1] ?? {}) as CardName[]).map((card2) => {
-                const result = comboMap[card1][card2];
+            return (Object.keys(comboMap[card1].pairs ?? {}) as CardName[]).map((card2) => {
+                const { resultStats, ...rest } = comboMap[card1].pairs[card2];
 
                 return {
                     card1,
                     card2,
-                    result,
-                    rarityIndex: RARITY_INDEXES[ALL_CARDS[result].rarity],
-                    ...getResultCardStats(result, ALL_CARDS[card1].rarity, ALL_CARDS[card2].rarity, powerOpts.level),
-                    power: getResultCardPower(result, ALL_CARDS[card1].rarity, ALL_CARDS[card2].rarity, powerOpts),
+                    ...resultStats,
+                    ...rest,
                 };
             });
         });
@@ -151,11 +170,11 @@ export namespace CardUtils {
     export const getComboCounts = (comboMap: ComboMap) => {
         const totals = { ...EMPTY_COUNTS };
         const max = { ...EMPTY_COUNTS };
-        const byCard = (Object.keys(ALL_CARDS ?? {}) as CardName[]).reduce(
+        const byCard = (Object.keys(comboMap) as CardName[]).reduce(
             (res, card1) => {
-                res[card1] = (Object.keys(comboMap[card1] ?? {}) as CardName[]).reduce(
+                res[card1] = (Object.keys(comboMap[card1].pairs ?? {}) as CardName[]).reduce(
                     (counts, card2) => {
-                        const result = comboMap[card1][card2];
+                        const { result } = comboMap[card1].pairs[card2];
                         const { rarity } = ALL_CARDS[result];
 
                         counts[rarity] += 1;
@@ -175,55 +194,24 @@ export namespace CardUtils {
         return { byCard, totals, max };
     };
 
-    type AbsoluteScore = { pair: CardName; result: CardName; resultScore: number };
+    export const getScoreArray = (comboMap: ComboMap) => {
+        const comboCounts = getComboCounts(comboMap);
 
-    export const getAbsoluteScores = (comboMap: ComboMap, powerOpts: CardPowerOpts) =>
-        (Object.keys(ALL_CARDS ?? {}) as CardName[]).reduce(
-            (res, card1) => {
-                res[card1] = (Object.keys(comboMap[card1] ?? {}) as CardName[]).reduce((sum, card2) => {
-                    const result = comboMap[card1][card2];
-                    const score = getResultCardPower(
-                        result,
-                        ALL_CARDS[card1].rarity,
-                        ALL_CARDS[card2].rarity,
-                        powerOpts,
-                    );
-
-                    sum.push({ resultScore: score, pair: card2, result });
-
-                    return sum;
-                }, [] as AbsoluteScore[]);
-
-                return res;
-            },
-            {} as Record<CardName, AbsoluteScore[]>,
-        );
-
-    export const getScoreArray = (
-        absoluteScores: ReturnType<typeof getAbsoluteScores>,
-        comboCounts: ReturnType<typeof getComboCounts>["byCard"],
-    ) =>
-        (Object.keys(absoluteScores ?? {}) as CardName[]).map((card) => ({
+        return (Object.keys(comboMap) as CardName[]).map((card) => ({
             card,
-            ...comboCounts[card],
-            absoluteScore: absoluteScores[card].reduce((sum, { resultScore: score }) => sum + score, 0),
+            ...comboCounts.byCard[card],
+            totalScore: comboMap[card].totalScore,
         }));
+    };
 
     export const getBestDeck = (
         comboMap: ComboMap,
-        absoluteScores: ReturnType<typeof getAbsoluteScores>,
         cardCounts: Record<CardName, CardCount>,
         deckOpts: CardDeckOpts,
     ) => {
         const rarityCounts = { ...deckOpts.maxCardsOfRarity };
-        const absoluteScoreSums = Object.fromEntries(
-            Object.keys(absoluteScores).map((card) => [
-                card,
-                absoluteScores[card].reduce((sum, { resultScore: score }) => sum + score, 0),
-            ]),
-        );
         const sortedCardNames = Object.keys(comboMap)
-            .sort((a, b) => absoluteScoreSums[b] - absoluteScoreSums[a])
+            .sort((a, b) => comboMap[b].totalScore - comboMap[a].totalScore)
             .flatMap((card) => new Array<CardName>(cardCounts[card]).fill(card));
         const deck: CardName[] = [];
         const graph: { pickedCard: CardName; candidateScores: Record<CardName, number> }[] = [];
@@ -247,10 +235,10 @@ export namespace CardUtils {
 
             return Array.from(pickedSet).reduce(
                 (res, card1) => {
-                    for (const card2 in comboMap[card1]) {
+                    for (const card2 in comboMap[card1].pairs) {
                         if (!availableSet.has(card2) || !(rarityCounts[ALL_CARDS[card2].rarity] > 0)) continue;
 
-                        res[card2] = (res[card2] ?? 0) + (absoluteScoreSums[card2] ?? 0);
+                        res[card2] = (res[card2] ?? 0) + (comboMap[card2].totalScore ?? 0);
                     }
 
                     return res;
@@ -262,7 +250,7 @@ export namespace CardUtils {
         startingCards.forEach((card) => {
             const candidateScores = deck.length
                 ? getCandidateScores(deck)
-                : { [card]: absoluteScoreSums[card], ...getCandidateScores([card]) };
+                : { [card]: comboMap[card].totalScore, ...getCandidateScores([card]) };
 
             addToDeck(card, candidateScores);
         });
@@ -296,15 +284,26 @@ export namespace CardUtils {
     };
 
     export function* getBruteForceBestDeck(
-        cards: Record<CardName, CardCount>,
+        cardCounts: Record<CardName, CardCount>,
         deckSize: number = 30,
         powerOpts: CardPowerOpts,
-        yieldInterval: number = 10000,
+        yieldInterval: number = 14999,
     ) {
-        const cardArray = getUngroupedCards(cards);
-        const setSize = cardArray.length;
+        const ungroupedCards = getUngroupedCards(cardCounts);
+        const setSize = ungroupedCards.length;
         const allSubsets = generateAllSubsets(setSize, deckSize);
         const totalSubsetCount = binomial(setSize, deckSize);
+        const { comboMap } = getComboMap(powerOpts, { cardCounts });
+        const comboArray = Object.keys(comboMap)
+            .sort((a, b) => comboMap[b].totalScore - comboMap[a].totalScore)
+            .flatMap((key) =>
+                Object.keys(comboMap[key].pairs).map((pair) => ({
+                    card1: key,
+                    card2: pair,
+                    resultScore: comboMap[key].pairs[pair].resultScore,
+                })),
+            )
+            .filter(({ card1, card2 }) => card1 <= card2);
 
         let bestDeck: { card: CardName; count: CardCount }[] = [];
         let bestScore = 0;
@@ -317,22 +316,20 @@ export namespace CardUtils {
 
             computedSubsetCount++;
 
-            const deck = value.map((index) => cardArray[index]);
-            const cardCounts = getGroupedCards(deck);
-            const { comboMap } = getComboMap(PARSED_COMBOS, { cardCounts });
-            const absoluteScores = getAbsoluteScores(comboMap, powerOpts);
-            const totalScore = Object.values(absoluteScores).reduce(
-                (totalSum, scores) =>
-                    totalSum + scores.reduce((currentSum, score) => currentSum + score.resultScore, 0),
-                0,
-            );
+            const deck = value.map((index) => ungroupedCards[index]);
+            const groupedCards = getGroupedCards(deck);
+            const totalScore = comboArray.reduce((res, { card1, card2, resultScore }) => {
+                if (groupedCards[card1] && groupedCards[card2])
+                    return res + Math.min(groupedCards[card1], groupedCards[card2]) * resultScore;
+                return res;
+            }, 0);
 
             if (totalScore > bestScore) {
-                bestDeck = Object.entries(cardCounts).map(([card, count]) => ({ card, count }));
+                bestDeck = Object.entries(groupedCards).map(([card, count]) => ({ card, count }));
                 bestScore = totalScore;
+            }
 
-                yield { bestDeck, bestScore, computedSubsetCount, totalSubsetCount };
-            } else if (computedSubsetCount % yieldInterval === 0) {
+            if (computedSubsetCount % yieldInterval === 0) {
                 yield { bestDeck, bestScore, computedSubsetCount, totalSubsetCount };
             }
         } while (true);

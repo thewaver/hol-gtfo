@@ -22,6 +22,11 @@ export type Card = {
     expansion: ExpansionName;
 };
 
+export type CardStats = {
+    atk: number;
+    def: number;
+};
+
 export type CardMap = Record<CardName, Card>;
 
 export type CardCombo = {
@@ -30,7 +35,21 @@ export type CardCombo = {
     result: string;
 };
 
-export type ComboMap = Record<CardName, Record<CardName, CardName>>;
+export type ComboMap = Record<
+    CardName,
+    {
+        pairs: Record<
+            CardName,
+            {
+                result: CardName;
+                resultStats: CardStats;
+                resultScore: number;
+                resultRarityIndex: number;
+            }
+        >;
+        totalScore: number;
+    }
+>;
 
 export type CardPowerOpts = {
     bias: number;
