@@ -94,9 +94,7 @@ export namespace CardUtils {
 
         const comboMap: ComboMap = {};
 
-        for (const combo of PARSED_COMBOS) {
-            const { card1, card2, result } = combo;
-
+        for (const { card1, card2, result } of PARSED_COMBOS) {
             if (
                 inclusionOpts?.expansions &&
                 (!inclusionOpts.expansions.has(ALL_CARDS[card1].expansion) ||
@@ -285,17 +283,15 @@ export namespace CardUtils {
 
     export function* getBruteForceBestDeck(
         cardCounts: Record<CardName, CardCount>,
-        deckSize: number = 30,
+        deckSize: number,
         powerOpts: CardPowerOpts,
-        yieldInterval: number = 14999,
+        yieldInterval: number = 19999,
     ) {
-        const ungroupedCards = getUngroupedCards(cardCounts);
-        const setSize = ungroupedCards.length;
-        const allSubsets = generateAllSubsets(setSize, deckSize);
-        const totalSubsetCount = binomial(setSize, deckSize);
         const { comboMap } = getComboMap(powerOpts, { cardCounts });
-        const comboArray = Object.keys(comboMap)
-            .sort((a, b) => comboMap[b].totalScore - comboMap[a].totalScore)
+        const sortedComboMapKeys = Object.keys(comboMap).sort(
+            (a, b) => comboMap[b].totalScore - comboMap[a].totalScore,
+        );
+        const comboArray = sortedComboMapKeys
             .flatMap((key) =>
                 Object.keys(comboMap[key].pairs).map((pair) => ({
                     card1: key,
@@ -304,6 +300,10 @@ export namespace CardUtils {
                 })),
             )
             .filter(({ card1, card2 }) => card1 <= card2);
+        const sortedCards = sortedComboMapKeys.flatMap((card) => new Array<CardName>(cardCounts[card]).fill(card));
+        const setSize = sortedCards.length;
+        const allSubsets = generateAllSubsets(setSize, deckSize);
+        const totalSubsetCount = binomial(setSize, deckSize);
 
         let bestDeck: { card: CardName; count: CardCount }[] = [];
         let bestScore = 0;
@@ -316,13 +316,22 @@ export namespace CardUtils {
 
             computedSubsetCount++;
 
-            const deck = value.map((index) => ungroupedCards[index]);
+            const deck = value.map((index) => sortedCards[index - 1]);
             const groupedCards = getGroupedCards(deck);
-            const totalScore = comboArray.reduce((res, { card1, card2, resultScore }) => {
-                if (groupedCards[card1] && groupedCards[card2])
-                    return res + Math.min(groupedCards[card1], groupedCards[card2]) * resultScore;
-                return res;
-            }, 0);
+            const differentCardCount = Object.keys(groupedCards).length;
+            const scoredCards = new Set<CardName>();
+
+            let totalScore = 0;
+
+            for (let { card1, card2, resultScore } of comboArray) {
+                if (groupedCards[card1] && groupedCards[card2]) {
+                    totalScore += Math.min(groupedCards[card1], groupedCards[card2]) * resultScore;
+                    scoredCards.add(card1);
+                    scoredCards.add(card2);
+
+                    if (scoredCards.size >= differentCardCount) break;
+                }
+            }
 
             if (totalScore > bestScore) {
                 bestDeck = Object.entries(groupedCards).map(([card, count]) => ({ card, count }));

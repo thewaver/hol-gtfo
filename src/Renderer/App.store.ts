@@ -1,7 +1,7 @@
 import { createEffect, createSignal } from "solid-js";
 import { createStore } from "solid-js/store";
 
-import { PARSED_CARDS } from "../Logic/Abstracts/Card/Card.const";
+import { ALL_CARDS, PARSED_CARDS } from "../Logic/Abstracts/Card/Card.const";
 import { CardCount, CardDeckOpts, CardName, ExpansionName } from "../Logic/Abstracts/Card/Card.types";
 
 const CARD_COUNT_BY_RARITY: Record<CardName, CardCount> = { Common: 3, Uncommon: 2, Rare: 1, Epic: 0 };
@@ -13,7 +13,14 @@ const getStoredMyCards = (): Record<CardName, CardCount> => {
     const userCards = localStorage.getItem("MY_CARDS");
     const parsedUserCards = userCards ? (JSON.parse(userCards) as Record<CardName, CardCount>) : {};
 
-    return { ...allCards, ...parsedUserCards };
+    return {
+        ...allCards,
+        ...Object.fromEntries(
+            Object.keys(parsedUserCards)
+                .filter((card) => ALL_CARDS[card].isBasic)
+                .map((card) => [card, parsedUserCards[card]]),
+        ),
+    };
 };
 
 const setStoredMyCards = (cards: Record<CardName, CardCount>) => {
