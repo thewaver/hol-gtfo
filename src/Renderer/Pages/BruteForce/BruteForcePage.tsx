@@ -17,9 +17,9 @@ import { SubTitle, Title } from "../../Fundamentals/Title/Title";
 import "./BruteForcePage.css";
 
 const TEMPLATE_COLUMNS = "repeat(1, minmax(120px, auto)) repeat(1, minmax(40px, auto))";
-const DECK_SIZE = 30;
 
 export const BruteForcePage = () => {
+    const [getDeckSize, setDeckSize] = createSignal(30);
     const [getBestComputedDeck, setBestComputedDeck] = createSignal<{ card: CardName; count: CardCount }[]>([]);
     const [getComputedSubsetCount, setComputedSubsetCount] = createSignal(0);
     const [getIsComputing, setIsComputing] = createSignal(false);
@@ -32,7 +32,7 @@ export const BruteForcePage = () => {
             exponent: AppStore.getPowerExponent(),
             level: AppStore.getCardLevel(),
         };
-        const variationCount = binomial(CardUtils.getUngroupedCards(AppStore.myCardCounts).length, DECK_SIZE);
+        const variationCount = binomial(CardUtils.getUngroupedCards(AppStore.myCardCounts).length, getDeckSize());
 
         return {
             powerOpts,
@@ -44,7 +44,11 @@ export const BruteForcePage = () => {
         setIsComputing(true);
         setStartTime(Date.now());
 
-        const callback = CardUtils.getBruteForceBestDeck(AppStore.myCardCounts, DECK_SIZE, getComputedData().powerOpts);
+        const callback = CardUtils.getBruteForceBestDeck(
+            AppStore.myCardCounts,
+            getDeckSize(),
+            getComputedData().powerOpts,
+        );
 
         let lastBestScore = 0;
 
@@ -81,6 +85,20 @@ export const BruteForcePage = () => {
 
             <Surface>
                 <SettingsGroup>
+                    <label>
+                        <span>{`Deck size`}</span>
+                        <input
+                            type="number"
+                            min={1}
+                            max={120}
+                            step={1}
+                            value={getDeckSize()}
+                            disabled={getIsComputing()}
+                            onChange={(e) => {
+                                setDeckSize(Math.max(Math.min(Number(e.target.value), 120), 0));
+                            }}
+                        />
+                    </label>
                     <button type="button" disabled={getIsComputing()} onClick={handleCompute}>
                         {getIsComputing()
                             ? `Computed ${getComputedSubsetCount()} of ${getComputedData().variationCount} variations (${getPace()} v/s)`
