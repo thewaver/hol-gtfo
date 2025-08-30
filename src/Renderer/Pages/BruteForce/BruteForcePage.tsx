@@ -62,8 +62,6 @@ export const BruteForcePage = () => {
             }
             setComputedSubsetCount(step.computedSubsetCount);
             setPace(pace);
-
-            await new Promise(requestAnimationFrame);
         }
 
         setIsComputing(false);

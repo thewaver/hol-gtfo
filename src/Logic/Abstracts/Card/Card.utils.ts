@@ -281,11 +281,12 @@ export namespace CardUtils {
         };
     };
 
-    export function* getBruteForceBestDeck(
+    export async function* getBruteForceBestDeck(
         cardCounts: Record<CardName, CardCount>,
         deckSize: number,
         powerOpts: CardPowerOpts,
-        yieldInterval: number = 19999,
+        yieldInterval: number = 24999,
+        workerCount: number = navigator.hardwareConcurrency,
     ) {
         const { comboMap } = getComboMap(powerOpts, { cardCounts });
         const sortedComboMapKeys = Object.keys(comboMap).sort(
@@ -304,44 +305,63 @@ export namespace CardUtils {
         const setSize = sortedCards.length;
         const allSubsets = generateAllSubsets(setSize, deckSize);
         const totalSubsetCount = binomial(setSize, deckSize);
+        const workers = [] as Worker[];
 
         let bestDeck: { card: CardName; count: CardCount }[] = [];
         let bestScore = 0;
         let computedSubsetCount = 0;
 
+        for (let i = 0; i < workerCount; i++) {
+            const worker = new Worker(new URL("./Card.worker.ts", import.meta.url));
+            workers.push(worker);
+        }
+
+        function dispatchTask(worker: Worker, sets: number[][]) {
+            return new Promise<void>((resolve) => {
+                const handler = (
+                    e: MessageEvent<{
+                        bestDeck: { card: CardName; count: CardCount }[];
+                        bestScore: number;
+                    }>,
+                ) => {
+                    if (e.data.bestScore > bestScore) {
+                        bestDeck = e.data.bestDeck;
+                        bestScore = e.data.bestScore;
+                    }
+
+                    computedSubsetCount += sets.length;
+                    worker.removeEventListener("message", handler);
+                    resolve();
+                };
+
+                worker.addEventListener("message", handler);
+                worker.postMessage({ sortedCards, comboArray, sets, bestScore });
+            });
+        }
+
+        let isDone = false;
+
         do {
-            const { value, done } = allSubsets.next();
+            await Promise.allSettled(
+                workers.map((worker) => {
+                    const values = Array.from({ length: yieldInterval })
+                        .map(() => {
+                            const { value, done } = allSubsets.next();
 
-            if (done) break;
+                            if (!done) {
+                                return value;
+                            } else {
+                                isDone = true;
+                            }
+                        })
+                        .filter(Boolean) as number[][];
 
-            computedSubsetCount++;
+                    return dispatchTask(worker, values);
+                }),
+            );
 
-            const deck = value.map((index) => sortedCards[index - 1]);
-            const groupedCards = getGroupedCards(deck);
-            const differentCardCount = Object.keys(groupedCards).length;
-            const scoredCards = new Set<CardName>();
-
-            let totalScore = 0;
-
-            for (let { card1, card2, resultScore } of comboArray) {
-                if (groupedCards[card1] && groupedCards[card2]) {
-                    totalScore += Math.min(groupedCards[card1], groupedCards[card2]) * resultScore;
-                    scoredCards.add(card1);
-                    scoredCards.add(card2);
-
-                    if (scoredCards.size >= differentCardCount) break;
-                }
-            }
-
-            if (totalScore > bestScore) {
-                bestDeck = Object.entries(groupedCards).map(([card, count]) => ({ card, count }));
-                bestScore = totalScore;
-            }
-
-            if (computedSubsetCount % yieldInterval === 0) {
-                yield { bestDeck, bestScore, computedSubsetCount, totalSubsetCount };
-            }
-        } while (true);
+            yield { bestDeck, bestScore, computedSubsetCount, totalSubsetCount };
+        } while (!isDone);
 
         yield { bestDeck, bestScore, computedSubsetCount, totalSubsetCount };
     }
