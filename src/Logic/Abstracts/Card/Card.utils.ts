@@ -29,6 +29,10 @@ export namespace CardUtils {
     export const getCardNameAndExpansion = (card: CardName) =>
         `[${EXPANSION_ACRONYMMS[ALL_CARDS[card].expansion]}] ${card}`;
 
+    export const getCardStatsRatio = (atk: number, def: number) => {
+        return atk / Math.max(atk + def, 1);
+    };
+
     export const getResultCardStats = (
         result: CardName,
         card1Rarity: CardRarity,
@@ -46,21 +50,27 @@ export namespace CardUtils {
         };
     };
 
+    export const getResultCardRarityCost = (card1Rarity: CardRarity, card2Rarity: CardRarity) => {
+        const rarityIndex1 = RARITY_INDEXES[card1Rarity];
+        const rarityIndex2 = RARITY_INDEXES[card2Rarity];
+
+        return Math.min(rarityIndex1, rarityIndex2);
+    };
+
     export const getResultCardScore = (
         result: CardName,
         card1Rarity: CardRarity,
         card2Rarity: CardRarity,
         powerOpts: CardPowerOpts,
     ) => {
-        const { atk, def } = getResultCardStats(result, card1Rarity, card2Rarity, powerOpts.level);
-        /*
+        const { atk, def } = getResultCardStats(result, card1Rarity, card2Rarity, powerOpts.cardLevel);
+        const biasRatio = powerOpts.bias / 100;
+        const statsRatio = getCardStatsRatio(atk, def);
+        const scoreRatio = 1 - Math.abs(biasRatio - statsRatio) * (1 / Math.max(biasRatio, 1 - biasRatio));
+        const costRatio = 1 - getResultCardRarityCost(card1Rarity, card2Rarity) * powerOpts.costRatio;
+
         return Math.round(
-            Math.pow(atk * 2 * powerOpts.bias * 0.01 + def * 2 * (1 - powerOpts.bias * 0.01), powerOpts.exponent),
-        );
-        */
-        return Math.round(
-            Math.pow(atk * 2 * powerOpts.bias * 0.01 + def * 2 * (1 - powerOpts.bias * 0.01), powerOpts.exponent) /
-                Math.pow(10, powerOpts.exponent - 1),
+            (Math.pow(atk + def, powerOpts.exponent) * scoreRatio * costRatio) / Math.pow(10, powerOpts.exponent - 1),
         );
     };
 
@@ -115,7 +125,7 @@ export namespace CardUtils {
                 result,
                 ALL_CARDS[card1].rarity,
                 ALL_CARDS[card2].rarity,
-                powerOpts.level,
+                powerOpts.cardLevel,
             );
             const resultRarityIndex = RARITY_INDEXES[ALL_CARDS[result].rarity];
             const newEntry = { result, resultScore, resultStats, resultRarityIndex };

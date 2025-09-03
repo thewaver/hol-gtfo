@@ -30,7 +30,8 @@ export const BruteForcePage = () => {
         const powerOpts = {
             bias: AppStore.getPowerBias(),
             exponent: AppStore.getPowerExponent(),
-            level: AppStore.getCardLevel(),
+            costRatio: AppStore.getCostRatio(),
+            cardLevel: AppStore.getCardLevel(),
         };
         const variationCount = binomial(CardUtils.getUngroupedCards(AppStore.myCardCounts).length, getDeckSize());
 

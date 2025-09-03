@@ -25,7 +25,8 @@ export const BestDeckPage = () => {
         const powerOpts = {
             bias: AppStore.getPowerBias(),
             exponent: AppStore.getPowerExponent(),
-            level: AppStore.getCardLevel(),
+            costRatio: AppStore.getCostRatio(),
+            cardLevel: AppStore.getCardLevel(),
         };
         const { comboMap } = CardUtils.getComboMap(powerOpts, { cardCounts: AppStore.myCardCounts });
         const { deck, graph } = CardUtils.getBestDeck(comboMap, AppStore.myCardCounts, {

@@ -26,7 +26,8 @@ export const CombosPage = () => {
         const powerOpts = {
             bias: AppStore.getPowerBias(),
             exponent: AppStore.getPowerExponent(),
-            level: AppStore.getCardLevel(),
+            costRatio: AppStore.getCostRatio(),
+            cardLevel: AppStore.getCardLevel(),
         };
         const { comboMap, symmetricalComboCount } = CardUtils.getComboMap(powerOpts, {
             expansions: AppStore.getExpansions(),
@@ -62,8 +63,8 @@ export const CombosPage = () => {
             </Surface>
 
             <Title>
-                {`${(getComputedData().comboRows.length - getComputedData().symmetricalComboCount) / 2 + getComputedData().symmetricalComboCount} entries as of 18/08/2025\n`}
-                <SubTitle>{`Cards shown are not affected by "My Deck"`}</SubTitle>
+                {`${(getComputedData().comboRows.length - getComputedData().symmetricalComboCount) / 2 + getComputedData().symmetricalComboCount} entries\n`}
+                <SubTitle>{`Cards shown are affected by the expansions selected above and not by "My Deck"`}</SubTitle>
             </Title>
 
             <Surface unpadded={() => true}>

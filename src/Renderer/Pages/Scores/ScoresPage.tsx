@@ -25,7 +25,8 @@ export const ScoresPage = () => {
         const powerOpts = {
             bias: AppStore.getPowerBias(),
             exponent: AppStore.getPowerExponent(),
-            level: AppStore.getCardLevel(),
+            costRatio: AppStore.getCostRatio(),
+            cardLevel: AppStore.getCardLevel(),
         };
         const { comboMap } = CardUtils.getComboMap(powerOpts, { cardCounts: AppStore.myCardCounts });
         const { max: comboCountsMax } = CardUtils.getComboCounts(comboMap);

@@ -28,7 +28,7 @@ export const DeckSettings = (props: DeckSettingsProps) => {
                                 AppStore.setDeckSettings(
                                     "maxCardsOfRarity",
                                     rarity,
-                                    Math.max(Math.min(Number(e.target.value), 120), 0),
+                                    Math.min(Math.max(Number(e.target.value), 0), 120),
                                 );
                             }}
                         />
@@ -44,7 +44,7 @@ export const DeckSettings = (props: DeckSettingsProps) => {
                     step={1}
                     value={AppStore.deckSettings.deckSize}
                     onChange={(e) => {
-                        AppStore.setDeckSettings("deckSize", Math.max(Math.min(Number(e.target.value), 120), 0));
+                        AppStore.setDeckSettings("deckSize", Math.min(Math.max(Number(e.target.value), 0), 120));
                     }}
                 />
             </label>

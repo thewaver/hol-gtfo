@@ -31,10 +31,11 @@ export namespace AppStore {
     export const [getExpansions, setExpansuions] = createSignal<Set<ExpansionName>>(new Set(["Base Game"]));
     export const [getPowerBias, setPowerBias] = createSignal(60);
     export const [getPowerExponent, setPowerExponent] = createSignal(3);
+    export const [getCostRatio, setCostRatio] = createSignal(0.1);
     export const [getCardLevel, setCardLevel] = createSignal(4);
     export const [deckSettings, setDeckSettings] = createStore<CardDeckOpts>({
         deckSize: 30,
-        maxCardsOfRarity: { Common: 30, Uncommon: 30, Rare: 30, Epic: 0 },
+        maxCardsOfRarity: { Common: 30, Uncommon: 30, Rare: 10, Epic: 0 },
     });
     export const [myCardCounts, setMyCardCounts] = createStore(getStoredMyCards());
 

@@ -54,7 +54,8 @@ export type ComboMap = Record<
 export type CardPowerOpts = {
     bias: number;
     exponent: number;
-    level: number;
+    costRatio: number;
+    cardLevel: number;
 };
 
 export type CardCount = 0 | 1 | 2 | 3;
