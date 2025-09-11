@@ -254,6 +254,7 @@ Human,Poison,Death
 Human,Snake,Death
 Human,Time,Death
 Human,Troll,Death
+Medicine,Undead,Death
 Power,Void,Death
 Sleep,Void,Death
 Spell,Void,Death
@@ -317,6 +318,12 @@ Metal,Romance,Dirigible
 Robot,Wind,Dirigible
 Robot,Wings,Dirigible
 Science,Wings,Dirigible
+Domination,Medicine,Doctor
+Human,Medicine,Doctor
+Knight,Medicine,Doctor
+Knowledge,Medicine,Doctor
+Medicine,Spirit,Doctor
+Medicine,Wizard,Doctor
 Magic,Spell,Domination
 Dragon,Fire,Dragon
 Fire,Treasure,Dragon
@@ -487,6 +494,11 @@ Fairy Tale,Mask,Gingerbread House
 Fairy Tale,Secret,Gingerbread House
 Fairy Tale,Spell,Gingerbread House
 Fairy Tale,Wizard,Gingerbread House
+Ash,Medicine,Gloves
+Game,Medicine,Gloves
+Mask,Medicine,Gloves
+Medicine,Tentacle,Gloves
+Medicine,Water,Gloves
 Domination,Immortality,Goddess
 Domination,Myth,Goddess
 Fairy Tale,Immortality,Goddess
@@ -543,6 +555,7 @@ Romance,Vampire,High Vampire
 Vampire,Wings,High Vampire
 Blood,Romance,Honey
 Ice,Romance,Honey
+Medicine,Romance,Honey
 Pollen,Romance,Honey
 Romance,Shackles,Honey
 Mechanism,Pirate,Hook
@@ -564,7 +577,9 @@ Power,Snake,Huge Snake
 Blood,Bone,Human
 Blood,Robot,Human
 Blood,Shackles,Human
+Golem,Medicine,Human
 Human,Human,Human
+Medicine,Vampire,Human
 Dragon,Snake,Hydra
 Snake,Snake,Hydra
 Snake,Water,Hydra
@@ -581,6 +596,7 @@ Fairy Tale,Mind Control,Hypnotist
 Game,Mind Control,Hypnotist
 Illusion,Mind Control,Hypnotist
 Knowledge,Romance,Hypnotist
+Medicine,Myth,Hypnotist
 Mind Control,Power,Hypnotist
 Mind Control,Science,Hypnotist
 Mind Control,Secret,Hypnotist
@@ -608,8 +624,11 @@ Illusion,Science,Illusionist
 Illusion,Wizard,Illusionist
 Invisibility,Knowledge,Illusionist
 Invisibility,Wizard,Illusionist
+Air,Medicine,Infectious
 Game,Undead,Infectious
 Madness,Wings,Infectious
+Medicine,Mutation,Infectious
+Medicine,Pollen,Infectious
 Mutation,Plague,Infectious
 Plague,Undead,Infectious
 Poison,Undead,Infectious
@@ -651,6 +670,8 @@ Power,Tentacle,Kraken
 Tentacle,Time,Kraken
 Curse,Light,Laser
 Death,Light,Laser
+Energy,Medicine,Laser
+Fire,Medicine,Laser
 Fun,Robot,Laser
 Game,Light,Laser
 Game,Magic Crystal,Laser
@@ -706,6 +727,7 @@ Bone,Fun,Living Skeleton
 Bone,Human,Living Skeleton
 Bone,Immortality,Living Skeleton
 Bone,Magic,Living Skeleton
+Bone,Medicine,Living Skeleton
 Bone,Myth,Living Skeleton
 Bone,Romance,Living Skeleton
 Bone,Spirit,Living Skeleton
@@ -733,6 +755,7 @@ Knowledge,Madness,Mad Magician
 Madness,Magic,Mad Magician
 Madness,Power,Mad Magician
 Madness,Wizard,Mad Magician
+Beast,Medicine,Madness
 Curse,Fun,Madness
 Entropic Magic,Fun,Madness
 Magic Crystal,Power,Magic
@@ -749,6 +772,11 @@ Fairy Tale,Metal,Magic Sword
 Fairy Tale,Myth,Magic Sword
 Fairy Tale,Power,Magic Sword
 Fairy Tale,Rune,Magic Sword
+Fun,Medicine,Massage Table
+Mechanism,Medicine,Massage Table
+Medicine,Metal,Massage Table
+Medicine,Robot,Massage Table
+Medicine,Totem,Massage Table
 Angel,Mechanism,Mechanical Angel
 Angel,Metal,Mechanical Angel
 Angel,Robot,Mechanical Angel
@@ -770,6 +798,13 @@ Metal,Metal,Mechanism
 Metal,Power,Mechanism
 Metal,Science,Mechanism
 Metal,Totem,Mechanism
+Demon,Medicine,Medical Confidentiality
+Illusion,Medicine,Medical Confidentiality
+Immortality,Medicine,Medical Confidentiality
+Invisibility,Medicine,Medical Confidentiality
+Medicine,Secret,Medical Confidentiality
+Medicine,Shackles,Medical Confidentiality
+Medicine,Time,Medical Confidentiality
 Fairy Tale,Fish,Mermaid
 Fairy Tale,Water,Mermaid
 Fish,Human,Mermaid
@@ -809,6 +844,10 @@ Death,Wizard,Necromancer
 Domination,Spirit,Necromancer
 Knowledge,Undead,Necromancer
 Science,Undead,Necromancer
+Angel,Medicine,Nurse
+Blood,Medicine,Nurse
+Fairy,Medicine,Nurse
+Medicine,Science,Nurse
 Demon,Human,Obsession
 Human,Madness,Obsession
 Human,Mind Control,Obsession
@@ -823,6 +862,7 @@ Fish,Tentacle,Octopus
 Tentacle,Tentacle,Octopus
 Tentacle,Water,Octopus
 Blood,Mechanism,Oil
+Fish,Medicine,Oil
 Invisibility,Romance,Oil
 Curse,Game,Pandora's Box
 Curse,Jewel,Pandora's Box
@@ -846,18 +886,24 @@ Fun,Secret,Picnic
 Fun,Knight,Pirate
 Human,Treasure,Pirate
 Pirate,Water,Pirate
+Curse,Medicine,Plague
 Curse,Power,Plague
 Curse,Spell,Plague
 Death,Spell,Plague
+Entropic Magic,Medicine,Plague
 Entropic Magic,Pollen,Plague
 Mutation,Pollen,Plague
 Undead,Undead,Plague
+Darkness,Medicine,Plague Doctor
 Game,Plague,Plague Doctor
+Madness,Medicine,Plague Doctor
 Magic,Plague,Plague Doctor
+Medicine,Plague,Plague Doctor
 Mind Control,Plague,Plague Doctor
 Myth,Plague,Plague Doctor
 Plague,Science,Plague Doctor
 Plague,Wizard,Plague Doctor
+Earth,Medicine,Plant
 Earth,Pollen,Plant
 Giant,Pollen,Plant
 Demon,Game,Playing Cards
@@ -866,13 +912,16 @@ Game,Immortality,Playing Cards
 Game,Mirror,Playing Cards
 Game,Tree,Playing Cards
 Curse,Water,Poison
+Death,Medicine,Poison
 Death,Pollen,Poison
 Death,Snake,Poison
 Death,Water,Poison
+Medicine,Snake,Poison
 Plague,Water,Poison
 Poison,Water,Poison
 Curse,Fairy Tale,Poisoned Apple
 Death,Fairy Tale,Poisoned Apple
+Fairy Tale,Medicine,Poisoned Apple
 Fairy Tale,Plant,Poisoned Apple
 Fairy Tale,Poison,Poisoned Apple
 Fairy Tale,Snake,Poisoned Apple
@@ -980,6 +1029,7 @@ Fairy Tale,Totem,Shaman Troll
 Fairy Tale,Troll,Shaman Troll
 Magic,Troll,Shaman Troll
 Magic Crystal,Troll,Shaman Troll
+Medicine,Troll,Shaman Troll
 Mind Control,Troll,Shaman Troll
 Spell,Troll,Shaman Troll
 Star,Troll,Shaman Troll
@@ -1001,6 +1051,7 @@ Pollen,Wind,Sleep
 Human,Sleep,Sleepwalker
 Human,Star,Sleepwalker
 Knowledge,Sleep,Sleepwalker
+Medicine,Sleep,Sleepwalker
 Mind Control,Sleep,Sleepwalker
 Shackles,Sleep,Sleepwalker
 Sleep,Wizard,Sleepwalker
@@ -1039,6 +1090,13 @@ Death,Myth,Thanatos
 Domination,Void,Thanatos
 Game,Void,Thanatos
 Myth,Undead,Thanatos
+Ice,Medicine,Therapy
+Light,Medicine,Therapy
+Magic,Medicine,Therapy
+Medicine,Mind Control,Therapy
+Medicine,Poison,Therapy
+Medicine,Power,Therapy
+Medicine,Void,Therapy
 Fun,Troll,Totem
 Dragon,Jewel,Treasure
 Earth,Jewel,Treasure
@@ -1053,6 +1111,7 @@ Domination,Plant,Tree
 Earth,Plant,Tree
 Energy,Plant,Tree
 Giant,Plant,Tree
+Medicine,Plant,Tree
 Plant,Power,Tree
 Plant,Time,Tree
 Plant,Water,Tree

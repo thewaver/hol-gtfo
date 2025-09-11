@@ -295,13 +295,14 @@ export namespace CardUtils {
         cardCounts: Record<CardName, CardCount>,
         deckSize: number,
         powerOpts: CardPowerOpts,
+        minCardScore: number = 0,
         yieldInterval: number = 24999,
         workerCount: number = navigator.hardwareConcurrency,
     ) {
         const { comboMap } = getComboMap(powerOpts, { cardCounts });
-        const sortedComboMapKeys = Object.keys(comboMap).sort(
-            (a, b) => comboMap[b].totalScore - comboMap[a].totalScore,
-        );
+        const sortedComboMapKeys = Object.keys(comboMap)
+            .sort((a, b) => comboMap[b].totalScore - comboMap[a].totalScore)
+            .filter((card) => comboMap[card].totalScore >= minCardScore);
         const comboArray = sortedComboMapKeys
             .flatMap((key) =>
                 Object.keys(comboMap[key].pairs).map((pair) => ({

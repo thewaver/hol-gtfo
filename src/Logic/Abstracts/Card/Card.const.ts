@@ -30,4 +30,5 @@ export const EXPANSION_ACRONYMMS: Record<ExpansionName, string> = {
     "Spring Break": "SB",
     "Game Fest": "GF",
     "Deeper Into the Tale": "DIT",
+    "Clinic of Pleasures": "CoP",
 };

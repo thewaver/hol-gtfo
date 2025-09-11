@@ -10,7 +10,8 @@ export type ExpansionName =
     | "Cupid on Vacation"
     | "Spring Break"
     | "Game Fest"
-    | "Deeper Into the Tale";
+    | "Deeper Into the Tale"
+    | "Clinic of Pleasures";
 
 export type Card = {
     name: CardName;
