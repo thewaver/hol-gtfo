@@ -11,7 +11,8 @@ export type ExpansionName =
     | "Spring Break"
     | "Game Fest"
     | "Deeper Into the Tale"
-    | "Clinic of Pleasures";
+    | "Clinic of Pleasures"
+    | "Path to Ecstasy";
 
 export type Card = {
     name: CardName;

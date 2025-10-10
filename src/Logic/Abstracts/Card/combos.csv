@@ -14,6 +14,12 @@ Ash,Spirit,Air Elemental
 Domination,Wind,Air Elemental
 Spirit,Wind,Air Elemental
 Wind,Wind,Air Elemental
+Blood,Relic,Altar
+Bone,Relic,Altar
+Giant,Relic,Altar
+Relic,Rune,Altar
+Relic,Shackles,Altar
+Relic,Undead,Altar
 Air,Domination,Angel
 Domination,Light,Angel
 Domination,Wings,Angel
@@ -54,6 +60,7 @@ Knowledge,Wizard,Archmage
 Magic,Wizard,Archmage
 Myth,Wizard,Archmage
 Power,Wizard,Archmage
+Relic,Wizard,Archmage
 Rune,Wizard,Archmage
 Science,Wizard,Archmage
 Secret,Wizard,Archmage
@@ -97,6 +104,7 @@ Dragon,Magic,Astral Dragon
 Dragon,Magic Crystal,Astral Dragon
 Dragon,Mind Control,Astral Dragon
 Dragon,Myth,Astral Dragon
+Dragon,Relic,Astral Dragon
 Dragon,Spirit,Astral Dragon
 Darkness,Science,Astronomer
 Game,Star,Astronomer
@@ -123,6 +131,7 @@ Energy,Knight,Battle Mage
 Knight,Knowledge,Battle Mage
 Knight,Magic,Battle Mage
 Knight,Magic Crystal,Battle Mage
+Knight,Relic,Battle Mage
 Knight,Rune,Battle Mage
 Knight,Wizard,Battle Mage
 Beast,Energy,Beast Spirit
@@ -143,6 +152,7 @@ Ice,Pollen,Blizzard
 Ice,Spell,Blizzard
 Ice,Wind,Blizzard
 Darkness,Vampire,Blood
+Relic,Vampire,Blood
 Blood,Domination,Blood Mage
 Blood,Entropic Magic,Blood Mage
 Blood,Fairy Tale,Blood Mage
@@ -182,6 +192,7 @@ Fun,Magic,Cocktail
 Fun,Mind Control,Cocktail
 Fun,Mirror,Cocktail
 Fun,Poison,Cocktail
+Fun,Relic,Cocktail
 Fun,Sleep,Cocktail
 Fun,Water,Cocktail
 Domination,Mechanism,Colossus
@@ -315,6 +326,7 @@ Fairy,Robot,Dirigible
 Mechanism,Wind,Dirigible
 Mechanism,Wings,Dirigible
 Metal,Romance,Dirigible
+Relic,Wings,Dirigible
 Robot,Wind,Dirigible
 Robot,Wings,Dirigible
 Science,Wings,Dirigible
@@ -331,6 +343,7 @@ Angel,Sleep,Dreams Fairy
 Fairy,Fairy Tale,Dreams Fairy
 Fairy,Illusion,Dreams Fairy
 Fairy,Invisibility,Dreams Fairy
+Fairy,Relic,Dreams Fairy
 Fairy,Romance,Dreams Fairy
 Fairy,Sleep,Dreams Fairy
 Fairy,Time,Dreams Fairy
@@ -497,8 +510,10 @@ Fairy Tale,Wizard,Gingerbread House
 Ash,Medicine,Gloves
 Game,Medicine,Gloves
 Mask,Medicine,Gloves
+Medicine,Relic,Gloves
 Medicine,Tentacle,Gloves
 Medicine,Water,Gloves
+Angel,Relic,Goddess
 Domination,Immortality,Goddess
 Domination,Myth,Goddess
 Fairy Tale,Immortality,Goddess
@@ -638,6 +653,7 @@ Fairy Tale,Science,Inventor
 Human,Science,Inventor
 Knowledge,Metal,Inventor
 Knowledge,Science,Inventor
+Light,Relic,Invisibility
 Game,Jewel,Jackpot
 Game,Metal,Jackpot
 Game,Myth,Jackpot
@@ -678,6 +694,7 @@ Game,Magic Crystal,Laser
 Jewel,Light,Laser
 Light,Magic Crystal,Laser
 Light,Mirror,Laser
+Magic Crystal,Relic,Laser
 Death,Fire,Lava
 Earth,Fire,Lava
 Energy,Fire,Lava
@@ -713,6 +730,7 @@ Domination,Undead,Lich King
 Ice,Immortality,Lich King
 Ice,Myth,Lich King
 Ice,Plague,Lich King
+Ice,Relic,Lich King
 Ice,Undead,Lich King
 Knight,Myth,Lich King
 Darkness,Fire,Light
@@ -765,12 +783,14 @@ Energy,Rune,Magic Crystal
 Entropic Magic,Jewel,Magic Crystal
 Entropic Magic,Rune,Magic Crystal
 Jewel,Magic,Magic Crystal
+Jewel,Relic,Magic Crystal
 Magic,Rune,Magic Crystal
 Power,Rune,Magic Crystal
 Fairy Tale,Knight,Magic Sword
 Fairy Tale,Metal,Magic Sword
 Fairy Tale,Myth,Magic Sword
 Fairy Tale,Power,Magic Sword
+Fairy Tale,Relic,Magic Sword
 Fairy Tale,Rune,Magic Sword
 Fun,Medicine,Massage Table
 Mechanism,Medicine,Massage Table
@@ -792,6 +812,7 @@ Fairy Tale,Robot,Mechanical Dragon
 Fairy Tale,Mechanism,Mechanical Golem
 Golem,Mechanism,Mechanical Golem
 Golem,Metal,Mechanical Golem
+Relic,Robot,Mechanical Golem
 Energy,Metal,Mechanism
 Magic,Metal,Mechanism
 Metal,Metal,Mechanism
@@ -813,10 +834,13 @@ Blood,Treasure,Mimic
 Curse,Treasure,Mimic
 Death,Treasure,Mimic
 Demon,Treasure,Mimic
+Entropic Magic,Relic,Mimic
 Entropic Magic,Treasure,Mimic
 Game,Tentacle,Mimic
+Illusion,Relic,Mimic
 Illusion,Treasure,Mimic
 Madness,Treasure,Mimic
+Mutation,Relic,Mimic
 Mutation,Treasure,Mimic
 Myth,Treasure,Mimic
 Plague,Treasure,Mimic
@@ -866,6 +890,7 @@ Fish,Medicine,Oil
 Invisibility,Romance,Oil
 Curse,Game,Pandora's Box
 Curse,Jewel,Pandora's Box
+Curse,Relic,Pandora's Box
 Curse,Rune,Pandora's Box
 Curse,Shackles,Pandora's Box
 Curse,Totem,Pandora's Box
@@ -877,6 +902,7 @@ Entropic Magic,Shackles,Pandora's Box
 Fairy Tale,Plague,Pandora's Box
 Madness,Shackles,Pandora's Box
 Madness,Totem,Pandora's Box
+Plague,Relic,Pandora's Box
 Plague,Shackles,Pandora's Box
 Plague,Totem,Pandora's Box
 Beast,Fun,Picnic
@@ -910,6 +936,7 @@ Demon,Game,Playing Cards
 Domination,Game,Playing Cards
 Game,Immortality,Playing Cards
 Game,Mirror,Playing Cards
+Game,Relic,Playing Cards
 Game,Tree,Playing Cards
 Curse,Water,Poison
 Death,Medicine,Poison
@@ -959,13 +986,21 @@ Fire,Science,Pyromancer
 Fire,Wizard,Pyromancer
 Blood,Knight,Red Knight
 Fire,Knight,Red Knight
+Madness,Relic,Ritual Mask
+Magic,Relic,Ritual Mask
+Mask,Relic,Ritual Mask
+Metal,Relic,Ritual Mask
+Mind Control,Relic,Ritual Mask
+Relic,Secret,Ritual Mask
 Human,Mechanism,Robot
 Mechanism,Power,Robot
 Earth,Romance,Roses
 Jewel,Romance,Roses
 Mind Control,Romance,Roses
 Plant,Romance,Roses
+Relic,Romance,Roses
 Romance,Water,Roses
+Relic,Spell,Rune
 Air,Ash,Sand Storm
 Air,Energy,Sand Storm
 Ash,Ash,Sand Storm
@@ -1031,6 +1066,7 @@ Magic,Troll,Shaman Troll
 Magic Crystal,Troll,Shaman Troll
 Medicine,Troll,Shaman Troll
 Mind Control,Troll,Shaman Troll
+Relic,Troll,Shaman Troll
 Spell,Troll,Shaman Troll
 Star,Troll,Shaman Troll
 Totem,Troll,Shaman Troll
@@ -1071,6 +1107,18 @@ Invisibility,Pirate,Spirit Pirate
 Light,Pirate,Spirit Pirate
 Pirate,Spirit,Spirit Pirate
 Darkness,Romance,Star
+Knowledge,Relic,Stash
+Mechanism,Relic,Stash
+Myth,Relic,Stash
+Pirate,Relic,Stash
+Relic,Star,Stash
+Relic,Void,Stash
+Ash,Relic,Stone Idol
+Earth,Relic,Stone Idol
+Golem,Relic,Stone Idol
+Human,Relic,Stone Idol
+Relic,Totem,Stone Idol
+Relic,Treasure,Stone Idol
 Energy,Light,Sun
 Energy,Star,Sun
 Giant,Light,Sun
@@ -1089,6 +1137,7 @@ Death,Domination,Thanatos
 Death,Myth,Thanatos
 Domination,Void,Thanatos
 Game,Void,Thanatos
+Immortality,Relic,Thanatos
 Myth,Undead,Thanatos
 Ice,Medicine,Therapy
 Light,Medicine,Therapy
@@ -1098,6 +1147,13 @@ Medicine,Poison,Therapy
 Medicine,Power,Therapy
 Medicine,Void,Therapy
 Fun,Troll,Totem
+Relic,Tree,Totem
+Darkness,Relic,Trap
+Death,Relic,Trap
+Demon,Relic,Trap
+Invisibility,Relic,Trap
+Poison,Relic,Trap
+Relic,Time,Trap
 Dragon,Jewel,Treasure
 Earth,Jewel,Treasure
 Earth,Secret,Treasure
@@ -1105,6 +1161,7 @@ Jewel,Myth,Treasure
 Jewel,Water,Treasure
 Pirate,Romance,Treasure
 Pirate,Secret,Treasure
+Relic,Science,Treasure
 Secret,Water,Treasure
 Treasure,Treasure,Treasure
 Domination,Plant,Tree
@@ -1226,6 +1283,12 @@ Game,Mechanism,Wheel of Fortune
 Game,Power,Wheel of Fortune
 Game,Secret,Wheel of Fortune
 Game,Wings,Wheel of Fortune
+Beast,Relic,Whip
+Domination,Relic,Whip
+Plant,Relic,Whip
+Power,Relic,Whip
+Relic,Snake,Whip
+Relic,Tentacle,Whip
 Beast,Fairy Tale,White Rabbit
 Energy,Fairy Tale,White Rabbit
 Fairy Tale,Fun,White Rabbit
@@ -1243,6 +1306,7 @@ Demon,Romance,Wind Demon
 Demon,Wind,Wind Demon
 Energy,Wind,Wind Demon
 Giant,Wind,Wind Demon
+Relic,Wind,Wind Demon
 Human,Knowledge,Wizard
 Human,Magic,Wizard
 Human,Magic Crystal,Wizard
