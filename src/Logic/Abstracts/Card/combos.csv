@@ -32,6 +32,7 @@ Blood,Troll,Angry Giant
 Domination,Giant,Angry Giant
 Domination,Troll,Angry Giant
 Fairy Tale,Giant,Angry Giant
+Giant,Halloween,Angry Giant
 Giant,Madness,Angry Giant
 Giant,Myth,Angry Giant
 Madness,Troll,Angry Giant
@@ -163,6 +164,11 @@ Ice,Knight,Blue Knight
 Knight,Water,Blue Knight
 Knight,Wind,Blue Knight
 Death,Troll,Bone
+Ash,Halloween,Candle
+Dragon,Halloween,Candle
+Fire,Halloween,Candle
+Halloween,Light,Candle
+Halloween,Wind,Candle
 Blood,Pirate,Captain
 Domination,Pirate,Captain
 Giant,Pirate,Captain
@@ -227,10 +233,22 @@ Mechanism,Secret,Compass
 Mechanism,Star,Compass
 Mechanism,Treasure,Compass
 Secret,Treasure,Compass
+Death,Halloween,Crystal Ball
+Earth,Halloween,Crystal Ball
+Fun,Halloween,Crystal Ball
+Game,Halloween,Crystal Ball
+Halloween,Spirit,Crystal Ball
+Halloween,Void,Cultist
 Knowledge,Spirit,Cultist
 Knowledge,Void,Cultist
 Science,Void,Cultist
 Mind Control,Treasure,Curse
+Curse,Halloween,Cursed Doll
+Domination,Halloween,Cursed Doll
+Halloween,Madness,Cursed Doll
+Halloween,Mind Control,Cursed Doll
+Halloween,Shackles,Cursed Doll
+Halloween,Wizard,Cursed Doll
 Earth,Fun,Dance
 Energy,Fun,Dance
 Fun,Fun,Dance
@@ -251,15 +269,25 @@ Mask,Star,Dancer
 Mask,Wind,Dancer
 Mask,Wings,Dancer
 Mask,Wizard,Dancer
+Blood,Halloween,Dark Ritual
+Demon,Halloween,Dark Ritual
+Entropic Magic,Halloween,Dark Ritual
+Halloween,Magic,Dark Ritual
+Halloween,Spell,Dark Ritual
+Halloween,Tentacle,Dark Ritual
+Halloween,Time,Darkness
 Darkness,Fairy Tale,Darkwood
 Darkness,Plant,Darkwood
 Darkness,Tree,Darkwood
+Halloween,Tree,Darkwood
 Immortality,Tree,Darkwood
 Myth,Tree,Darkwood
 Secret,Tree,Darkwood
 Earth,Fish,Death
 Entropic Magic,Immortality,Death
 Fish,Ice,Death
+Halloween,Medicine,Death
+Halloween,Sleep,Death
 Human,Pirate,Death
 Human,Poison,Death
 Human,Snake,Death
@@ -276,6 +304,7 @@ Bone,Wings,Death Sprite
 Curse,Fairy,Death Sprite
 Darkness,Fairy,Death Sprite
 Death,Fairy,Death Sprite
+Fairy,Halloween,Death Sprite
 Fairy,Plague,Death Sprite
 Fairy,Undead,Death Sprite
 Fairy,Vampire,Death Sprite
@@ -284,6 +313,7 @@ Blood,Plague,Decay Demon
 Curse,Demon,Decay Demon
 Demon,Plague,Decay Demon
 Demon,Poison,Decay Demon
+Halloween,Water,Decay Demon
 Curse,Dragon,Decay Dragon
 Dragon,Entropic Magic,Decay Dragon
 Dragon,Mutation,Decay Dragon
@@ -438,6 +468,7 @@ Angel,Darkness,Fallen Angel
 Angel,Death,Fallen Angel
 Angel,Demon,Fallen Angel
 Angel,Entropic Magic,Fallen Angel
+Angel,Halloween,Fallen Angel
 Angel,Madness,Fallen Angel
 Angel,Mutation,Fallen Angel
 Angel,Plague,Fallen Angel
@@ -445,6 +476,7 @@ Angel,Undead,Fallen Angel
 Angel,Vampire,Fallen Angel
 Angel,Void,Fallen Angel
 Darkness,Wings,Fallen Angel
+Halloween,Wings,Fallen Angel
 Fire,Giant,Fire Giant
 Fire,Troll,Fire Giant
 Fire,Golem,Fire Golem
@@ -467,6 +499,7 @@ Fun,Tree,Floral Wreath
 Beast,Ice,Frost Monster
 Giant,Ice,Frost Monster
 Golem,Ice,Frost Monster
+Halloween,Ice,Frost Monster
 Ice,Troll,Frost Monster
 Game,Game,Gamer
 Game,Human,Gamer
@@ -541,6 +574,7 @@ Fun,Shackles,Hammock
 Fun,Tentacle,Hammock
 Air,Death,Harpy
 Air,Fairy Tale,Harpy
+Air,Halloween,Harpy
 Air,Plague,Harpy
 Air,Undead,Harpy
 Blood,Wings,Harpy
@@ -578,15 +612,20 @@ Mechanism,Tentacle,Hook
 Metal,Pirate,Hook
 Metal,Shackles,Hook
 Metal,Tentacle,Hook
+Darkness,Halloween,Horror
 Darkness,Illusion,Horror
 Darkness,Immortality,Horror
 Darkness,Mutation,Horror
 Fairy Tale,Mutation,Horror
+Halloween,Mirror,Horror
+Halloween,Mutation,Horror
+Halloween,Power,Horror
 Madness,Undead,Horror
 Madness,Void,Horror
 Mutation,Vampire,Horror
 Beast,Snake,Huge Snake
 Giant,Snake,Huge Snake
+Halloween,Poison,Huge Snake
 Poison,Snake,Huge Snake
 Power,Snake,Huge Snake
 Blood,Bone,Human
@@ -654,6 +693,11 @@ Human,Science,Inventor
 Knowledge,Metal,Inventor
 Knowledge,Science,Inventor
 Light,Relic,Invisibility
+Fairy Tale,Halloween,Jack-o'-lantern
+Halloween,Mask,Jack-o'-lantern
+Halloween,Myth,Jack-o'-lantern
+Halloween,Relic,Jack-o'-lantern
+Halloween,Totem,Jack-o'-lantern
 Game,Jewel,Jackpot
 Game,Metal,Jackpot
 Game,Myth,Jackpot
@@ -706,6 +750,7 @@ Curse,Human,Leper
 Curse,Romance,Leper
 Curse,Tree,Leper
 Curse,Undead,Leper
+Energy,Halloween,Leper
 Entropic Magic,Romance,Leper
 Human,Mutation,Leper
 Human,Plague,Leper
@@ -720,6 +765,7 @@ Darkness,Power,Lich
 Darkness,Undead,Lich
 Death,Magic Crystal,Lich
 Entropic Magic,Undead,Lich
+Halloween,Undead,Lich
 Immortality,Wizard,Lich
 Mutation,Wizard,Lich
 Power,Undead,Lich
@@ -742,6 +788,7 @@ Bone,Curse,Living Skeleton
 Bone,Energy,Living Skeleton
 Bone,Fairy Tale,Living Skeleton
 Bone,Fun,Living Skeleton
+Bone,Halloween,Living Skeleton
 Bone,Human,Living Skeleton
 Bone,Immortality,Living Skeleton
 Bone,Magic,Living Skeleton
@@ -828,6 +875,7 @@ Medicine,Shackles,Medical Confidentiality
 Medicine,Time,Medical Confidentiality
 Fairy Tale,Fish,Mermaid
 Fairy Tale,Water,Mermaid
+Fish,Halloween,Mermaid
 Fish,Human,Mermaid
 Human,Water,Mermaid
 Blood,Treasure,Mimic
@@ -837,6 +885,9 @@ Demon,Treasure,Mimic
 Entropic Magic,Relic,Mimic
 Entropic Magic,Treasure,Mimic
 Game,Tentacle,Mimic
+Halloween,Jewel,Mimic
+Halloween,Secret,Mimic
+Halloween,Treasure,Mimic
 Illusion,Relic,Mimic
 Illusion,Treasure,Mimic
 Madness,Treasure,Mimic
@@ -873,6 +924,7 @@ Blood,Medicine,Nurse
 Fairy,Medicine,Nurse
 Medicine,Science,Nurse
 Demon,Human,Obsession
+Halloween,Pollen,Obsession
 Human,Madness,Obsession
 Human,Mind Control,Obsession
 Human,Romance,Obsession
@@ -922,6 +974,7 @@ Mutation,Pollen,Plague
 Undead,Undead,Plague
 Darkness,Medicine,Plague Doctor
 Game,Plague,Plague Doctor
+Halloween,Plague,Plague Doctor
 Madness,Medicine,Plague Doctor
 Magic,Plague,Plague Doctor
 Medicine,Plague,Plague Doctor
@@ -1014,6 +1067,12 @@ Ash,Spell,Sand Storm
 Ash,Wind,Sand Storm
 Death,Wind,Sand Storm
 Earth,Wind,Sand Storm
+Beast,Halloween,Scarecrow
+Golem,Halloween,Scarecrow
+Halloween,Human,Scarecrow
+Halloween,Knight,Scarecrow
+Halloween,Plant,Scarecrow
+Halloween,Robot,Scarecrow
 Blood,Mask,Schemer
 Curse,Mask,Schemer
 Darkness,Mask,Schemer
@@ -1079,6 +1138,7 @@ Darkness,Dragon,Skeletal Dragon
 Death,Dragon,Skeletal Dragon
 Dragon,Undead,Skeletal Dragon
 Bone,Snake,Skeletal Snake
+Halloween,Snake,Skeletal Snake
 Snake,Undead,Skeletal Snake
 Darkness,Sleep,Sleep
 Fairy,Power,Sleep
@@ -1221,6 +1281,8 @@ Knight,Void,Undead Knight
 Metal,Undead,Undead Knight
 Curse,Magic,Undead Mage
 Curse,Wizard,Undead Mage
+Halloween,Knowledge,Undead Mage
+Halloween,Magic Crystal,Undead Mage
 Light,Undead,Undead Mage
 Magic,Undead,Undead Mage
 Magic Crystal,Undead,Undead Mage
@@ -1228,6 +1290,7 @@ Undead,Wizard,Undead Mage
 Bone,Pirate,Undead Pirate
 Curse,Pirate,Undead Pirate
 Darkness,Pirate,Undead Pirate
+Halloween,Pirate,Undead Pirate
 Mutation,Pirate,Undead Pirate
 Pirate,Plague,Undead Pirate
 Pirate,Shackles,Undead Pirate
@@ -1332,6 +1395,8 @@ Darkness,Spirit,Wraith
 Death,Demon,Wraith
 Death,Illusion,Wraith
 Demon,Void,Wraith
+Halloween,Immortality,Wraith
+Halloween,Invisibility,Wraith
 Spirit,Void,Wraith
 Air,Dragon,Wyvern
 Air,Snake,Wyvern
